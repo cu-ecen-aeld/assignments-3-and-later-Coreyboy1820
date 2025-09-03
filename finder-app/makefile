@@ -1,7 +1,7 @@
 TARGET := writer
 SRCS   := writer.c
 
-# Object files for each arch (flat directory: just foo.o, not build/x86/foo.o)
+# Object files for each arch
 OBJS_AARCH64 := $(SRCS:.c=.aarch64.o)
 OBJS_X86     := $(SRCS:.c=.x86.o)
 
@@ -23,14 +23,14 @@ endif
 aarch64: $(TARGET).aarch64
 x86:     $(TARGET).x86
 
-# ===== Linking step =====
+# ============== Linking Step ==============
 $(TARGET).aarch64: $(OBJS_AARCH64)
 	$(CC_aarch64) $^ -o $(TARGET)
 
 $(TARGET).x86: $(OBJS_X86)
 	$(CC_x86) $^ -o $(TARGET)
 
-# ===== Compile step =====
+# ============== Compile Step ==============
 %.aarch64.o: %.c
 	@echo "CC (aarch64) $<"
 	$(CC_aarch64) $(CFLAGS) -c $< -o $@
@@ -39,13 +39,12 @@ $(TARGET).x86: $(OBJS_X86)
 	@echo "CC (x86) $<"
 	$(CC_x86) $(CFLAGS) -c $< -o $@
 
-# ===== Clean =====
 clean:
 	@echo "Cleaning objects and executables"
 	@rm -f *.o $(TARGET).aarch64 $(TARGET).x86 $(TARGET)
 
+# TARGET := writer
 # BUILD_DIR := build
-# TARGET := executable
 
 # SRCS := writer.c
 
