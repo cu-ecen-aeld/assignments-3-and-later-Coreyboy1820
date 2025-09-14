@@ -95,26 +95,10 @@ make ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE}
 make CONFIG_PREFIX=${OUTDIR}/rootfs ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} install
 
 echo "Copying Library dependencies"
-mapfile -t dependencies < <(${CROSS_COMPILE}readelf -a "${OUTDIR}/rootfs/bin/busybox" \
-                             | grep "program interpreter" \
-                             | grep -o '/[^]]*')
-
-for dependency in "${dependencies[@]}"
-do
-echo $dependency
-    file_name=$(basename $dependency)
-    cp /toolchains/arm-gnu-toolchain-13.3.rel1-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib/$file_name ${OUTDIR}/rootfs/lib/
-done
-
-mapfile -t dependencies < <(${CROSS_COMPILE}readelf -a "${OUTDIR}/rootfs/bin/busybox" \
-    | grep "Shared library" \
-    | grep -oP '(?<=\[)[^]]+(?=\])')
-
-for dependency in "${dependencies[@]}"
-do
-    echo $dependency
-    cp /toolchains/arm-gnu-toolchain-13.3.rel1-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/$dependency ${OUTDIR}/rootfs/lib64/
-done
+cp /toolchains/arm-gnu-toolchain-13.3.rel1-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib/ld-linux-aarch64.so.1 ${OUTDIR}/rootfs/lib/
+cp /toolchains/arm-gnu-toolchain-13.3.rel1-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/libm.so.6 ${OUTDIR}/rootfs/lib64/
+cp /toolchains/arm-gnu-toolchain-13.3.rel1-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/libresolv.so.2 ${OUTDIR}/rootfs/lib64/
+cp /toolchains/arm-gnu-toolchain-13.3.rel1-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/libc.so.6 ${OUTDIR}/rootfs/lib64/
 
 # Make device nodes
 cd "$OUTDIR/rootfs"
