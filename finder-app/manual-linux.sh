@@ -6,7 +6,7 @@ set -e
 set -u
 
 OUTDIR="/tmp/aeld"
-WORKING_DIRECTORY=/home/vboxuser/code/assignments-3-and-later-Coreyboy1820/finder-app
+WORKING_DIRECTORY=$(pwd)
 KERNEL_REPO=git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
 KERNEL_VERSION=v5.15.163
 BUSYBOX_VERSION=1_33_1
@@ -83,7 +83,6 @@ then
     cd busybox
     git checkout ${BUSYBOX_VERSION}
     # TODO:  Configure busybox
-    make ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} defconfig
 else
     cd busybox
 fi
@@ -102,6 +101,7 @@ mapfile -t dependencies < <(${CROSS_COMPILE}readelf -a "${OUTDIR}/rootfs/bin/bus
 
 for dependency in "${dependencies[@]}"
 do
+echo $dependency
     file_name=$(basename $dependency)
     cp /toolchains/arm-gnu-toolchain-13.3.rel1-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib/$file_name ${OUTDIR}/rootfs/lib/
 done
@@ -112,6 +112,7 @@ mapfile -t dependencies < <(${CROSS_COMPILE}readelf -a "${OUTDIR}/rootfs/bin/bus
 
 for dependency in "${dependencies[@]}"
 do
+    echo $dependency
     cp /toolchains/arm-gnu-toolchain-13.3.rel1-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/$dependency ${OUTDIR}/rootfs/lib64/
 done
 
@@ -121,7 +122,7 @@ echo Making Device Nodes
 if [ -e "dev/null" ]
 then
     sudo mknod -m 666 dev/null c 1 3
-    sudo mknod -m 666 dev/console c 5 1
+    sudo mknod -m 622 dev/console c 5 1
 fi
 
 # Clean and build the writer utility
@@ -134,13 +135,16 @@ make CROSS_COMPILE=${CROSS_COMPILE}
 # Copy the finder related scripts and executables to the /home directory
 # on the target rootfs
 echo Copy scripts and executables to target
-cp /home/vboxuser/code/assignments-3-and-later-Coreyboy1820/finder-app/finder.sh ${OUTDIR}/rootfs/home/
-cp /home/vboxuser/code/assignments-3-and-later-Coreyboy1820/finder-app/finder-test.sh ${OUTDIR}/rootfs/home/
-cp -r /home/vboxuser/code/assignments-3-and-later-Coreyboy1820/conf ${OUTDIR}/rootfs/home/
-cp /home/vboxuser/code/assignments-3-and-later-Coreyboy1820/finder-app/autorun-qemu.sh ${OUTDIR}/rootfs/home/
+cp $WORKING_DIRECTORY/finder.sh ${OUTDIR}/rootfs/home/
+cp $WORKING_DIRECTORY/finder-test.sh ${OUTDIR}/rootfs/home/
+cp -r $WORKING_DIRECTORY/../conf ${OUTDIR}/rootfs/home/
+cp $WORKING_DIRECTORY/autorun-qemu.sh ${OUTDIR}/rootfs/home/
 cp $WORKING_DIRECTORY/writer.c ${OUTDIR}/rootfs/home 
 cp $WORKING_DIRECTORY/writer ${OUTDIR}/rootfs/home 
+cp $WORKING_DIRECTORY/autorun-qemu.sh ${OUTDIR}/rootfs/home
 
 # TODO: Create initramfs.cpio.gz
-find ${OUTDIR}/rootfs | cpio -H newc -ov --owner root:root > ${OUTDIR}/initramfs.cpio
-gzip -f ${OUTDIR}/initramfs.cpio
+cd ${OUTDIR}/rootfs
+find . | cpio -H newc -ov --owner root:root > ${OUTDIR}/initramfs.cpio
+cd ${OUTDIR}
+gzip -f initramfs.cpio

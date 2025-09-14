@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 help() {
     echo "type --help for this information"
