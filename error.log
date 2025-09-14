@@ -1,0 +1,813 @@
+CMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.5 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
+
+
+CMake Deprecation Warning at assignment-autotest/CMakeLists.txt:13 (cmake_minimum_required):
+  Compatibility with CMake < 3.5 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
+
+
+CMake Deprecation Warning at assignment-autotest/Unity/CMakeLists.txt:11 (cmake_minimum_required):
+  Compatibility with CMake < 3.5 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
+
+
+CMake Deprecation Warning at assignment-autotest/Unity/src/CMakeLists.txt:11 (cmake_minimum_required):
+  Compatibility with CMake < 3.5 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
+
+
+/home/vboxuser/code/assignments-3-and-later-Coreyboy1820/assignment-autotest/Unity/auto/generate_test_runner.rb:344: warning: Passing safe_level with the 2nd argument of ERB.new is deprecated. Do not use it, and specify other arguments as keyword arguments.
+/home/vboxuser/code/assignments-3-and-later-Coreyboy1820/assignment-autotest/Unity/auto/generate_test_runner.rb:344: warning: Passing trim_mode with the 3rd argument of ERB.new is deprecated. Use keyword argument like ERB.new(str, trim_mode: ...) instead.
+/home/vboxuser/code/assignments-3-and-later-Coreyboy1820/assignment-autotest/Unity/auto/generate_test_runner.rb:344: warning: Passing safe_level with the 2nd argument of ERB.new is deprecated. Do not use it, and specify other arguments as keyword arguments.
+/home/vboxuser/code/assignments-3-and-later-Coreyboy1820/assignment-autotest/Unity/auto/generate_test_runner.rb:344: warning: Passing trim_mode with the 3rd argument of ERB.new is deprecated. Use keyword argument like ERB.new(str, trim_mode: ...) instead.
+/home/vboxuser/code/assignments-3-and-later-Coreyboy1820/assignment-autotest/Unity/auto/generate_test_runner.rb:344: warning: Passing safe_level with the 2nd argument of ERB.new is deprecated. Do not use it, and specify other arguments as keyword arguments.
+/home/vboxuser/code/assignments-3-and-later-Coreyboy1820/assignment-autotest/Unity/auto/generate_test_runner.rb:344: warning: Passing trim_mode with the 3rd argument of ERB.new is deprecated. Use keyword argument like ERB.new(str, trim_mode: ...) instead.
+Cloning into 'busybox'...
+Note: switching to '1_33_1'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at bcc5b0e6c Bump version to 1.33.1
+applets/usage.c: In function ‘main’:
+applets/usage.c:52:17: warning: ignoring return value of ‘write’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+   52 |                 write(STDOUT_FILENO, usage_array[i].usage, strlen(usage_array[i].usage) + 1);
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+applets/usage_pod.c: In function ‘main’:
+applets/usage_pod.c:74:17: warning: format not a string literal and no format arguments [-Wformat-security]
+   74 |                 printf(usage_array[i].aname);
+      |                 ^~~~~~
+In file included from archival/cpio.c:144:
+archival/cpio.c: In function ‘cpio_main’:
+include/libbb.h:626:27: warning: ‘xpipe’ accessing 8 bytes in a region of size 4 [-Wstringop-overflow=]
+  626 | #define xpiped_pair(pair) xpipe(&((pair).rd))
+      |                           ^~~~~~~~~~~~~~~~~~~
+archival/cpio.c:440:17: note: in expansion of macro ‘xpiped_pair’
+  440 |                 xpiped_pair(pp);
+      |                 ^~~~~~~~~~~
+include/libbb.h:626:27: note: referencing argument 1 of type ‘int[2]’
+  626 | #define xpiped_pair(pair) xpipe(&((pair).rd))
+      |                           ^~~~~~~~~~~~~~~~~~~
+archival/cpio.c:440:17: note: in expansion of macro ‘xpiped_pair’
+  440 |                 xpiped_pair(pp);
+      |                 ^~~~~~~~~~~
+include/libbb.h:622:6: note: in a call to function ‘xpipe’
+  622 | void xpipe(int filedes[2]) FAST_FUNC;
+      |      ^~~~~
+In file included from archival/tar.c:119:
+archival/tar.c: In function ‘vfork_compressor’:
+include/libbb.h:626:27: warning: ‘xpipe’ accessing 8 bytes in a region of size 4 [-Wstringop-overflow=]
+  626 | #define xpiped_pair(pair) xpipe(&((pair).rd))
+      |                           ^~~~~~~~~~~~~~~~~~~
+archival/tar.c:611:9: note: in expansion of macro ‘xpiped_pair’
+  611 |         xpiped_pair(data);
+      |         ^~~~~~~~~~~
+include/libbb.h:626:27: note: referencing argument 1 of type ‘int[2]’
+  626 | #define xpiped_pair(pair) xpipe(&((pair).rd))
+      |                           ^~~~~~~~~~~~~~~~~~~
+archival/tar.c:611:9: note: in expansion of macro ‘xpiped_pair’
+  611 |         xpiped_pair(data);
+      |         ^~~~~~~~~~~
+include/libbb.h:622:6: note: in a call to function ‘xpipe’
+  622 | void xpipe(int filedes[2]) FAST_FUNC;
+      |      ^~~~~
+In file included from archival/libarchive/open_transformer.c:5:
+archival/libarchive/open_transformer.c: In function ‘fork_transformer’:
+include/libbb.h:626:27: warning: ‘xpipe’ accessing 8 bytes in a region of size 4 [-Wstringop-overflow=]
+  626 | #define xpiped_pair(pair) xpipe(&((pair).rd))
+      |                           ^~~~~~~~~~~~~~~~~~~
+archival/libarchive/open_transformer.c:111:9: note: in expansion of macro ‘xpiped_pair’
+  111 |         xpiped_pair(fd_pipe);
+      |         ^~~~~~~~~~~
+include/libbb.h:626:27: note: referencing argument 1 of type ‘int[2]’
+  626 | #define xpiped_pair(pair) xpipe(&((pair).rd))
+      |                           ^~~~~~~~~~~~~~~~~~~
+archival/libarchive/open_transformer.c:111:9: note: in expansion of macro ‘xpiped_pair’
+  111 |         xpiped_pair(fd_pipe);
+      |         ^~~~~~~~~~~
+include/libbb.h:622:6: note: in a call to function ‘xpipe’
+  622 | void xpipe(int filedes[2]) FAST_FUNC;
+      |      ^~~~~
+libbb/lineedit.c: In function ‘input_tab’:
+libbb/lineedit.c:1319:25: warning: ‘sprintf’ argument 4 may overlap destination object ‘match_buf’ [-Wrestrict]
+ 1319 |                         sprintf(&command[cursor_mb], "%s%s", chosen_match + match_pfx_len, match_buf);
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from mailutils/mail.c:10:
+mailutils/mail.c: In function ‘launch_helper’:
+include/libbb.h:626:27: warning: ‘xpipe’ accessing 8 bytes in a region of size 4 [-Wstringop-overflow=]
+  626 | #define xpiped_pair(pair) xpipe(&((pair).rd))
+      |                           ^~~~~~~~~~~~~~~~~~~
+mailutils/mail.c:40:9: note: in expansion of macro ‘xpiped_pair’
+   40 |         xpiped_pair(child_out);
+      |         ^~~~~~~~~~~
+include/libbb.h:626:27: note: referencing argument 1 of type ‘int[2]’
+  626 | #define xpiped_pair(pair) xpipe(&((pair).rd))
+      |                           ^~~~~~~~~~~~~~~~~~~
+mailutils/mail.c:40:9: note: in expansion of macro ‘xpiped_pair’
+   40 |         xpiped_pair(child_out);
+      |         ^~~~~~~~~~~
+include/libbb.h:622:6: note: in a call to function ‘xpipe’
+  622 | void xpipe(int filedes[2]) FAST_FUNC;
+      |      ^~~~~
+include/libbb.h:626:27: warning: ‘xpipe’ accessing 8 bytes in a region of size 4 [-Wstringop-overflow=]
+  626 | #define xpiped_pair(pair) xpipe(&((pair).rd))
+      |                           ^~~~~~~~~~~~~~~~~~~
+mailutils/mail.c:41:9: note: in expansion of macro ‘xpiped_pair’
+   41 |         xpiped_pair(child_in);
+      |         ^~~~~~~~~~~
+include/libbb.h:626:27: note: referencing argument 1 of type ‘int[2]’
+  626 | #define xpiped_pair(pair) xpipe(&((pair).rd))
+      |                           ^~~~~~~~~~~~~~~~~~~
+mailutils/mail.c:41:9: note: in expansion of macro ‘xpiped_pair’
+   41 |         xpiped_pair(child_in);
+      |         ^~~~~~~~~~~
+include/libbb.h:622:6: note: in a call to function ‘xpipe’
+  622 | void xpipe(int filedes[2]) FAST_FUNC;
+      |      ^~~~~
+miscutils/i2c_tools.c: In function ‘list_i2c_busses_and_exit’:
+miscutils/i2c_tools.c:1150:46: warning: ‘%s’ directive output may be truncated writing up to 255 bytes into a region of size 236 [-Wformat-truncation=]
+ 1150 |                 snprintf(path, NAME_MAX, "%s/%s/name",
+      |                                              ^~
+miscutils/i2c_tools.c:1150:17: note: ‘snprintf’ output between 25 and 280 bytes into a destination of size 255
+ 1150 |                 snprintf(path, NAME_MAX, "%s/%s/name",
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1151 |                          i2cdev_path, de->d_name);
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~
+miscutils/i2c_tools.c:1155:38: warning: ‘%s’ directive output may be truncated writing up to 255 bytes into a region of size 236 [-Wformat-truncation=]
+ 1155 |                                  "%s/%s/device/name",
+      |                                      ^~
+miscutils/i2c_tools.c:1154:25: note: ‘snprintf’ output between 32 and 287 bytes into a destination of size 255
+ 1154 |                         snprintf(path, NAME_MAX,
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~
+ 1155 |                                  "%s/%s/device/name",
+      |                                  ~~~~~~~~~~~~~~~~~~~~
+ 1156 |                                  i2cdev_path, de->d_name);
+      |                                  ~~~~~~~~~~~~~~~~~~~~~~~~
+miscutils/i2c_tools.c:1163:38: warning: ‘%s’ directive output may be truncated writing up to 255 bytes into a region of size 236 [-Wformat-truncation=]
+ 1163 |                                  "%s/%s/device/name",
+      |                                      ^~
+miscutils/i2c_tools.c:1162:25: note: ‘snprintf’ output between 32 and 287 bytes into a destination of size 255
+ 1162 |                         snprintf(path, NAME_MAX,
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~
+ 1163 |                                  "%s/%s/device/name",
+      |                                  ~~~~~~~~~~~~~~~~~~~~
+ 1164 |                                  i2cdev_path, de->d_name);
+      |                                  ~~~~~~~~~~~~~~~~~~~~~~~~
+miscutils/i2c_tools.c:1175:54: warning: ‘%s’ directive output may be truncated writing up to 255 bytes into a region of size 236 [-Wformat-truncation=]
+ 1175 |                                                  "%s/%s/device/%s/name",
+      |                                                      ^~
+miscutils/i2c_tools.c:1174:41: note: ‘snprintf’ output between 33 and 543 bytes into a destination of size 255
+ 1174 |                                         snprintf(path, NAME_MAX,
+      |                                         ^~~~~~~~~~~~~~~~~~~~~~~~
+ 1175 |                                                  "%s/%s/device/%s/name",
+      |                                                  ~~~~~~~~~~~~~~~~~~~~~~~
+ 1176 |                                                  i2cdev_path, de->d_name,
+      |                                                  ~~~~~~~~~~~~~~~~~~~~~~~~
+ 1177 |                                                  subde->d_name);
+      |                                                  ~~~~~~~~~~~~~~
+modutils/modutils.c: In function ‘filename2modname’:
+modutils/modutils.c:115:1: warning: function may return address of local variable [-Wreturn-local-addr]
+  115 | }
+      | ^
+modutils/modutils.c:94:14: note: declared here
+   94 |         char local_modname[MODULE_NAME_LEN];
+      |              ^~~~~~~~~~~~~
+In file included from networking/ftpd.c:84:
+networking/ftpd.c: In function ‘popen_ls’:
+include/libbb.h:626:27: warning: ‘xpipe’ accessing 8 bytes in a region of size 4 [-Wstringop-overflow=]
+  626 | #define xpiped_pair(pair) xpipe(&((pair).rd))
+      |                           ^~~~~~~~~~~~~~~~~~~
+networking/ftpd.c:701:9: note: in expansion of macro ‘xpiped_pair’
+  701 |         xpiped_pair(outfd);
+      |         ^~~~~~~~~~~
+include/libbb.h:626:27: note: referencing argument 1 of type ‘int[2]’
+  626 | #define xpiped_pair(pair) xpipe(&((pair).rd))
+      |                           ^~~~~~~~~~~~~~~~~~~
+networking/ftpd.c:701:9: note: in expansion of macro ‘xpiped_pair’
+  701 |         xpiped_pair(outfd);
+      |         ^~~~~~~~~~~
+include/libbb.h:622:6: note: in a call to function ‘xpipe’
+  622 | void xpipe(int filedes[2]) FAST_FUNC;
+      |      ^~~~~
+In file included from networking/httpd.c:287:
+networking/httpd.c: In function ‘send_cgi_and_exit’:
+include/libbb.h:626:27: warning: ‘xpipe’ accessing 8 bytes in a region of size 4 [-Wstringop-overflow=]
+  626 | #define xpiped_pair(pair) xpipe(&((pair).rd))
+      |                           ^~~~~~~~~~~~~~~~~~~
+networking/httpd.c:1630:9: note: in expansion of macro ‘xpiped_pair’
+ 1630 |         xpiped_pair(fromCgi);
+      |         ^~~~~~~~~~~
+include/libbb.h:626:27: note: referencing argument 1 of type ‘int[2]’
+  626 | #define xpiped_pair(pair) xpipe(&((pair).rd))
+      |                           ^~~~~~~~~~~~~~~~~~~
+networking/httpd.c:1630:9: note: in expansion of macro ‘xpiped_pair’
+ 1630 |         xpiped_pair(fromCgi);
+      |         ^~~~~~~~~~~
+include/libbb.h:622:6: note: in a call to function ‘xpipe’
+  622 | void xpipe(int filedes[2]) FAST_FUNC;
+      |      ^~~~~
+include/libbb.h:626:27: warning: ‘xpipe’ accessing 8 bytes in a region of size 4 [-Wstringop-overflow=]
+  626 | #define xpiped_pair(pair) xpipe(&((pair).rd))
+      |                           ^~~~~~~~~~~~~~~~~~~
+networking/httpd.c:1631:9: note: in expansion of macro ‘xpiped_pair’
+ 1631 |         xpiped_pair(toCgi);
+      |         ^~~~~~~~~~~
+include/libbb.h:626:27: note: referencing argument 1 of type ‘int[2]’
+  626 | #define xpiped_pair(pair) xpipe(&((pair).rd))
+      |                           ^~~~~~~~~~~~~~~~~~~
+networking/httpd.c:1631:9: note: in expansion of macro ‘xpiped_pair’
+ 1631 |         xpiped_pair(toCgi);
+      |         ^~~~~~~~~~~
+include/libbb.h:622:6: note: in a call to function ‘xpipe’
+  622 | void xpipe(int filedes[2]) FAST_FUNC;
+      |      ^~~~~
+In file included from networking/ifupdown.c:142:
+networking/ifupdown.c: In function ‘popen2’:
+include/libbb.h:626:27: warning: ‘xpipe’ accessing 8 bytes in a region of size 4 [-Wstringop-overflow=]
+  626 | #define xpiped_pair(pair) xpipe(&((pair).rd))
+      |                           ^~~~~~~~~~~~~~~~~~~
+networking/ifupdown.c:1240:9: note: in expansion of macro ‘xpiped_pair’
+ 1240 |         xpiped_pair(infd);
+      |         ^~~~~~~~~~~
+include/libbb.h:626:27: note: referencing argument 1 of type ‘int[2]’
+  626 | #define xpiped_pair(pair) xpipe(&((pair).rd))
+      |                           ^~~~~~~~~~~~~~~~~~~
+networking/ifupdown.c:1240:9: note: in expansion of macro ‘xpiped_pair’
+ 1240 |         xpiped_pair(infd);
+      |         ^~~~~~~~~~~
+include/libbb.h:622:6: note: in a call to function ‘xpipe’
+  622 | void xpipe(int filedes[2]) FAST_FUNC;
+      |      ^~~~~
+include/libbb.h:626:27: warning: ‘xpipe’ accessing 8 bytes in a region of size 4 [-Wstringop-overflow=]
+  626 | #define xpiped_pair(pair) xpipe(&((pair).rd))
+      |                           ^~~~~~~~~~~~~~~~~~~
+networking/ifupdown.c:1241:9: note: in expansion of macro ‘xpiped_pair’
+ 1241 |         xpiped_pair(outfd);
+      |         ^~~~~~~~~~~
+include/libbb.h:626:27: note: referencing argument 1 of type ‘int[2]’
+  626 | #define xpiped_pair(pair) xpipe(&((pair).rd))
+      |                           ^~~~~~~~~~~~~~~~~~~
+networking/ifupdown.c:1241:9: note: in expansion of macro ‘xpiped_pair’
+ 1241 |         xpiped_pair(outfd);
+      |         ^~~~~~~~~~~
+include/libbb.h:622:6: note: in a call to function ‘xpipe’
+  622 | void xpipe(int filedes[2]) FAST_FUNC;
+      |      ^~~~~
+networking/tftp.c: In function ‘tftpd_main’:
+networking/tftp.c:887:15: warning: ‘local_file’ is used uninitialized [-Wuninitialized]
+  887 |         char *local_file = local_file;
+      |               ^~~~~~~~~~
+networking/tftp.c:887:15: note: ‘local_file’ was declared here
+  887 |         char *local_file = local_file;
+      |               ^~~~~~~~~~
+networking/udhcp/signalpipe.c:68:46: warning: argument 1 of type ‘struct pollfd[2]’ with mismatched bound [-Warray-parameter=]
+   68 | void FAST_FUNC udhcp_sp_fd_set(struct pollfd pfds[2], int extra_fd)
+      |                                ~~~~~~~~~~~~~~^~~~~~~
+In file included from networking/udhcp/signalpipe.c:21:
+networking/udhcp/common.h:350:37: note: previously declared as ‘struct pollfd *’
+  350 | void udhcp_sp_fd_set(struct pollfd *pfds, int extra_fd) FAST_FUNC;
+      |                      ~~~~~~~~~~~~~~~^~~~
+In file included from networking/udhcp/common.h:11:
+networking/udhcp/signalpipe.c: In function ‘udhcp_sp_setup’:
+include/libbb.h:626:27: warning: ‘xpipe’ accessing 8 bytes in a region of size 4 [-Wstringop-overflow=]
+  626 | #define xpiped_pair(pair) xpipe(&((pair).rd))
+      |                           ^~~~~~~~~~~~~~~~~~~
+networking/udhcp/signalpipe.c:45:9: note: in expansion of macro ‘xpiped_pair’
+   45 |         xpiped_pair(signal_pipe);
+      |         ^~~~~~~~~~~
+include/libbb.h:626:27: note: referencing argument 1 of type ‘int[2]’
+  626 | #define xpiped_pair(pair) xpipe(&((pair).rd))
+      |                           ^~~~~~~~~~~~~~~~~~~
+networking/udhcp/signalpipe.c:45:9: note: in expansion of macro ‘xpiped_pair’
+   45 |         xpiped_pair(signal_pipe);
+      |         ^~~~~~~~~~~
+include/libbb.h:622:6: note: in a call to function ‘xpipe’
+  622 | void xpipe(int filedes[2]) FAST_FUNC;
+      |      ^~~~~
+procps/powertop.c: In function ‘read_cstate_counts’:
+procps/powertop.c:181:34: warning: ‘%s’ directive writing up to 255 bytes into a region of size 171 [-Wformat-overflow=]
+  181 |                 sprintf(buf, "%s/%s/power", "/proc/acpi/processor", d->d_name);
+      |                                  ^~
+procps/powertop.c:181:17: note: ‘sprintf’ output between 28 and 283 bytes into a destination of size 192
+  181 |                 sprintf(buf, "%s/%s/power", "/proc/acpi/processor", d->d_name);
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from include/busybox.h:8,
+                 from shell/hush.c:359:
+shell/hush.c: In function ‘run_pipe’:
+include/libbb.h:626:27: warning: ‘xpipe’ accessing 8 bytes in a region of size 4 [-Wstringop-overflow=]
+  626 | #define xpiped_pair(pair) xpipe(&((pair).rd))
+      |                           ^~~~~~~~~~~~~~~~~~~
+shell/hush.c:9382:25: note: in expansion of macro ‘xpiped_pair’
+ 9382 |                         xpiped_pair(pipefds);
+      |                         ^~~~~~~~~~~
+include/libbb.h:626:27: note: referencing argument 1 of type ‘int[2]’
+  626 | #define xpiped_pair(pair) xpipe(&((pair).rd))
+      |                           ^~~~~~~~~~~~~~~~~~~
+shell/hush.c:9382:25: note: in expansion of macro ‘xpiped_pair’
+ 9382 |                         xpiped_pair(pipefds);
+      |                         ^~~~~~~~~~~
+include/libbb.h:622:6: note: in a call to function ‘xpipe’
+  622 | void xpipe(int filedes[2]) FAST_FUNC;
+      |      ^~~~~
+shell/hush.c: In function ‘setup_heredoc’:
+include/libbb.h:626:27: warning: ‘xpipe’ accessing 8 bytes in a region of size 4 [-Wstringop-overflow=]
+  626 | #define xpiped_pair(pair) xpipe(&((pair).rd))
+      |                           ^~~~~~~~~~~~~~~~~~~
+shell/hush.c:7571:9: note: in expansion of macro ‘xpiped_pair’
+ 7571 |         xpiped_pair(pair);
+      |         ^~~~~~~~~~~
+include/libbb.h:626:27: note: referencing argument 1 of type ‘int[2]’
+  626 | #define xpiped_pair(pair) xpipe(&((pair).rd))
+      |                           ^~~~~~~~~~~~~~~~~~~
+shell/hush.c:7571:9: note: in expansion of macro ‘xpiped_pair’
+ 7571 |         xpiped_pair(pair);
+      |         ^~~~~~~~~~~
+include/libbb.h:622:6: note: in a call to function ‘xpipe’
+  622 | void xpipe(int filedes[2]) FAST_FUNC;
+      |      ^~~~~
+shell/hush.c: In function ‘expand_one_var’:
+shell/hush.c:6407:15: warning: ‘exp_word’ is used uninitialized [-Wuninitialized]
+ 6407 |         char *exp_word = exp_word; /* for compiler */
+      |               ^~~~~~~~
+shell/hush.c:6407:15: note: ‘exp_word’ was declared here
+ 6407 |         char *exp_word = exp_word; /* for compiler */
+      |               ^~~~~~~~
+In file included from util-linux/unshare.c:72:
+util-linux/unshare.c: In function ‘unshare_main’:
+include/libbb.h:626:27: warning: ‘xpipe’ accessing 8 bytes in a region of size 4 [-Wstringop-overflow=]
+  626 | #define xpiped_pair(pair) xpipe(&((pair).rd))
+      |                           ^~~~~~~~~~~~~~~~~~~
+util-linux/unshare.c:287:17: note: in expansion of macro ‘xpiped_pair’
+  287 |                 xpiped_pair(fdp);
+      |                 ^~~~~~~~~~~
+include/libbb.h:626:27: note: referencing argument 1 of type ‘int[2]’
+  626 | #define xpiped_pair(pair) xpipe(&((pair).rd))
+      |                           ^~~~~~~~~~~~~~~~~~~
+util-linux/unshare.c:287:17: note: in expansion of macro ‘xpiped_pair’
+  287 |                 xpiped_pair(fdp);
+      |                 ^~~~~~~~~~~
+include/libbb.h:622:6: note: in a call to function ‘xpipe’
+  622 | void xpipe(int filedes[2]) FAST_FUNC;
+      |      ^~~~~
+util-linux/volume_id/btrfs.c: In function ‘volume_id_probe_btrfs’:
+util-linux/volume_id/btrfs.c:110:34: warning: ‘sb’ may be used uninitialized [-Wmaybe-uninitialized]
+  110 |         volume_id_set_uuid(id, sb->fsid, UUID_DCE);
+      |                                ~~^~~~~~
+util-linux/volume_id/btrfs.c:93:35: note: ‘sb’ was declared here
+   93 |         struct btrfs_super_block *sb;
+      |                                   ^~
+/tmp/aesd-autograder/rootfs/bin
+/tmp/aesd-autograder/rootfs/bin/pipe_progress
+/tmp/aesd-autograder/rootfs/bin/ps
+/tmp/aesd-autograder/rootfs/bin/dmesg
+/tmp/aesd-autograder/rootfs/bin/rpm
+/tmp/aesd-autograder/rootfs/bin/lsattr
+/tmp/aesd-autograder/rootfs/bin/setarch
+/tmp/aesd-autograder/rootfs/bin/ping6
+/tmp/aesd-autograder/rootfs/bin/fatattr
+/tmp/aesd-autograder/rootfs/bin/cp
+/tmp/aesd-autograder/rootfs/bin/rm
+/tmp/aesd-autograder/rootfs/bin/mv
+/tmp/aesd-autograder/rootfs/bin/setpriv
+/tmp/aesd-autograder/rootfs/bin/date
+/tmp/aesd-autograder/rootfs/bin/false
+/tmp/aesd-autograder/rootfs/bin/makemime
+/tmp/aesd-autograder/rootfs/bin/mt
+/tmp/aesd-autograder/rootfs/bin/egrep
+/tmp/aesd-autograder/rootfs/bin/usleep
+/tmp/aesd-autograder/rootfs/bin/fsync
+/tmp/aesd-autograder/rootfs/bin/mkdir
+/tmp/aesd-autograder/rootfs/bin/nice
+/tmp/aesd-autograder/rootfs/bin/kill
+/tmp/aesd-autograder/rootfs/bin/base64
+/tmp/aesd-autograder/rootfs/bin/base32
+/tmp/aesd-autograder/rootfs/bin/reformime
+/tmp/aesd-autograder/rootfs/bin/login
+/tmp/aesd-autograder/rootfs/bin/mknod
+/tmp/aesd-autograder/rootfs/bin/rmdir
+/tmp/aesd-autograder/rootfs/bin/tar
+/tmp/aesd-autograder/rootfs/bin/sh
+/tmp/aesd-autograder/rootfs/bin/chown
+/tmp/aesd-autograder/rootfs/bin/mountpoint
+/tmp/aesd-autograder/rootfs/bin/rev
+/tmp/aesd-autograder/rootfs/bin/arch
+/tmp/aesd-autograder/rootfs/bin/touch
+/tmp/aesd-autograder/rootfs/bin/grep
+/tmp/aesd-autograder/rootfs/bin/ping
+/tmp/aesd-autograder/rootfs/bin/ionice
+/tmp/aesd-autograder/rootfs/bin/sed
+/tmp/aesd-autograder/rootfs/bin/linux64
+/tmp/aesd-autograder/rootfs/bin/pidof
+/tmp/aesd-autograder/rootfs/bin/stat
+/tmp/aesd-autograder/rootfs/bin/uname
+/tmp/aesd-autograder/rootfs/bin/nuke
+/tmp/aesd-autograder/rootfs/bin/watch
+/tmp/aesd-autograder/rootfs/bin/run-parts
+/tmp/aesd-autograder/rootfs/bin/gzip
+/tmp/aesd-autograder/rootfs/bin/pwd
+/tmp/aesd-autograder/rootfs/bin/echo
+/tmp/aesd-autograder/rootfs/bin/resume
+/tmp/aesd-autograder/rootfs/bin/su
+/tmp/aesd-autograder/rootfs/bin/sync
+/tmp/aesd-autograder/rootfs/bin/link
+/tmp/aesd-autograder/rootfs/bin/getopt
+/tmp/aesd-autograder/rootfs/bin/dnsdomainname
+/tmp/aesd-autograder/rootfs/bin/ash
+/tmp/aesd-autograder/rootfs/bin/stty
+/tmp/aesd-autograder/rootfs/bin/sleep
+/tmp/aesd-autograder/rootfs/bin/busybox
+/tmp/aesd-autograder/rootfs/bin/cat
+/tmp/aesd-autograder/rootfs/bin/mktemp
+/tmp/aesd-autograder/rootfs/bin/zcat
+/tmp/aesd-autograder/rootfs/bin/cttyhack
+/tmp/aesd-autograder/rootfs/bin/kbd_mode
+/tmp/aesd-autograder/rootfs/bin/fdflush
+/tmp/aesd-autograder/rootfs/bin/printenv
+/tmp/aesd-autograder/rootfs/bin/conspy
+/tmp/aesd-autograder/rootfs/bin/df
+/tmp/aesd-autograder/rootfs/bin/iostat
+/tmp/aesd-autograder/rootfs/bin/chattr
+/tmp/aesd-autograder/rootfs/bin/chmod
+/tmp/aesd-autograder/rootfs/bin/more
+/tmp/aesd-autograder/rootfs/bin/ls
+/tmp/aesd-autograder/rootfs/bin/dd
+/tmp/aesd-autograder/rootfs/bin/chgrp
+/tmp/aesd-autograder/rootfs/bin/cpio
+/tmp/aesd-autograder/rootfs/bin/scriptreplay
+/tmp/aesd-autograder/rootfs/bin/netstat
+/tmp/aesd-autograder/rootfs/bin/hush
+/tmp/aesd-autograder/rootfs/bin/ln
+/tmp/aesd-autograder/rootfs/bin/ipcalc
+/tmp/aesd-autograder/rootfs/bin/mpstat
+/tmp/aesd-autograder/rootfs/bin/ed
+/tmp/aesd-autograder/rootfs/bin/fgrep
+/tmp/aesd-autograder/rootfs/bin/true
+/tmp/aesd-autograder/rootfs/bin/lzop
+/tmp/aesd-autograder/rootfs/bin/umount
+/tmp/aesd-autograder/rootfs/bin/mount
+/tmp/aesd-autograder/rootfs/bin/linux32
+/tmp/aesd-autograder/rootfs/bin/gunzip
+/tmp/aesd-autograder/rootfs/bin/setserial
+/tmp/aesd-autograder/rootfs/bin/vi
+/tmp/aesd-autograder/rootfs/bin/hostname
+/tmp/aesd-autograder/rootfs/bin/dumpkmap
+/tmp/aesd-autograder/rootfs/dev
+/tmp/aesd-autograder/rootfs/etc
+/tmp/aesd-autograder/rootfs/home
+/tmp/aesd-autograder/rootfs/home/writer
+/tmp/aesd-autograder/rootfs/home/finder-test.sh
+/tmp/aesd-autograder/rootfs/home/autorun-qemu.sh
+/tmp/aesd-autograder/rootfs/home/writer.c
+/tmp/aesd-autograder/rootfs/home/finder.sh
+/tmp/aesd-autograder/rootfs/home/conf
+/tmp/aesd-autograder/rootfs/home/conf/username.txt
+/tmp/aesd-autograder/rootfs/home/conf/assignment.txt
+/tmp/aesd-autograder/rootfs/lib
+/tmp/aesd-autograder/rootfs/lib/ld-linux-aarch64.so.1
+/tmp/aesd-autograder/rootfs/lib64
+/tmp/aesd-autograder/rootfs/lib64/libm.so.6
+/tmp/aesd-autograder/rootfs/lib64/libresolv.so.2
+/tmp/aesd-autograder/rootfs/lib64/libc.so.6
+/tmp/aesd-autograder/rootfs/linuxrc
+/tmp/aesd-autograder/rootfs/proc
+/tmp/aesd-autograder/rootfs/sbin
+/tmp/aesd-autograder/rootfs/sbin/acpid
+/tmp/aesd-autograder/rootfs/sbin/iptunnel
+/tmp/aesd-autograder/rootfs/sbin/vconfig
+/tmp/aesd-autograder/rootfs/sbin/ip
+/tmp/aesd-autograder/rootfs/sbin/rmmod
+/tmp/aesd-autograder/rootfs/sbin/freeramdisk
+/tmp/aesd-autograder/rootfs/sbin/getty
+/tmp/aesd-autograder/rootfs/sbin/ifconfig
+/tmp/aesd-autograder/rootfs/sbin/watchdog
+/tmp/aesd-autograder/rootfs/sbin/depmod
+/tmp/aesd-autograder/rootfs/sbin/syslogd
+/tmp/aesd-autograder/rootfs/sbin/run-init
+/tmp/aesd-autograder/rootfs/sbin/mkfs.minix
+/tmp/aesd-autograder/rootfs/sbin/logread
+/tmp/aesd-autograder/rootfs/sbin/fstrim
+/tmp/aesd-autograder/rootfs/sbin/halt
+/tmp/aesd-autograder/rootfs/sbin/reboot
+/tmp/aesd-autograder/rootfs/sbin/tc
+/tmp/aesd-autograder/rootfs/sbin/fbsplash
+/tmp/aesd-autograder/rootfs/sbin/fdisk
+/tmp/aesd-autograder/rootfs/sbin/blockdev
+/tmp/aesd-autograder/rootfs/sbin/mkfs.vfat
+/tmp/aesd-autograder/rootfs/sbin/uevent
+/tmp/aesd-autograder/rootfs/sbin/mkswap
+/tmp/aesd-autograder/rootfs/sbin/mkfs.ext2
+/tmp/aesd-autograder/rootfs/sbin/swapoff
+/tmp/aesd-autograder/rootfs/sbin/slattach
+/tmp/aesd-autograder/rootfs/sbin/start-stop-daemon
+/tmp/aesd-autograder/rootfs/sbin/arp
+/tmp/aesd-autograder/rootfs/sbin/sulogin
+/tmp/aesd-autograder/rootfs/sbin/mkdosfs
+/tmp/aesd-autograder/rootfs/sbin/iplink
+/tmp/aesd-autograder/rootfs/sbin/insmod
+/tmp/aesd-autograder/rootfs/sbin/devmem
+/tmp/aesd-autograder/rootfs/sbin/ipneigh
+/tmp/aesd-autograder/rootfs/sbin/sysctl
+/tmp/aesd-autograder/rootfs/sbin/udhcpc
+/tmp/aesd-autograder/rootfs/sbin/pivot_root
+/tmp/aesd-autograder/rootfs/sbin/findfs
+/tmp/aesd-autograder/rootfs/sbin/setconsole
+/tmp/aesd-autograder/rootfs/sbin/ifenslave
+/tmp/aesd-autograder/rootfs/sbin/lsmod
+/tmp/aesd-autograder/rootfs/sbin/tunctl
+/tmp/aesd-autograder/rootfs/sbin/hwclock
+/tmp/aesd-autograder/rootfs/sbin/nameif
+/tmp/aesd-autograder/rootfs/sbin/init
+/tmp/aesd-autograder/rootfs/sbin/ipaddr
+/tmp/aesd-autograder/rootfs/sbin/zcip
+/tmp/aesd-autograder/rootfs/sbin/switch_root
+/tmp/aesd-autograder/rootfs/sbin/fsck
+/tmp/aesd-autograder/rootfs/sbin/iproute
+/tmp/aesd-autograder/rootfs/sbin/runlevel
+/tmp/aesd-autograder/rootfs/sbin/blkid
+/tmp/aesd-autograder/rootfs/sbin/bootchartd
+/tmp/aesd-autograder/rootfs/sbin/loadkmap
+/tmp/aesd-autograder/rootfs/sbin/mke2fs
+/tmp/aesd-autograder/rootfs/sbin/ifdown
+/tmp/aesd-autograder/rootfs/sbin/route
+/tmp/aesd-autograder/rootfs/sbin/swapon
+/tmp/aesd-autograder/rootfs/sbin/klogd
+/tmp/aesd-autograder/rootfs/sbin/makedevs
+/tmp/aesd-autograder/rootfs/sbin/adjtimex
+/tmp/aesd-autograder/rootfs/sbin/modprobe
+/tmp/aesd-autograder/rootfs/sbin/modinfo
+/tmp/aesd-autograder/rootfs/sbin/mdev
+/tmp/aesd-autograder/rootfs/sbin/ifup
+/tmp/aesd-autograder/rootfs/sbin/losetup
+/tmp/aesd-autograder/rootfs/sbin/hdparm
+/tmp/aesd-autograder/rootfs/sbin/iprule
+/tmp/aesd-autograder/rootfs/sbin/raidautorun
+/tmp/aesd-autograder/rootfs/sbin/fsck.minix
+/tmp/aesd-autograder/rootfs/sbin/poweroff
+/tmp/aesd-autograder/rootfs/sys
+/tmp/aesd-autograder/rootfs/tmp
+/tmp/aesd-autograder/rootfs/usr
+/tmp/aesd-autograder/rootfs/usr/bin
+/tmp/aesd-autograder/rootfs/usr/bin/renice
+/tmp/aesd-autograder/rootfs/usr/bin/factor
+/tmp/aesd-autograder/rootfs/usr/bin/tcpsvd
+/tmp/aesd-autograder/rootfs/usr/bin/blkdiscard
+/tmp/aesd-autograder/rootfs/usr/bin/who
+/tmp/aesd-autograder/rootfs/usr/bin/od
+/tmp/aesd-autograder/rootfs/usr/bin/fold
+/tmp/aesd-autograder/rootfs/usr/bin/openvt
+/tmp/aesd-autograder/rootfs/usr/bin/envuidgid
+/tmp/aesd-autograder/rootfs/usr/bin/killall
+/tmp/aesd-autograder/rootfs/usr/bin/tac
+/tmp/aesd-autograder/rootfs/usr/bin/shred
+/tmp/aesd-autograder/rootfs/usr/bin/dpkg-deb
+/tmp/aesd-autograder/rootfs/usr/bin/pscan
+/tmp/aesd-autograder/rootfs/usr/bin/mesg
+/tmp/aesd-autograder/rootfs/usr/bin/chrt
+/tmp/aesd-autograder/rootfs/usr/bin/dirname
+/tmp/aesd-autograder/rootfs/usr/bin/ssl_client
+/tmp/aesd-autograder/rootfs/usr/bin/w
+/tmp/aesd-autograder/rootfs/usr/bin/unexpand
+/tmp/aesd-autograder/rootfs/usr/bin/xargs
+/tmp/aesd-autograder/rootfs/usr/bin/setfattr
+/tmp/aesd-autograder/rootfs/usr/bin/timeout
+/tmp/aesd-autograder/rootfs/usr/bin/patch
+/tmp/aesd-autograder/rootfs/usr/bin/hostid
+/tmp/aesd-autograder/rootfs/usr/bin/beep
+/tmp/aesd-autograder/rootfs/usr/bin/volname
+/tmp/aesd-autograder/rootfs/usr/bin/xz
+/tmp/aesd-autograder/rootfs/usr/bin/sha256sum
+/tmp/aesd-autograder/rootfs/usr/bin/hd
+/tmp/aesd-autograder/rootfs/usr/bin/sha3sum
+/tmp/aesd-autograder/rootfs/usr/bin/last
+/tmp/aesd-autograder/rootfs/usr/bin/pgrep
+/tmp/aesd-autograder/rootfs/usr/bin/less
+/tmp/aesd-autograder/rootfs/usr/bin/mkfifo
+/tmp/aesd-autograder/rootfs/usr/bin/id
+/tmp/aesd-autograder/rootfs/usr/bin/pkill
+/tmp/aesd-autograder/rootfs/usr/bin/deallocvt
+/tmp/aesd-autograder/rootfs/usr/bin/ftpget
+/tmp/aesd-autograder/rootfs/usr/bin/test
+/tmp/aesd-autograder/rootfs/usr/bin/paste
+/tmp/aesd-autograder/rootfs/usr/bin/bc
+/tmp/aesd-autograder/rootfs/usr/bin/awk
+/tmp/aesd-autograder/rootfs/usr/bin/rpm2cpio
+/tmp/aesd-autograder/rootfs/usr/bin/tr
+/tmp/aesd-autograder/rootfs/usr/bin/udpsvd
+/tmp/aesd-autograder/rootfs/usr/bin/cmp
+/tmp/aesd-autograder/rootfs/usr/bin/unlink
+/tmp/aesd-autograder/rootfs/usr/bin/nsenter
+/tmp/aesd-autograder/rootfs/usr/bin/groups
+/tmp/aesd-autograder/rootfs/usr/bin/lzma
+/tmp/aesd-autograder/rootfs/usr/bin/chpst
+/tmp/aesd-autograder/rootfs/usr/bin/hexdump
+/tmp/aesd-autograder/rootfs/usr/bin/wc
+/tmp/aesd-autograder/rootfs/usr/bin/nl
+/tmp/aesd-autograder/rootfs/usr/bin/expr
+/tmp/aesd-autograder/rootfs/usr/bin/ftpput
+/tmp/aesd-autograder/rootfs/usr/bin/truncate
+/tmp/aesd-autograder/rootfs/usr/bin/crontab
+/tmp/aesd-autograder/rootfs/usr/bin/expand
+/tmp/aesd-autograder/rootfs/usr/bin/lsscsi
+/tmp/aesd-autograder/rootfs/usr/bin/tftp
+/tmp/aesd-autograder/rootfs/usr/bin/sv
+/tmp/aesd-autograder/rootfs/usr/bin/wall
+/tmp/aesd-autograder/rootfs/usr/bin/basename
+/tmp/aesd-autograder/rootfs/usr/bin/xzcat
+/tmp/aesd-autograder/rootfs/usr/bin/lsof
+/tmp/aesd-autograder/rootfs/usr/bin/microcom
+/tmp/aesd-autograder/rootfs/usr/bin/md5sum
+/tmp/aesd-autograder/rootfs/usr/bin/nc
+/tmp/aesd-autograder/rootfs/usr/bin/nohup
+/tmp/aesd-autograder/rootfs/usr/bin/uptime
+/tmp/aesd-autograder/rootfs/usr/bin/tee
+/tmp/aesd-autograder/rootfs/usr/bin/realpath
+/tmp/aesd-autograder/rootfs/usr/bin/time
+/tmp/aesd-autograder/rootfs/usr/bin/udhcpc6
+/tmp/aesd-autograder/rootfs/usr/bin/sha1sum
+/tmp/aesd-autograder/rootfs/usr/bin/vlock
+/tmp/aesd-autograder/rootfs/usr/bin/ttysize
+/tmp/aesd-autograder/rootfs/usr/bin/unzip
+/tmp/aesd-autograder/rootfs/usr/bin/shuf
+/tmp/aesd-autograder/rootfs/usr/bin/setuidgid
+/tmp/aesd-autograder/rootfs/usr/bin/hexedit
+/tmp/aesd-autograder/rootfs/usr/bin/rx
+/tmp/aesd-autograder/rootfs/usr/bin/split
+/tmp/aesd-autograder/rootfs/usr/bin/cut
+/tmp/aesd-autograder/rootfs/usr/bin/fgconsole
+/tmp/aesd-autograder/rootfs/usr/bin/seq
+/tmp/aesd-autograder/rootfs/usr/bin/uudecode
+/tmp/aesd-autograder/rootfs/usr/bin/unxz
+/tmp/aesd-autograder/rootfs/usr/bin/lzcat
+/tmp/aesd-autograder/rootfs/usr/bin/mkpasswd
+/tmp/aesd-autograder/rootfs/usr/bin/pstree
+/tmp/aesd-autograder/rootfs/usr/bin/nproc
+/tmp/aesd-autograder/rootfs/usr/bin/clear
+/tmp/aesd-autograder/rootfs/usr/bin/softlimit
+/tmp/aesd-autograder/rootfs/usr/bin/telnet
+/tmp/aesd-autograder/rootfs/usr/bin/lsusb
+/tmp/aesd-autograder/rootfs/usr/bin/dos2unix
+/tmp/aesd-autograder/rootfs/usr/bin/dumpleases
+/tmp/aesd-autograder/rootfs/usr/bin/svok
+/tmp/aesd-autograder/rootfs/usr/bin/xxd
+/tmp/aesd-autograder/rootfs/usr/bin/whoami
+/tmp/aesd-autograder/rootfs/usr/bin/bunzip2
+/tmp/aesd-autograder/rootfs/usr/bin/setsid
+/tmp/aesd-autograder/rootfs/usr/bin/bzcat
+/tmp/aesd-autograder/rootfs/usr/bin/[[
+/tmp/aesd-autograder/rootfs/usr/bin/yes
+/tmp/aesd-autograder/rootfs/usr/bin/sum
+/tmp/aesd-autograder/rootfs/usr/bin/flock
+/tmp/aesd-autograder/rootfs/usr/bin/nmeter
+/tmp/aesd-autograder/rootfs/usr/bin/strings
+/tmp/aesd-autograder/rootfs/usr/bin/traceroute6
+/tmp/aesd-autograder/rootfs/usr/bin/taskset
+/tmp/aesd-autograder/rootfs/usr/bin/find
+/tmp/aesd-autograder/rootfs/usr/bin/uniq
+/tmp/aesd-autograder/rootfs/usr/bin/users
+/tmp/aesd-autograder/rootfs/usr/bin/whois
+/tmp/aesd-autograder/rootfs/usr/bin/env
+/tmp/aesd-autograder/rootfs/usr/bin/[
+/tmp/aesd-autograder/rootfs/usr/bin/readlink
+/tmp/aesd-autograder/rootfs/usr/bin/cal
+/tmp/aesd-autograder/rootfs/usr/bin/comm
+/tmp/aesd-autograder/rootfs/usr/bin/traceroute
+/tmp/aesd-autograder/rootfs/usr/bin/fuser
+/tmp/aesd-autograder/rootfs/usr/bin/man
+/tmp/aesd-autograder/rootfs/usr/bin/resize
+/tmp/aesd-autograder/rootfs/usr/bin/pmap
+/tmp/aesd-autograder/rootfs/usr/bin/diff
+/tmp/aesd-autograder/rootfs/usr/bin/lpr
+/tmp/aesd-autograder/rootfs/usr/bin/which
+/tmp/aesd-autograder/rootfs/usr/bin/bzip2
+/tmp/aesd-autograder/rootfs/usr/bin/unlzma
+/tmp/aesd-autograder/rootfs/usr/bin/printf
+/tmp/aesd-autograder/rootfs/usr/bin/du
+/tmp/aesd-autograder/rootfs/usr/bin/script
+/tmp/aesd-autograder/rootfs/usr/bin/chvt
+/tmp/aesd-autograder/rootfs/usr/bin/setkeycodes
+/tmp/aesd-autograder/rootfs/usr/bin/install
+/tmp/aesd-autograder/rootfs/usr/bin/ipcrm
+/tmp/aesd-autograder/rootfs/usr/bin/unshare
+/tmp/aesd-autograder/rootfs/usr/bin/sort
+/tmp/aesd-autograder/rootfs/usr/bin/envdir
+/tmp/aesd-autograder/rootfs/usr/bin/runsvdir
+/tmp/aesd-autograder/rootfs/usr/bin/reset
+/tmp/aesd-autograder/rootfs/usr/bin/cryptpw
+/tmp/aesd-autograder/rootfs/usr/bin/uuencode
+/tmp/aesd-autograder/rootfs/usr/bin/top
+/tmp/aesd-autograder/rootfs/usr/bin/unix2dos
+/tmp/aesd-autograder/rootfs/usr/bin/tail
+/tmp/aesd-autograder/rootfs/usr/bin/fallocate
+/tmp/aesd-autograder/rootfs/usr/bin/smemcap
+/tmp/aesd-autograder/rootfs/usr/bin/pwdx
+/tmp/aesd-autograder/rootfs/usr/bin/svc
+/tmp/aesd-autograder/rootfs/usr/bin/ts
+/tmp/aesd-autograder/rootfs/usr/bin/eject
+/tmp/aesd-autograder/rootfs/usr/bin/ipcs
+/tmp/aesd-autograder/rootfs/usr/bin/free
+/tmp/aesd-autograder/rootfs/usr/bin/tty
+/tmp/aesd-autograder/rootfs/usr/bin/nslookup
+/tmp/aesd-autograder/rootfs/usr/bin/cksum
+/tmp/aesd-autograder/rootfs/usr/bin/showkey
+/tmp/aesd-autograder/rootfs/usr/bin/logger
+/tmp/aesd-autograder/rootfs/usr/bin/lpq
+/tmp/aesd-autograder/rootfs/usr/bin/logname
+/tmp/aesd-autograder/rootfs/usr/bin/dc
+/tmp/aesd-autograder/rootfs/usr/bin/head
+/tmp/aesd-autograder/rootfs/usr/bin/lspci
+/tmp/aesd-autograder/rootfs/usr/bin/dpkg
+/tmp/aesd-autograder/rootfs/usr/bin/wget
+/tmp/aesd-autograder/rootfs/usr/bin/sha512sum
+/tmp/aesd-autograder/rootfs/usr/bin/passwd
+/tmp/aesd-autograder/rootfs/usr/bin/runsv
+/tmp/aesd-autograder/rootfs/usr/lib
+/tmp/aesd-autograder/rootfs/usr/sbin
+/tmp/aesd-autograder/rootfs/usr/sbin/tftpd
+/tmp/aesd-autograder/rootfs/usr/sbin/remove-shell
+/tmp/aesd-autograder/rootfs/usr/sbin/ifplugd
+/tmp/aesd-autograder/rootfs/usr/sbin/setlogcons
+/tmp/aesd-autograder/rootfs/usr/sbin/ubirename
+/tmp/aesd-autograder/rootfs/usr/sbin/brctl
+/tmp/aesd-autograder/rootfs/usr/sbin/nbd-client
+/tmp/aesd-autograder/rootfs/usr/sbin/rdate
+/tmp/aesd-autograder/rootfs/usr/sbin/loadfont
+/tmp/aesd-autograder/rootfs/usr/sbin/chroot
+/tmp/aesd-autograder/rootfs/usr/sbin/killall5
+/tmp/aesd-autograder/rootfs/usr/sbin/setfont
+/tmp/aesd-autograder/rootfs/usr/sbin/add-shell
+/tmp/aesd-autograder/rootfs/usr/sbin/readahead
+/tmp/aesd-autograder/rootfs/usr/sbin/sendmail
+/tmp/aesd-autograder/rootfs/usr/sbin/nanddump
+/tmp/aesd-autograder/rootfs/usr/sbin/i2cdetect
+/tmp/aesd-autograder/rootfs/usr/sbin/ether-wake
+/tmp/aesd-autograder/rootfs/usr/sbin/ubiupdatevol
+/tmp/aesd-autograder/rootfs/usr/sbin/mim
+/tmp/aesd-autograder/rootfs/usr/sbin/ubidetach
+/tmp/aesd-autograder/rootfs/usr/sbin/fbset
+/tmp/aesd-autograder/rootfs/usr/sbin/inetd
+/tmp/aesd-autograder/rootfs/usr/sbin/nologin
+/tmp/aesd-autograder/rootfs/usr/sbin/ntpd
+/tmp/aesd-autograder/rootfs/usr/sbin/chpasswd
+/tmp/aesd-autograder/rootfs/usr/sbin/i2cdump
+/tmp/aesd-autograder/rootfs/usr/sbin/ubirsvol
+/tmp/aesd-autograder/rootfs/usr/sbin/nandwrite
+/tmp/aesd-autograder/rootfs/usr/sbin/httpd
+/tmp/aesd-autograder/rootfs/usr/sbin/delgroup
+/tmp/aesd-autograder/rootfs/usr/sbin/partprobe
+/tmp/aesd-autograder/rootfs/usr/sbin/i2cget
+/tmp/aesd-autograder/rootfs/usr/sbin/lpd
+/tmp/aesd-autograder/rootfs/usr/sbin/deluser
+/tmp/aesd-autograder/rootfs/usr/sbin/ftpd
+/tmp/aesd-autograder/rootfs/usr/sbin/fakeidentd
+/tmp/aesd-autograder/rootfs/usr/sbin/i2ctransfer
+/tmp/aesd-autograder/rootfs/usr/sbin/dnsd
+/tmp/aesd-autograder/rootfs/usr/sbin/dhcprelay
+/tmp/aesd-autograder/rootfs/usr/sbin/popmaildir
+/tmp/aesd-autograder/rootfs/usr/sbin/ubiattach
+/tmp/aesd-autograder/rootfs/usr/sbin/udhcpd
+/tmp/aesd-autograder/rootfs/usr/sbin/ubirmvol
+/tmp/aesd-autograder/rootfs/usr/sbin/crond
+/tmp/aesd-autograder/rootfs/usr/sbin/rtcwake
+/tmp/aesd-autograder/rootfs/usr/sbin/powertop
+/tmp/aesd-autograder/rootfs/usr/sbin/rdev
+/tmp/aesd-autograder/rootfs/usr/sbin/fsfreeze
+/tmp/aesd-autograder/rootfs/usr/sbin/adduser
+/tmp/aesd-autograder/rootfs/usr/sbin/telnetd
+/tmp/aesd-autograder/rootfs/usr/sbin/ubimkvol
+/tmp/aesd-autograder/rootfs/usr/sbin/fdformat
+/tmp/aesd-autograder/rootfs/usr/sbin/svlogd
+/tmp/aesd-autograder/rootfs/usr/sbin/chat
+/tmp/aesd-autograder/rootfs/usr/sbin/i2cset
+/tmp/aesd-autograder/rootfs/usr/sbin/addgroup
+/tmp/aesd-autograder/rootfs/usr/sbin/readprofile
+/tmp/aesd-autograder/rootfs/usr/sbin/arping
+/tmp/aesd-autograder/rootfs/var
+/tmp/aesd-autograder/rootfs/var/log
+30127 blocks
+qemu-system-aarch64: terminating on signal 15 from pid 668921 (<unknown process>)

@@ -1,0 +1,5536 @@
+/tmp/aeld/rootfs/
+├── bin
+│   ├── arch -> busybox
+│   ├── ash -> busybox
+│   ├── base32 -> busybox
+│   ├── base64 -> busybox
+│   ├── busybox
+│   ├── cat -> busybox
+│   ├── chattr -> busybox
+│   ├── chgrp -> busybox
+│   ├── chmod -> busybox
+│   ├── chown -> busybox
+│   ├── conspy -> busybox
+│   ├── cp -> busybox
+│   ├── cpio -> busybox
+│   ├── cttyhack -> busybox
+│   ├── date -> busybox
+│   ├── dd -> busybox
+│   ├── df -> busybox
+│   ├── dmesg -> busybox
+│   ├── dnsdomainname -> busybox
+│   ├── dumpkmap -> busybox
+│   ├── echo -> busybox
+│   ├── ed -> busybox
+│   ├── egrep -> busybox
+│   ├── false -> busybox
+│   ├── fatattr -> busybox
+│   ├── fdflush -> busybox
+│   ├── fgrep -> busybox
+│   ├── fsync -> busybox
+│   ├── getopt -> busybox
+│   ├── grep -> busybox
+│   ├── gunzip -> busybox
+│   ├── gzip -> busybox
+│   ├── hostname -> busybox
+│   ├── hush -> busybox
+│   ├── ionice -> busybox
+│   ├── iostat -> busybox
+│   ├── ipcalc -> busybox
+│   ├── kbd_mode -> busybox
+│   ├── kill -> busybox
+│   ├── link -> busybox
+│   ├── linux32 -> busybox
+│   ├── linux64 -> busybox
+│   ├── ln -> busybox
+│   ├── login -> busybox
+│   ├── ls -> busybox
+│   ├── lsattr -> busybox
+│   ├── lzop -> busybox
+│   ├── makemime -> busybox
+│   ├── mkdir -> busybox
+│   ├── mknod -> busybox
+│   ├── mktemp -> busybox
+│   ├── more -> busybox
+│   ├── mount -> busybox
+│   ├── mountpoint -> busybox
+│   ├── mpstat -> busybox
+│   ├── mt -> busybox
+│   ├── mv -> busybox
+│   ├── netstat -> busybox
+│   ├── nice -> busybox
+│   ├── nuke -> busybox
+│   ├── pidof -> busybox
+│   ├── ping -> busybox
+│   ├── ping6 -> busybox
+│   ├── pipe_progress -> busybox
+│   ├── printenv -> busybox
+│   ├── ps -> busybox
+│   ├── pwd -> busybox
+│   ├── reformime -> busybox
+│   ├── resume -> busybox
+│   ├── rev -> busybox
+│   ├── rm -> busybox
+│   ├── rmdir -> busybox
+│   ├── rpm -> busybox
+│   ├── run-parts -> busybox
+│   ├── scriptreplay -> busybox
+│   ├── sed -> busybox
+│   ├── setarch -> busybox
+│   ├── setpriv -> busybox
+│   ├── setserial -> busybox
+│   ├── sh -> busybox
+│   ├── sleep -> busybox
+│   ├── stat -> busybox
+│   ├── stty -> busybox
+│   ├── su -> busybox
+│   ├── sync -> busybox
+│   ├── tar -> busybox
+│   ├── touch -> busybox
+│   ├── true -> busybox
+│   ├── umount -> busybox
+│   ├── uname -> busybox
+│   ├── usleep -> busybox
+│   ├── vi -> busybox
+│   ├── watch -> busybox
+│   └── zcat -> busybox
+├── busybox
+│   ├── applets
+│   │   ├── applets.c
+│   │   ├── applets.o
+│   │   ├── applet_tables
+│   │   ├── applet_tables.c
+│   │   ├── built-in.o
+│   │   ├── busybox.mkll
+│   │   ├── busybox.mkscripts
+│   │   ├── busybox.mksuid
+│   │   ├── individual.c
+│   │   ├── install.sh
+│   │   ├── Kbuild
+│   │   ├── Kbuild.src
+│   │   ├── usage
+│   │   ├── usage.c
+│   │   ├── usage_compressed
+│   │   ├── usage_pod
+│   │   └── usage_pod.c
+│   ├── applets_sh
+│   │   ├── mim
+│   │   └── nologin
+│   ├── arch
+│   │   ├── i386
+│   │   │   └── Makefile
+│   │   ├── sparc
+│   │   │   └── Makefile
+│   │   ├── sparc64
+│   │   │   └── Makefile
+│   │   └── x86_64
+│   │       └── Makefile
+│   ├── archival
+│   │   ├── ar.c
+│   │   ├── bbunzip.c
+│   │   ├── bbunzip.o
+│   │   ├── bbunzip_test2.sh
+│   │   ├── bbunzip_test3.sh
+│   │   ├── bbunzip_test.sh
+│   │   ├── built-in.o
+│   │   ├── bzip2.c
+│   │   ├── bzip2.o
+│   │   ├── Config.in
+│   │   ├── Config.src
+│   │   ├── cpio.c
+│   │   ├── cpio.o
+│   │   ├── dpkg.c
+│   │   ├── dpkg_deb.c
+│   │   ├── dpkg_deb.o
+│   │   ├── dpkg.o
+│   │   ├── gzip.c
+│   │   ├── gzip.o
+│   │   ├── Kbuild
+│   │   ├── Kbuild.src
+│   │   ├── lib.a
+│   │   ├── libarchive
+│   │   │   ├── built-in.o
+│   │   │   ├── bz
+│   │   │   │   ├── blocksort.c
+│   │   │   │   ├── bzlib.c
+│   │   │   │   ├── bzlib.h
+│   │   │   │   ├── bzlib_private.h
+│   │   │   │   ├── compress.c
+│   │   │   │   ├── huffman.c
+│   │   │   │   ├── LICENSE
+│   │   │   │   └── README
+│   │   │   ├── common.c
+│   │   │   ├── common.o
+│   │   │   ├── data_align.c
+│   │   │   ├── data_align.o
+│   │   │   ├── data_extract_all.c
+│   │   │   ├── data_extract_all.o
+│   │   │   ├── data_extract_to_command.c
+│   │   │   ├── data_extract_to_command.o
+│   │   │   ├── data_extract_to_stdout.c
+│   │   │   ├── data_extract_to_stdout.o
+│   │   │   ├── data_skip.c
+│   │   │   ├── data_skip.o
+│   │   │   ├── decompress_bunzip2.c
+│   │   │   ├── decompress_bunzip2.o
+│   │   │   ├── decompress_gunzip.c
+│   │   │   ├── decompress_gunzip.o
+│   │   │   ├── decompress_uncompress.c
+│   │   │   ├── decompress_unlzma.c
+│   │   │   ├── decompress_unlzma.o
+│   │   │   ├── decompress_unxz.c
+│   │   │   ├── decompress_unxz.o
+│   │   │   ├── filter_accept_all.c
+│   │   │   ├── filter_accept_all.o
+│   │   │   ├── filter_accept_list.c
+│   │   │   ├── filter_accept_list.o
+│   │   │   ├── filter_accept_list_reassign.c
+│   │   │   ├── filter_accept_list_reassign.o
+│   │   │   ├── filter_accept_reject_list.c
+│   │   │   ├── filter_accept_reject_list.o
+│   │   │   ├── find_list_entry.c
+│   │   │   ├── find_list_entry.o
+│   │   │   ├── get_header_ar.c
+│   │   │   ├── get_header_ar.o
+│   │   │   ├── get_header_cpio.c
+│   │   │   ├── get_header_cpio.o
+│   │   │   ├── get_header_tar_bz2.c
+│   │   │   ├── get_header_tar_bz2.o
+│   │   │   ├── get_header_tar.c
+│   │   │   ├── get_header_tar_gz.c
+│   │   │   ├── get_header_tar_gz.o
+│   │   │   ├── get_header_tar_lzma.c
+│   │   │   ├── get_header_tar_lzma.o
+│   │   │   ├── get_header_tar.o
+│   │   │   ├── get_header_tar_xz.c
+│   │   │   ├── get_header_tar_xz.o
+│   │   │   ├── header_list.c
+│   │   │   ├── header_list.o
+│   │   │   ├── header_skip.c
+│   │   │   ├── header_skip.o
+│   │   │   ├── header_verbose_list.c
+│   │   │   ├── header_verbose_list.o
+│   │   │   ├── init_handle.c
+│   │   │   ├── init_handle.o
+│   │   │   ├── Kbuild
+│   │   │   ├── Kbuild.src
+│   │   │   ├── lib.a
+│   │   │   ├── liblzo.h
+│   │   │   ├── lzo1x_1.c
+│   │   │   ├── lzo1x_1.o
+│   │   │   ├── lzo1x_1o.c
+│   │   │   ├── lzo1x_1o.o
+│   │   │   ├── lzo1x_9x.c
+│   │   │   ├── lzo1x_c.c
+│   │   │   ├── lzo1x_d.c
+│   │   │   ├── lzo1x_d.o
+│   │   │   ├── open_transformer.c
+│   │   │   ├── open_transformer.o
+│   │   │   ├── seek_by_jump.c
+│   │   │   ├── seek_by_jump.o
+│   │   │   ├── seek_by_read.c
+│   │   │   ├── seek_by_read.o
+│   │   │   ├── unpack_ar_archive.c
+│   │   │   ├── unpack_ar_archive.o
+│   │   │   ├── unsafe_prefix.c
+│   │   │   ├── unsafe_prefix.o
+│   │   │   ├── unsafe_symlink_target.c
+│   │   │   ├── unsafe_symlink_target.o
+│   │   │   └── unxz
+│   │   │       ├── README
+│   │   │       ├── xz_config.h
+│   │   │       ├── xz_dec_bcj.c
+│   │   │       ├── xz_dec_lzma2.c
+│   │   │       ├── xz_dec_stream.c
+│   │   │       ├── xz.h
+│   │   │       ├── xz_lzma2.h
+│   │   │       ├── xz_private.h
+│   │   │       └── xz_stream.h
+│   │   ├── lzop.c
+│   │   ├── lzop.o
+│   │   ├── rpm.c
+│   │   ├── rpm.h
+│   │   ├── rpm.o
+│   │   ├── tar.c
+│   │   ├── tar.o
+│   │   ├── tar_symlink_attack
+│   │   ├── unzip.c
+│   │   └── unzip.o
+│   ├── AUTHORS
+│   ├── busybox
+│   ├── busybox.links
+│   ├── busybox_unstripped
+│   ├── busybox_unstripped.map
+│   ├── busybox_unstripped.out
+│   ├── Config.in
+│   ├── configs
+│   │   ├── android2_defconfig
+│   │   ├── android_502_defconfig
+│   │   ├── android_defconfig
+│   │   ├── android_ndk_defconfig
+│   │   ├── cygwin_defconfig
+│   │   ├── freebsd_defconfig
+│   │   ├── TEST_nommu_defconfig
+│   │   ├── TEST_noprintf_defconfig
+│   │   └── TEST_rh9_defconfig
+│   ├── console-tools
+│   │   ├── built-in.o
+│   │   ├── chvt.c
+│   │   ├── chvt.o
+│   │   ├── clear.c
+│   │   ├── clear.o
+│   │   ├── Config.in
+│   │   ├── Config.src
+│   │   ├── deallocvt.c
+│   │   ├── deallocvt.o
+│   │   ├── dumpkmap.c
+│   │   ├── dumpkmap.o
+│   │   ├── fgconsole.c
+│   │   ├── fgconsole.o
+│   │   ├── kbd_mode.c
+│   │   ├── kbd_mode.o
+│   │   ├── Kbuild
+│   │   ├── Kbuild.src
+│   │   ├── lib.a
+│   │   ├── loadfont.c
+│   │   ├── loadfont.o
+│   │   ├── loadkmap.c
+│   │   ├── loadkmap.o
+│   │   ├── openvt.c
+│   │   ├── openvt.o
+│   │   ├── reset.c
+│   │   ├── reset.o
+│   │   ├── resize.c
+│   │   ├── resize.o
+│   │   ├── setconsole.c
+│   │   ├── setconsole.o
+│   │   ├── setkeycodes.c
+│   │   ├── setkeycodes.o
+│   │   ├── setlogcons.c
+│   │   ├── setlogcons.o
+│   │   ├── showkey.c
+│   │   └── showkey.o
+│   ├── coreutils
+│   │   ├── basename.c
+│   │   ├── basename.o
+│   │   ├── built-in.o
+│   │   ├── cat.c
+│   │   ├── cat.o
+│   │   ├── chgrp.c
+│   │   ├── chgrp.o
+│   │   ├── chmod.c
+│   │   ├── chmod.o
+│   │   ├── chown.c
+│   │   ├── chown.o
+│   │   ├── chroot.c
+│   │   ├── chroot.o
+│   │   ├── cksum.c
+│   │   ├── cksum.o
+│   │   ├── comm.c
+│   │   ├── comm.o
+│   │   ├── Config.in
+│   │   ├── Config.src
+│   │   ├── cp.c
+│   │   ├── cp.o
+│   │   ├── cut.c
+│   │   ├── cut.o
+│   │   ├── date.c
+│   │   ├── date.o
+│   │   ├── dd.c
+│   │   ├── dd.o
+│   │   ├── df.c
+│   │   ├── df.o
+│   │   ├── dirname.c
+│   │   ├── dirname.o
+│   │   ├── dos2unix.c
+│   │   ├── dos2unix.o
+│   │   ├── du.c
+│   │   ├── du.o
+│   │   ├── echo.c
+│   │   ├── echo.o
+│   │   ├── env.c
+│   │   ├── env.o
+│   │   ├── expand.c
+│   │   ├── expand.o
+│   │   ├── expr.c
+│   │   ├── expr.o
+│   │   ├── factor.c
+│   │   ├── factor.o
+│   │   ├── false.c
+│   │   ├── false.o
+│   │   ├── fold.c
+│   │   ├── fold.o
+│   │   ├── head.c
+│   │   ├── head.o
+│   │   ├── hostid.c
+│   │   ├── hostid.o
+│   │   ├── id.c
+│   │   ├── id.o
+│   │   ├── id_test.sh
+│   │   ├── install.c
+│   │   ├── install.o
+│   │   ├── Kbuild
+│   │   ├── Kbuild.src
+│   │   ├── lib.a
+│   │   ├── libcoreutils
+│   │   │   ├── built-in.o
+│   │   │   ├── coreutils.h
+│   │   │   ├── cp_mv_stat.c
+│   │   │   ├── cp_mv_stat.o
+│   │   │   ├── getopt_mk_fifo_nod.c
+│   │   │   ├── getopt_mk_fifo_nod.o
+│   │   │   ├── Kbuild
+│   │   │   ├── Kbuild.src
+│   │   │   └── lib.a
+│   │   ├── link.c
+│   │   ├── link.o
+│   │   ├── ln.c
+│   │   ├── ln.o
+│   │   ├── logname.c
+│   │   ├── logname.o
+│   │   ├── ls.c
+│   │   ├── ls.o
+│   │   ├── md5_sha1_sum.c
+│   │   ├── md5_sha1_sum.o
+│   │   ├── mkdir.c
+│   │   ├── mkdir.o
+│   │   ├── mkfifo.c
+│   │   ├── mkfifo.o
+│   │   ├── mknod.c
+│   │   ├── mknod.o
+│   │   ├── mktemp.c
+│   │   ├── mktemp.o
+│   │   ├── mv.c
+│   │   ├── mv.o
+│   │   ├── nice.c
+│   │   ├── nice.o
+│   │   ├── nl.c
+│   │   ├── nl.o
+│   │   ├── nohup.c
+│   │   ├── nohup.o
+│   │   ├── nproc.c
+│   │   ├── nproc.o
+│   │   ├── od_bloaty.c
+│   │   ├── od.c
+│   │   ├── od.o
+│   │   ├── paste.c
+│   │   ├── paste.o
+│   │   ├── printenv.c
+│   │   ├── printenv.o
+│   │   ├── printf.c
+│   │   ├── printf.o
+│   │   ├── pwd.c
+│   │   ├── pwd.o
+│   │   ├── readlink.c
+│   │   ├── readlink.o
+│   │   ├── realpath.c
+│   │   ├── realpath.o
+│   │   ├── rm.c
+│   │   ├── rmdir.c
+│   │   ├── rmdir.o
+│   │   ├── rm.o
+│   │   ├── seq.c
+│   │   ├── seq.o
+│   │   ├── shred.c
+│   │   ├── shred.o
+│   │   ├── shuf.c
+│   │   ├── shuf.o
+│   │   ├── sleep.c
+│   │   ├── sleep.o
+│   │   ├── sort.c
+│   │   ├── sort.o
+│   │   ├── split.c
+│   │   ├── split.o
+│   │   ├── stat.c
+│   │   ├── stat.o
+│   │   ├── stty.c
+│   │   ├── stty.o
+│   │   ├── sum.c
+│   │   ├── sum.o
+│   │   ├── sync.c
+│   │   ├── sync.o
+│   │   ├── tac.c
+│   │   ├── tac.o
+│   │   ├── tail.c
+│   │   ├── tail.o
+│   │   ├── tee.c
+│   │   ├── tee.o
+│   │   ├── test.c
+│   │   ├── test.o
+│   │   ├── test_ptr_hack.c
+│   │   ├── test_ptr_hack.o
+│   │   ├── timeout.c
+│   │   ├── timeout.o
+│   │   ├── touch.c
+│   │   ├── touch.o
+│   │   ├── tr.c
+│   │   ├── tr.o
+│   │   ├── true.c
+│   │   ├── true.o
+│   │   ├── truncate.c
+│   │   ├── truncate.o
+│   │   ├── tty.c
+│   │   ├── tty.o
+│   │   ├── uname.c
+│   │   ├── uname.o
+│   │   ├── uniq.c
+│   │   ├── uniq.o
+│   │   ├── unlink.c
+│   │   ├── unlink.o
+│   │   ├── usleep.c
+│   │   ├── usleep.o
+│   │   ├── uudecode.c
+│   │   ├── uudecode.o
+│   │   ├── uuencode.c
+│   │   ├── uuencode.o
+│   │   ├── wc.c
+│   │   ├── wc.o
+│   │   ├── whoami.c
+│   │   ├── whoami.o
+│   │   ├── who.c
+│   │   ├── who.o
+│   │   ├── yes.c
+│   │   └── yes.o
+│   ├── debianutils
+│   │   ├── built-in.o
+│   │   ├── Config.in
+│   │   ├── Config.src
+│   │   ├── Kbuild
+│   │   ├── Kbuild.src
+│   │   ├── lib.a
+│   │   ├── pipe_progress.c
+│   │   ├── pipe_progress.o
+│   │   ├── run_parts.c
+│   │   ├── run_parts.o
+│   │   ├── start_stop_daemon.c
+│   │   ├── start_stop_daemon.o
+│   │   ├── which.c
+│   │   └── which.o
+│   ├── docs
+│   │   ├── busybox.1
+│   │   ├── busybox_footer.pod
+│   │   ├── busybox_header.pod
+│   │   ├── BusyBox.html
+│   │   ├── busybox.net
+│   │   │   └── BusyBox.html
+│   │   ├── busybox.pod
+│   │   ├── BusyBox.txt
+│   │   ├── cgi
+│   │   │   ├── cl.html
+│   │   │   ├── env.html
+│   │   │   ├── in.html
+│   │   │   ├── interface.html
+│   │   │   └── out.html
+│   │   ├── contributing.txt
+│   │   ├── ctty.htm
+│   │   ├── draft-coar-cgi-v11-03-clean.html
+│   │   ├── embedded-scripts.txt
+│   │   ├── ifupdown_design.txt
+│   │   ├── Kconfig-language.txt
+│   │   ├── keep_data_small.txt
+│   │   ├── logging_and_backgrounding.txt
+│   │   ├── mdev.txt
+│   │   ├── new-applet-HOWTO.txt
+│   │   ├── nofork_noexec.txt
+│   │   ├── posix_conformance.txt
+│   │   ├── Serial-Programming-HOWTO.txt
+│   │   ├── sigint.htm
+│   │   ├── smallint.txt
+│   │   ├── style-guide.txt
+│   │   ├── syslog.conf.txt
+│   │   ├── tar_pax.txt
+│   │   ├── tcp.txt
+│   │   ├── unicode_full-bmp.txt
+│   │   ├── unicode.txt
+│   │   ├── unicode_UTF-8-test.txt
+│   │   └── unit-tests.txt
+│   ├── e2fsprogs
+│   │   ├── built-in.o
+│   │   ├── chattr.c
+│   │   ├── chattr.o
+│   │   ├── Config.in
+│   │   ├── Config.src
+│   │   ├── e2fs_lib.c
+│   │   ├── e2fs_lib.h
+│   │   ├── e2fs_lib.o
+│   │   ├── fsck.c
+│   │   ├── fsck.o
+│   │   ├── Kbuild
+│   │   ├── Kbuild.src
+│   │   ├── lib.a
+│   │   ├── lsattr.c
+│   │   ├── lsattr.o
+│   │   ├── README
+│   │   └── tune2fs.c
+│   ├── editors
+│   │   ├── awk.c
+│   │   ├── awk.o
+│   │   ├── built-in.o
+│   │   ├── cmp.c
+│   │   ├── cmp.o
+│   │   ├── Config.in
+│   │   ├── Config.src
+│   │   ├── diff.c
+│   │   ├── diff.o
+│   │   ├── ed.c
+│   │   ├── ed.o
+│   │   ├── Kbuild
+│   │   ├── Kbuild.src
+│   │   ├── lib.a
+│   │   ├── patch_bbox.c
+│   │   ├── patch.c
+│   │   ├── patch.o
+│   │   ├── patch_toybox.c
+│   │   ├── sed1line.txt
+│   │   ├── sed.c
+│   │   ├── sed.o
+│   │   ├── sed_summary.htm
+│   │   ├── vi.c
+│   │   └── vi.o
+│   ├── examples
+│   │   ├── android-build
+│   │   ├── bootfloppy
+│   │   │   ├── bootfloppy.txt
+│   │   │   ├── display.txt
+│   │   │   ├── etc
+│   │   │   │   ├── fstab
+│   │   │   │   ├── init.d
+│   │   │   │   │   └── rcS
+│   │   │   │   ├── inittab
+│   │   │   │   └── profile
+│   │   │   ├── mkdevs.sh
+│   │   │   ├── mkrootfs.sh
+│   │   │   ├── mksyslinux.sh
+│   │   │   ├── quickstart.txt
+│   │   │   └── syslinux.cfg
+│   │   ├── busybox.spec
+│   │   ├── depmod
+│   │   ├── depmod.pl
+│   │   ├── devfsd.conf
+│   │   ├── dnsd.conf
+│   │   ├── inetd.conf
+│   │   ├── inittab
+│   │   ├── linux-2.6.30_proc_self_exe.patch
+│   │   ├── mdev.conf
+│   │   ├── mdev.conf.change_blockdev.sh
+│   │   ├── mdev_fat.conf
+│   │   ├── mk2knr.pl
+│   │   ├── shutdown-1.0
+│   │   │   ├── README
+│   │   │   └── script
+│   │   │       ├── do_shutdown
+│   │   │       ├── hardshutdown.c
+│   │   │       ├── hardshutdown.make.sh
+│   │   │       ├── shutdown
+│   │   │       ├── stop_storage
+│   │   │       └── stop_tasks
+│   │   ├── udhcp
+│   │   │   ├── sample.bound
+│   │   │   ├── sample.deconfig
+│   │   │   ├── sample.nak
+│   │   │   ├── sample.renew
+│   │   │   ├── sample.script
+│   │   │   ├── simple.script
+│   │   │   └── udhcpd.conf
+│   │   ├── undeb
+│   │   ├── unrpm
+│   │   ├── var_service
+│   │   │   ├── dhcpd_if
+│   │   │   │   ├── log
+│   │   │   │   │   └── run
+│   │   │   │   ├── run
+│   │   │   │   ├── udhcpd.conf
+│   │   │   │   ├── w_dumpleases
+│   │   │   │   └── w_dumpleases_countdown
+│   │   │   ├── dhcp_if
+│   │   │   │   ├── convert2ipconf
+│   │   │   │   ├── convert2ntpconf
+│   │   │   │   ├── dhcp_handler
+│   │   │   │   ├── finish
+│   │   │   │   ├── log
+│   │   │   │   │   └── run
+│   │   │   │   └── run
+│   │   │   ├── dhcp_if_pinger
+│   │   │   │   └── run
+│   │   │   ├── dnsmasq
+│   │   │   │   ├── dnsmasq.conf
+│   │   │   │   ├── log
+│   │   │   │   │   └── run
+│   │   │   │   ├── README
+│   │   │   │   └── run
+│   │   │   ├── ftpd
+│   │   │   │   ├── log
+│   │   │   │   │   └── run
+│   │   │   │   └── run
+│   │   │   ├── fw
+│   │   │   │   ├── conf
+│   │   │   │   │   ├── 11.22.33.44.ipconf--
+│   │   │   │   │   ├── 192.168.0.1.ipconf
+│   │   │   │   │   └── lo.ipconf
+│   │   │   │   ├── etc
+│   │   │   │   │   ├── dnsmasq_servers.conf
+│   │   │   │   │   ├── hosts
+│   │   │   │   │   └── resolv.conf
+│   │   │   │   ├── run
+│   │   │   │   └── stat
+│   │   │   ├── getty_tty1
+│   │   │   │   ├── alt08x16+unimap.fnt
+│   │   │   │   ├── cfg
+│   │   │   │   ├── koi8r_to_uni.trans
+│   │   │   │   ├── login.sh
+│   │   │   │   ├── run
+│   │   │   │   └── unicode_cyrillic.keymap
+│   │   │   ├── gpm
+│   │   │   │   └── run
+│   │   │   ├── httpd
+│   │   │   │   ├── log
+│   │   │   │   │   └── run
+│   │   │   │   └── run
+│   │   │   ├── ifplugd_if
+│   │   │   │   ├── ifplugd_handler
+│   │   │   │   ├── log
+│   │   │   │   │   └── run
+│   │   │   │   └── run
+│   │   │   ├── inetd
+│   │   │   │   ├── inetd.conf
+│   │   │   │   ├── log
+│   │   │   │   │   └── run
+│   │   │   │   └── run
+│   │   │   ├── nmeter
+│   │   │   │   └── run
+│   │   │   ├── ntpd
+│   │   │   │   ├── log
+│   │   │   │   │   └── run
+│   │   │   │   ├── ntp.script
+│   │   │   │   ├── p_log_important
+│   │   │   │   └── run
+│   │   │   ├── README
+│   │   │   ├── README_distro_proposal.txt
+│   │   │   ├── std_service_logger
+│   │   │   ├── supplicant_if
+│   │   │   │   ├── log
+│   │   │   │   │   └── run
+│   │   │   │   ├── run
+│   │   │   │   └── wpa_supplicant.conf
+│   │   │   ├── sview
+│   │   │   ├── svpage
+│   │   │   ├── tftpd
+│   │   │   │   ├── log
+│   │   │   │   │   └── run
+│   │   │   │   └── run
+│   │   │   └── zcip_if
+│   │   │       ├── convert2ipconf
+│   │   │       ├── finish
+│   │   │       ├── log
+│   │   │       │   └── run
+│   │   │       ├── run
+│   │   │       └── zcip_handler
+│   │   └── zcip.script
+│   ├── findutils
+│   │   ├── built-in.o
+│   │   ├── Config.in
+│   │   ├── Config.src
+│   │   ├── find.c
+│   │   ├── find.o
+│   │   ├── grep.c
+│   │   ├── grep.o
+│   │   ├── Kbuild
+│   │   ├── Kbuild.src
+│   │   ├── lib.a
+│   │   ├── xargs.c
+│   │   └── xargs.o
+│   ├── include
+│   │   ├── applet_metadata.h
+│   │   ├── applets.h
+│   │   ├── applets.h.sh
+│   │   ├── applets.src.h
+│   │   ├── applet_tables.h
+│   │   ├── ar_.h
+│   │   ├── autoconf.h
+│   │   ├── bb_archive.h
+│   │   ├── bbconfigopts_bz2.h
+│   │   ├── bbconfigopts.h
+│   │   ├── bb_e2fs_defs.h
+│   │   ├── busybox.h
+│   │   ├── common_bufsiz.h
+│   │   ├── common_bufsiz.h.method
+│   │   ├── config
+│   │   │   ├── acpid.h
+│   │   │   ├── add
+│   │   │   │   └── shell.h
+│   │   │   ├── addgroup.h
+│   │   │   ├── adduser.h
+│   │   │   ├── adjtimex.h
+│   │   │   ├── ar.h
+│   │   │   ├── arp.h
+│   │   │   ├── arping.h
+│   │   │   ├── ash
+│   │   │   │   ├── alias.h
+│   │   │   │   ├── bash
+│   │   │   │   │   ├── compat.h
+│   │   │   │   │   ├── not
+│   │   │   │   │   │   └── found
+│   │   │   │   │   │       └── hook.h
+│   │   │   │   │   └── source
+│   │   │   │   │       └── curdir.h
+│   │   │   │   ├── cmdcmd.h
+│   │   │   │   ├── echo.h
+│   │   │   │   ├── expand
+│   │   │   │   │   └── prmt.h
+│   │   │   │   ├── getopts.h
+│   │   │   │   ├── help.h
+│   │   │   │   ├── idle
+│   │   │   │   │   └── timeout.h
+│   │   │   │   ├── internal
+│   │   │   │   │   └── glob.h
+│   │   │   │   ├── job
+│   │   │   │   │   └── control.h
+│   │   │   │   ├── mail.h
+│   │   │   │   ├── optimize
+│   │   │   │   │   └── for
+│   │   │   │   │       └── size.h
+│   │   │   │   ├── printf.h
+│   │   │   │   ├── random
+│   │   │   │   │   └── support.h
+│   │   │   │   └── test.h
+│   │   │   ├── ash.h
+│   │   │   ├── awk.h
+│   │   │   ├── base32.h
+│   │   │   ├── base64.h
+│   │   │   ├── basename.h
+│   │   │   ├── bash
+│   │   │   │   └── is
+│   │   │   │       ├── ash.h
+│   │   │   │       ├── hush.h
+│   │   │   │       └── none.h
+│   │   │   ├── bb
+│   │   │   │   ├── arch.h
+│   │   │   │   └── sysctl.h
+│   │   │   ├── bbconfig.h
+│   │   │   ├── bc.h
+│   │   │   ├── beep.h
+│   │   │   ├── blkdiscard.h
+│   │   │   ├── blkid.h
+│   │   │   ├── blockdev.h
+│   │   │   ├── bootchartd.h
+│   │   │   ├── brctl.h
+│   │   │   ├── build
+│   │   │   │   └── libbusybox.h
+│   │   │   ├── bunzip2.h
+│   │   │   ├── busybox
+│   │   │   │   └── exec
+│   │   │   │       └── path.h
+│   │   │   ├── busybox.h
+│   │   │   ├── bzcat.h
+│   │   │   ├── bzip2
+│   │   │   │   └── small.h
+│   │   │   ├── bzip2.h
+│   │   │   ├── cal.h
+│   │   │   ├── cat.h
+│   │   │   ├── chat.h
+│   │   │   ├── chattr.h
+│   │   │   ├── chcon.h
+│   │   │   ├── chgrp.h
+│   │   │   ├── chmod.h
+│   │   │   ├── chown.h
+│   │   │   ├── chpasswd.h
+│   │   │   ├── chpst.h
+│   │   │   ├── chroot.h
+│   │   │   ├── chrt.h
+│   │   │   ├── chvt.h
+│   │   │   ├── cksum.h
+│   │   │   ├── clear.h
+│   │   │   ├── cmp.h
+│   │   │   ├── comm.h
+│   │   │   ├── conspy.h
+│   │   │   ├── cp.h
+│   │   │   ├── cpio.h
+│   │   │   ├── crond.h
+│   │   │   ├── crontab.h
+│   │   │   ├── cross
+│   │   │   │   └── compiler
+│   │   │   │       └── prefix.h
+│   │   │   ├── cryptpw.h
+│   │   │   ├── cttyhack.h
+│   │   │   ├── cut.h
+│   │   │   ├── date.h
+│   │   │   ├── dc.h
+│   │   │   ├── dd.h
+│   │   │   ├── deallocvt.h
+│   │   │   ├── debug
+│   │   │   │   ├── pessimize.h
+│   │   │   │   └── sanitize.h
+│   │   │   ├── debug.h
+│   │   │   ├── default
+│   │   │   │   ├── depmod
+│   │   │   │   │   └── file.h
+│   │   │   │   ├── modules
+│   │   │   │   │   └── dir.h
+│   │   │   │   └── setfont
+│   │   │   │       └── dir.h
+│   │   │   ├── delgroup.h
+│   │   │   ├── deluser.h
+│   │   │   ├── depmod.h
+│   │   │   ├── desktop.h
+│   │   │   ├── devfsd
+│   │   │   │   ├── fg
+│   │   │   │   │   └── np.h
+│   │   │   │   ├── modload.h
+│   │   │   │   └── verbose.h
+│   │   │   ├── devfsd.h
+│   │   │   ├── devmem.h
+│   │   │   ├── df.h
+│   │   │   ├── dhcpd
+│   │   │   │   └── leases
+│   │   │   │       └── file.h
+│   │   │   ├── dhcprelay.h
+│   │   │   ├── diff.h
+│   │   │   ├── dirname.h
+│   │   │   ├── dmalloc.h
+│   │   │   ├── dmesg.h
+│   │   │   ├── dnsd.h
+│   │   │   ├── dnsdomainname.h
+│   │   │   ├── dos2unix.h
+│   │   │   ├── dpkg
+│   │   │   │   └── deb.h
+│   │   │   ├── dpkg.h
+│   │   │   ├── du.h
+│   │   │   ├── dumpkmap.h
+│   │   │   ├── dumpleases.h
+│   │   │   ├── echo.h
+│   │   │   ├── ed.h
+│   │   │   ├── efence.h
+│   │   │   ├── egrep.h
+│   │   │   ├── eject.h
+│   │   │   ├── envdir.h
+│   │   │   ├── env.h
+│   │   │   ├── envuidgid.h
+│   │   │   ├── ether
+│   │   │   │   └── wake.h
+│   │   │   ├── expand.h
+│   │   │   ├── expr
+│   │   │   │   └── math
+│   │   │   │       └── support
+│   │   │   │           └── 64.h
+│   │   │   ├── expr.h
+│   │   │   ├── extra
+│   │   │   │   ├── cflags.h
+│   │   │   │   ├── compat.h
+│   │   │   │   ├── ldflags.h
+│   │   │   │   └── ldlibs.h
+│   │   │   ├── factor.h
+│   │   │   ├── fakeidentd.h
+│   │   │   ├── fallocate.h
+│   │   │   ├── false.h
+│   │   │   ├── fatattr.h
+│   │   │   ├── fbset.h
+│   │   │   ├── fbsplash.h
+│   │   │   ├── fdflush.h
+│   │   │   ├── fdformat.h
+│   │   │   ├── fdisk
+│   │   │   │   └── support
+│   │   │   │       └── large
+│   │   │   │           └── disks.h
+│   │   │   ├── fdisk.h
+│   │   │   ├── feature
+│   │   │   │   ├── 2
+│   │   │   │   │   └── 4
+│   │   │   │   │       └── modules.h
+│   │   │   │   ├── acpid
+│   │   │   │   │   └── compat.h
+│   │   │   │   ├── adduser
+│   │   │   │   │   └── to
+│   │   │   │   │       └── group.h
+│   │   │   │   ├── aix
+│   │   │   │   │   └── label.h
+│   │   │   │   ├── allow
+│   │   │   │   │   └── exec.h
+│   │   │   │   ├── ar
+│   │   │   │   │   ├── create.h
+│   │   │   │   │   └── long
+│   │   │   │   │       └── filenames.h
+│   │   │   │   ├── awk
+│   │   │   │   │   ├── gnu
+│   │   │   │   │   │   └── extensions.h
+│   │   │   │   │   └── libm.h
+│   │   │   │   ├── bc
+│   │   │   │   │   ├── interactive.h
+│   │   │   │   │   └── long
+│   │   │   │   │       └── options.h
+│   │   │   │   ├── beep
+│   │   │   │   │   ├── freq.h
+│   │   │   │   │   └── length
+│   │   │   │   │       └── ms.h
+│   │   │   │   ├── blkid
+│   │   │   │   │   └── type.h
+│   │   │   │   ├── bootchartd
+│   │   │   │   │   ├── bloated
+│   │   │   │   │   │   └── header.h
+│   │   │   │   │   └── config
+│   │   │   │   │       └── file.h
+│   │   │   │   ├── brctl
+│   │   │   │   │   ├── fancy.h
+│   │   │   │   │   └── show.h
+│   │   │   │   ├── buffers
+│   │   │   │   │   ├── go
+│   │   │   │   │   │   ├── in
+│   │   │   │   │   │   │   └── bss.h
+│   │   │   │   │   │   └── on
+│   │   │   │   │   │       └── stack.h
+│   │   │   │   │   └── use
+│   │   │   │   │       └── malloc.h
+│   │   │   │   ├── bzip2
+│   │   │   │   │   └── decompress.h
+│   │   │   │   ├── call
+│   │   │   │   │   └── telinit.h
+│   │   │   │   ├── catn.h
+│   │   │   │   ├── catv.h
+│   │   │   │   ├── chat
+│   │   │   │   │   ├── clr
+│   │   │   │   │   │   └── abort.h
+│   │   │   │   │   ├── implicit
+│   │   │   │   │   │   └── cr.h
+│   │   │   │   │   ├── nofail.h
+│   │   │   │   │   ├── send
+│   │   │   │   │   │   └── escapes.h
+│   │   │   │   │   ├── swallow
+│   │   │   │   │   │   └── opts.h
+│   │   │   │   │   ├── tty
+│   │   │   │   │   │   └── hifi.h
+│   │   │   │   │   └── var
+│   │   │   │   │       └── abort
+│   │   │   │   │           └── len.h
+│   │   │   │   ├── check
+│   │   │   │   │   ├── names.h
+│   │   │   │   │   ├── tainted
+│   │   │   │   │   │   └── module.h
+│   │   │   │   │   └── unicode
+│   │   │   │   │       └── in
+│   │   │   │   │           └── env.h
+│   │   │   │   ├── chown
+│   │   │   │   │   └── long
+│   │   │   │   │       └── options.h
+│   │   │   │   ├── clean
+│   │   │   │   │   └── up.h
+│   │   │   │   ├── cmdline
+│   │   │   │   │   └── module
+│   │   │   │   │       └── options.h
+│   │   │   │   ├── compress
+│   │   │   │   │   ├── bbconfig.h
+│   │   │   │   │   └── usage.h
+│   │   │   │   ├── copybuf
+│   │   │   │   │   └── kb.h
+│   │   │   │   ├── cp
+│   │   │   │   │   ├── long
+│   │   │   │   │   │   └── options.h
+│   │   │   │   │   └── reflink.h
+│   │   │   │   ├── cpio
+│   │   │   │   │   ├── o.h
+│   │   │   │   │   └── p.h
+│   │   │   │   ├── crond
+│   │   │   │   │   ├── call
+│   │   │   │   │   │   └── sendmail.h
+│   │   │   │   │   ├── d.h
+│   │   │   │   │   ├── dir.h
+│   │   │   │   │   └── special
+│   │   │   │   │       └── times.h
+│   │   │   │   ├── date
+│   │   │   │   │   ├── compat.h
+│   │   │   │   │   ├── isofmt.h
+│   │   │   │   │   └── nano.h
+│   │   │   │   ├── dc
+│   │   │   │   │   ├── big.h
+│   │   │   │   │   └── libm.h
+│   │   │   │   ├── dd
+│   │   │   │   │   ├── ibs
+│   │   │   │   │   │   └── obs.h
+│   │   │   │   │   ├── signal
+│   │   │   │   │   │   └── handling.h
+│   │   │   │   │   ├── status.h
+│   │   │   │   │   └── third
+│   │   │   │   │       └── status
+│   │   │   │   │           └── line.h
+│   │   │   │   ├── default
+│   │   │   │   │   └── passwd
+│   │   │   │   │       └── algo.h
+│   │   │   │   ├── del
+│   │   │   │   │   └── user
+│   │   │   │   │       └── from
+│   │   │   │   │           └── group.h
+│   │   │   │   ├── devfs.h
+│   │   │   │   ├── devpts.h
+│   │   │   │   ├── df
+│   │   │   │   │   └── fancy.h
+│   │   │   │   ├── diff
+│   │   │   │   │   ├── dir.h
+│   │   │   │   │   └── long
+│   │   │   │   │       └── options.h
+│   │   │   │   ├── dmesg
+│   │   │   │   │   └── pretty.h
+│   │   │   │   ├── du
+│   │   │   │   │   └── default
+│   │   │   │   │       └── blocksize
+│   │   │   │   │           └── 1k.h
+│   │   │   │   ├── editing
+│   │   │   │   │   ├── ask
+│   │   │   │   │   │   └── terminal.h
+│   │   │   │   │   ├── fancy
+│   │   │   │   │   │   └── prompt.h
+│   │   │   │   │   ├── history.h
+│   │   │   │   │   ├── max
+│   │   │   │   │   │   └── len.h
+│   │   │   │   │   ├── save
+│   │   │   │   │   │   └── on
+│   │   │   │   │   │       └── exit.h
+│   │   │   │   │   ├── savehistory.h
+│   │   │   │   │   ├── vi.h
+│   │   │   │   │   └── winch.h
+│   │   │   │   ├── editing.h
+│   │   │   │   ├── eject
+│   │   │   │   │   └── scsi.h
+│   │   │   │   ├── etc
+│   │   │   │   │   ├── networks.h
+│   │   │   │   │   └── services.h
+│   │   │   │   ├── fancy
+│   │   │   │   │   ├── echo.h
+│   │   │   │   │   ├── head.h
+│   │   │   │   │   ├── ping.h
+│   │   │   │   │   ├── sleep.h
+│   │   │   │   │   └── tail.h
+│   │   │   │   ├── fast
+│   │   │   │   │   └── top.h
+│   │   │   │   ├── fbset
+│   │   │   │   │   ├── fancy.h
+│   │   │   │   │   └── readmode.h
+│   │   │   │   ├── fdisk
+│   │   │   │   │   ├── advanced.h
+│   │   │   │   │   └── writable.h
+│   │   │   │   ├── find
+│   │   │   │   │   ├── context.h
+│   │   │   │   │   ├── delete.h
+│   │   │   │   │   ├── depth.h
+│   │   │   │   │   ├── empty.h
+│   │   │   │   │   ├── exec
+│   │   │   │   │   │   └── plus.h
+│   │   │   │   │   ├── exec.h
+│   │   │   │   │   ├── executable.h
+│   │   │   │   │   ├── group.h
+│   │   │   │   │   ├── inum.h
+│   │   │   │   │   ├── links.h
+│   │   │   │   │   ├── maxdepth.h
+│   │   │   │   │   ├── mmin.h
+│   │   │   │   │   ├── mtime.h
+│   │   │   │   │   ├── newer.h
+│   │   │   │   │   ├── not.h
+│   │   │   │   │   ├── paren.h
+│   │   │   │   │   ├── path.h
+│   │   │   │   │   ├── perm.h
+│   │   │   │   │   ├── print0.h
+│   │   │   │   │   ├── prune.h
+│   │   │   │   │   ├── quit.h
+│   │   │   │   │   ├── regex.h
+│   │   │   │   │   ├── size.h
+│   │   │   │   │   ├── type.h
+│   │   │   │   │   ├── user.h
+│   │   │   │   │   └── xdev.h
+│   │   │   │   ├── ftpd
+│   │   │   │   │   ├── accept
+│   │   │   │   │   │   └── broken
+│   │   │   │   │   │       └── list.h
+│   │   │   │   │   ├── authentication.h
+│   │   │   │   │   └── write.h
+│   │   │   │   ├── ftpgetput
+│   │   │   │   │   └── long
+│   │   │   │   │       └── options.h
+│   │   │   │   ├── getopt
+│   │   │   │   │   └── long.h
+│   │   │   │   ├── gpt
+│   │   │   │   │   └── label.h
+│   │   │   │   ├── grep
+│   │   │   │   │   └── context.h
+│   │   │   │   ├── gunzip
+│   │   │   │   │   └── long
+│   │   │   │   │       └── options.h
+│   │   │   │   ├── gzip
+│   │   │   │   │   ├── decompress.h
+│   │   │   │   │   ├── levels.h
+│   │   │   │   │   └── long
+│   │   │   │   │       └── options.h
+│   │   │   │   ├── hdparm
+│   │   │   │   │   ├── get
+│   │   │   │   │   │   └── identity.h
+│   │   │   │   │   └── hdio
+│   │   │   │   │       ├── drive
+│   │   │   │   │       │   └── reset.h
+│   │   │   │   │       ├── getset
+│   │   │   │   │       │   └── dma.h
+│   │   │   │   │       ├── scan
+│   │   │   │   │       │   └── hwif.h
+│   │   │   │   │       ├── tristate
+│   │   │   │   │       │   └── hwif.h
+│   │   │   │   │       └── unregister
+│   │   │   │   │           └── hwif.h
+│   │   │   │   ├── httpd
+│   │   │   │   │   ├── acl
+│   │   │   │   │   │   └── ip.h
+│   │   │   │   │   ├── auth
+│   │   │   │   │   │   └── md5.h
+│   │   │   │   │   ├── basic
+│   │   │   │   │   │   └── auth.h
+│   │   │   │   │   ├── cgi.h
+│   │   │   │   │   ├── config
+│   │   │   │   │   │   └── with
+│   │   │   │   │   │       └── script
+│   │   │   │   │   │           └── interpr.h
+│   │   │   │   │   ├── date.h
+│   │   │   │   │   ├── encode
+│   │   │   │   │   │   └── url
+│   │   │   │   │   │       └── str.h
+│   │   │   │   │   ├── error
+│   │   │   │   │   │   └── pages.h
+│   │   │   │   │   ├── etag.h
+│   │   │   │   │   ├── gzip.h
+│   │   │   │   │   ├── last
+│   │   │   │   │   │   └── modified.h
+│   │   │   │   │   ├── proxy.h
+│   │   │   │   │   ├── ranges.h
+│   │   │   │   │   ├── set
+│   │   │   │   │   │   └── remote
+│   │   │   │   │   │       └── port
+│   │   │   │   │   │           └── to
+│   │   │   │   │   │               └── env.h
+│   │   │   │   │   └── setuid.h
+│   │   │   │   ├── human
+│   │   │   │   │   └── readable.h
+│   │   │   │   ├── hwclock
+│   │   │   │   │   └── adjtime
+│   │   │   │   │       └── fhs.h
+│   │   │   │   ├── hwib.h
+│   │   │   │   ├── ifconfig
+│   │   │   │   │   ├── broadcast
+│   │   │   │   │   │   └── plus.h
+│   │   │   │   │   ├── hw.h
+│   │   │   │   │   ├── memstart
+│   │   │   │   │   │   └── ioaddr
+│   │   │   │   │   │       └── irq.h
+│   │   │   │   │   ├── slip.h
+│   │   │   │   │   └── status.h
+│   │   │   │   ├── ifupdown
+│   │   │   │   │   ├── external
+│   │   │   │   │   │   └── dhcp.h
+│   │   │   │   │   ├── ip.h
+│   │   │   │   │   ├── ipv4.h
+│   │   │   │   │   ├── ipv6.h
+│   │   │   │   │   └── mapping.h
+│   │   │   │   ├── individual.h
+│   │   │   │   ├── inetd
+│   │   │   │   │   ├── rpc.h
+│   │   │   │   │   └── support
+│   │   │   │   │       └── builtin
+│   │   │   │   │           ├── chargen.h
+│   │   │   │   │           ├── daytime.h
+│   │   │   │   │           ├── discard.h
+│   │   │   │   │           ├── echo.h
+│   │   │   │   │           └── time.h
+│   │   │   │   ├── init
+│   │   │   │   │   ├── coredumps.h
+│   │   │   │   │   ├── modify
+│   │   │   │   │   │   └── cmdline.h
+│   │   │   │   │   ├── quiet.h
+│   │   │   │   │   ├── sctty.h
+│   │   │   │   │   └── syslog.h
+│   │   │   │   ├── insmod
+│   │   │   │   │   ├── ksymoops
+│   │   │   │   │   │   └── symbols.h
+│   │   │   │   │   ├── load
+│   │   │   │   │   │   ├── map
+│   │   │   │   │   │   │   └── full.h
+│   │   │   │   │   │   └── map.h
+│   │   │   │   │   ├── loadinkmem.h
+│   │   │   │   │   ├── try
+│   │   │   │   │   │   └── mmap.h
+│   │   │   │   │   └── version
+│   │   │   │   │       └── checking.h
+│   │   │   │   ├── install
+│   │   │   │   │   └── long
+│   │   │   │   │       └── options.h
+│   │   │   │   ├── installer.h
+│   │   │   │   ├── ip
+│   │   │   │   │   ├── address.h
+│   │   │   │   │   ├── link.h
+│   │   │   │   │   ├── neigh.h
+│   │   │   │   │   ├── rare
+│   │   │   │   │   │   └── protocols.h
+│   │   │   │   │   ├── route
+│   │   │   │   │   │   └── dir.h
+│   │   │   │   │   ├── route.h
+│   │   │   │   │   ├── rule.h
+│   │   │   │   │   └── tunnel.h
+│   │   │   │   ├── ipc
+│   │   │   │   │   ├── syslog
+│   │   │   │   │   │   └── buffer
+│   │   │   │   │   │       └── size.h
+│   │   │   │   │   └── syslog.h
+│   │   │   │   ├── ipcalc
+│   │   │   │   │   ├── fancy.h
+│   │   │   │   │   └── long
+│   │   │   │   │       └── options.h
+│   │   │   │   ├── ipv6.h
+│   │   │   │   ├── kill
+│   │   │   │   │   ├── delay.h
+│   │   │   │   │   └── removed.h
+│   │   │   │   ├── klogd
+│   │   │   │   │   └── klogctl.h
+│   │   │   │   ├── kmsg
+│   │   │   │   │   └── syslog.h
+│   │   │   │   ├── last
+│   │   │   │   │   └── fancy.h
+│   │   │   │   ├── less
+│   │   │   │   │   ├── ask
+│   │   │   │   │   │   └── terminal.h
+│   │   │   │   │   ├── brackets.h
+│   │   │   │   │   ├── dashcmd.h
+│   │   │   │   │   ├── env.h
+│   │   │   │   │   ├── flags.h
+│   │   │   │   │   ├── linenums.h
+│   │   │   │   │   ├── marks.h
+│   │   │   │   │   ├── maxlines.h
+│   │   │   │   │   ├── raw.h
+│   │   │   │   │   ├── regexp.h
+│   │   │   │   │   ├── truncate.h
+│   │   │   │   │   └── winch.h
+│   │   │   │   ├── libbusybox
+│   │   │   │   │   └── static.h
+│   │   │   │   ├── loadfont
+│   │   │   │   │   ├── psf2.h
+│   │   │   │   │   └── raw.h
+│   │   │   │   ├── logread
+│   │   │   │   │   └── reduced
+│   │   │   │   │       └── locking.h
+│   │   │   │   ├── ls
+│   │   │   │   │   ├── color
+│   │   │   │   │   │   └── is
+│   │   │   │   │   │       └── default.h
+│   │   │   │   │   ├── color.h
+│   │   │   │   │   ├── filetypes.h
+│   │   │   │   │   ├── followlinks.h
+│   │   │   │   │   ├── recursive.h
+│   │   │   │   │   ├── sortfiles.h
+│   │   │   │   │   ├── timestamps.h
+│   │   │   │   │   ├── username.h
+│   │   │   │   │   └── width.h
+│   │   │   │   ├── lsmod
+│   │   │   │   │   └── pretty
+│   │   │   │   │       └── 2
+│   │   │   │   │           └── 6
+│   │   │   │   │               └── output.h
+│   │   │   │   ├── lzma
+│   │   │   │   │   └── fast.h
+│   │   │   │   ├── makedevs
+│   │   │   │   │   ├── leaf.h
+│   │   │   │   │   └── table.h
+│   │   │   │   ├── md5
+│   │   │   │   │   └── sha1
+│   │   │   │   │       └── sum
+│   │   │   │   │           └── check.h
+│   │   │   │   ├── mdev
+│   │   │   │   │   ├── conf.h
+│   │   │   │   │   ├── daemon.h
+│   │   │   │   │   ├── exec.h
+│   │   │   │   │   ├── load
+│   │   │   │   │   │   └── firmware.h
+│   │   │   │   │   ├── rename
+│   │   │   │   │   │   └── regexp.h
+│   │   │   │   │   └── rename.h
+│   │   │   │   ├── mesg
+│   │   │   │   │   └── enable
+│   │   │   │   │       └── only
+│   │   │   │   │           └── group.h
+│   │   │   │   ├── mime
+│   │   │   │   │   └── charset.h
+│   │   │   │   ├── minix2.h
+│   │   │   │   ├── mkswap
+│   │   │   │   │   └── uuid.h
+│   │   │   │   ├── modprobe
+│   │   │   │   │   ├── blacklist.h
+│   │   │   │   │   └── small
+│   │   │   │   │       └── check
+│   │   │   │   │           └── already
+│   │   │   │   │               └── loaded.h
+│   │   │   │   ├── modutils
+│   │   │   │   │   ├── alias.h
+│   │   │   │   │   └── symbols.h
+│   │   │   │   ├── mount
+│   │   │   │   │   ├── cifs.h
+│   │   │   │   │   ├── fake.h
+│   │   │   │   │   ├── flags.h
+│   │   │   │   │   ├── fstab.h
+│   │   │   │   │   ├── helpers.h
+│   │   │   │   │   ├── label.h
+│   │   │   │   │   ├── loop
+│   │   │   │   │   │   └── create.h
+│   │   │   │   │   ├── loop.h
+│   │   │   │   │   ├── nfs.h
+│   │   │   │   │   ├── othertab.h
+│   │   │   │   │   └── verbose.h
+│   │   │   │   ├── mtab
+│   │   │   │   │   └── support.h
+│   │   │   │   ├── nameif
+│   │   │   │   │   └── extended.h
+│   │   │   │   ├── netstat
+│   │   │   │   │   ├── prg.h
+│   │   │   │   │   └── wide.h
+│   │   │   │   ├── nologin.h
+│   │   │   │   ├── non
+│   │   │   │   │   └── posix
+│   │   │   │   │       └── cp.h
+│   │   │   │   ├── nslookup
+│   │   │   │   │   ├── big.h
+│   │   │   │   │   └── long
+│   │   │   │   │       └── options.h
+│   │   │   │   ├── ntp
+│   │   │   │   │   └── auth.h
+│   │   │   │   ├── ntpd
+│   │   │   │   │   ├── conf.h
+│   │   │   │   │   └── server.h
+│   │   │   │   ├── osf
+│   │   │   │   │   └── label.h
+│   │   │   │   ├── passwd
+│   │   │   │   │   └── weak
+│   │   │   │   │       └── check.h
+│   │   │   │   ├── pidfile.h
+│   │   │   │   ├── pidof
+│   │   │   │   │   ├── omit.h
+│   │   │   │   │   └── single.h
+│   │   │   │   ├── popmaildir
+│   │   │   │   │   └── delivery.h
+│   │   │   │   ├── powertop
+│   │   │   │   │   └── interactive.h
+│   │   │   │   ├── prefer
+│   │   │   │   │   ├── applets.h
+│   │   │   │   │   └── ipv4
+│   │   │   │   │       └── address.h
+│   │   │   │   ├── preserve
+│   │   │   │   │   └── hardlinks.h
+│   │   │   │   ├── ps
+│   │   │   │   │   ├── additional
+│   │   │   │   │   │   └── columns.h
+│   │   │   │   │   ├── long.h
+│   │   │   │   │   ├── time.h
+│   │   │   │   │   ├── unusual
+│   │   │   │   │   │   └── systems.h
+│   │   │   │   │   └── wide.h
+│   │   │   │   ├── readlink
+│   │   │   │   │   └── follow.h
+│   │   │   │   ├── reformime
+│   │   │   │   │   └── compat.h
+│   │   │   │   ├── remote
+│   │   │   │   │   └── log.h
+│   │   │   │   ├── resize
+│   │   │   │   │   └── print.h
+│   │   │   │   ├── reverse
+│   │   │   │   │   └── search.h
+│   │   │   │   ├── rotate
+│   │   │   │   │   └── logfile.h
+│   │   │   │   ├── rtminmax
+│   │   │   │   │   └── use
+│   │   │   │   │       └── libc
+│   │   │   │   │           └── definitions.h
+│   │   │   │   ├── rtminmax.h
+│   │   │   │   ├── run
+│   │   │   │   │   └── parts
+│   │   │   │   │       ├── fancy.h
+│   │   │   │   │       └── long
+│   │   │   │   │           └── options.h
+│   │   │   │   ├── runsvdir
+│   │   │   │   │   └── log.h
+│   │   │   │   ├── seamless
+│   │   │   │   │   ├── bz2.h
+│   │   │   │   │   ├── gz.h
+│   │   │   │   │   ├── lzma.h
+│   │   │   │   │   ├── xz.h
+│   │   │   │   │   └── z.h
+│   │   │   │   ├── securetty.h
+│   │   │   │   ├── setconsole
+│   │   │   │   │   └── long
+│   │   │   │   │       └── options.h
+│   │   │   │   ├── setfiles
+│   │   │   │   │   └── check
+│   │   │   │   │       └── option.h
+│   │   │   │   ├── setfont
+│   │   │   │   │   └── textual
+│   │   │   │   │       └── map.h
+│   │   │   │   ├── setpriv
+│   │   │   │   │   ├── capabilities.h
+│   │   │   │   │   ├── capability
+│   │   │   │   │   │   └── names.h
+│   │   │   │   │   └── dump.h
+│   │   │   │   ├── sgi
+│   │   │   │   │   └── label.h
+│   │   │   │   ├── sh
+│   │   │   │   │   ├── embedded
+│   │   │   │   │   │   └── scripts.h
+│   │   │   │   │   ├── extra
+│   │   │   │   │   │   └── quiet.h
+│   │   │   │   │   ├── histfilesize.h
+│   │   │   │   │   ├── math
+│   │   │   │   │   │   ├── 64.h
+│   │   │   │   │   │   └── base.h
+│   │   │   │   │   ├── math.h
+│   │   │   │   │   ├── nofork.h
+│   │   │   │   │   ├── read
+│   │   │   │   │   │   └── frac.h
+│   │   │   │   │   └── standalone.h
+│   │   │   │   ├── shadowpasswds.h
+│   │   │   │   ├── shared
+│   │   │   │   │   └── busybox.h
+│   │   │   │   ├── show
+│   │   │   │   │   ├── script.h
+│   │   │   │   │   └── threads.h
+│   │   │   │   ├── skip
+│   │   │   │   │   └── rootfs.h
+│   │   │   │   ├── sort
+│   │   │   │   │   ├── big.h
+│   │   │   │   │   └── optimize
+│   │   │   │   │       └── memory.h
+│   │   │   │   ├── split
+│   │   │   │   │   └── fancy.h
+│   │   │   │   ├── start
+│   │   │   │   │   └── stop
+│   │   │   │   │       └── daemon
+│   │   │   │   │           ├── fancy.h
+│   │   │   │   │           └── long
+│   │   │   │   │               └── options.h
+│   │   │   │   ├── stat
+│   │   │   │   │   ├── filesystem.h
+│   │   │   │   │   └── format.h
+│   │   │   │   ├── su
+│   │   │   │   │   ├── blank
+│   │   │   │   │   │   └── pw
+│   │   │   │   │   │       └── needs
+│   │   │   │   │   │           └── secure
+│   │   │   │   │   │               └── tty.h
+│   │   │   │   │   ├── checks
+│   │   │   │   │   │   └── shells.h
+│   │   │   │   │   └── syslog.h
+│   │   │   │   ├── suid
+│   │   │   │   │   ├── config
+│   │   │   │   │   │   └── quiet.h
+│   │   │   │   │   └── config.h
+│   │   │   │   ├── suid.h
+│   │   │   │   ├── sun
+│   │   │   │   │   └── label.h
+│   │   │   │   ├── swapon
+│   │   │   │   │   ├── discard.h
+│   │   │   │   │   └── pri.h
+│   │   │   │   ├── swaponoff
+│   │   │   │   │   └── label.h
+│   │   │   │   ├── sync
+│   │   │   │   │   └── fancy.h
+│   │   │   │   ├── syslog
+│   │   │   │   │   └── info.h
+│   │   │   │   ├── syslogd
+│   │   │   │   │   ├── cfg.h
+│   │   │   │   │   ├── dup.h
+│   │   │   │   │   ├── precise
+│   │   │   │   │   │   └── timestamps.h
+│   │   │   │   │   └── read
+│   │   │   │   │       └── buffer
+│   │   │   │   │           └── size.h
+│   │   │   │   ├── syslog.h
+│   │   │   │   ├── tab
+│   │   │   │   │   └── completion.h
+│   │   │   │   ├── tar
+│   │   │   │   │   ├── autodetect.h
+│   │   │   │   │   ├── create.h
+│   │   │   │   │   ├── from.h
+│   │   │   │   │   ├── gnu
+│   │   │   │   │   │   └── extensions.h
+│   │   │   │   │   ├── long
+│   │   │   │   │   │   └── options.h
+│   │   │   │   │   ├── nopreserve
+│   │   │   │   │   │   └── time.h
+│   │   │   │   │   ├── oldgnu
+│   │   │   │   │   │   └── compatibility.h
+│   │   │   │   │   ├── oldsun
+│   │   │   │   │   │   └── compatibility.h
+│   │   │   │   │   ├── selinux.h
+│   │   │   │   │   ├── to
+│   │   │   │   │   │   └── command.h
+│   │   │   │   │   └── uname
+│   │   │   │   │       └── gname.h
+│   │   │   │   ├── taskset
+│   │   │   │   │   ├── cpulist.h
+│   │   │   │   │   └── fancy.h
+│   │   │   │   ├── tc
+│   │   │   │   │   └── ingress.h
+│   │   │   │   ├── tee
+│   │   │   │   │   └── use
+│   │   │   │   │       └── block
+│   │   │   │   │           └── io.h
+│   │   │   │   ├── telnet
+│   │   │   │   │   ├── autologin.h
+│   │   │   │   │   ├── ttype.h
+│   │   │   │   │   └── width.h
+│   │   │   │   ├── telnetd
+│   │   │   │   │   ├── inetd
+│   │   │   │   │   │   └── wait.h
+│   │   │   │   │   └── standalone.h
+│   │   │   │   ├── test
+│   │   │   │   │   └── 64.h
+│   │   │   │   ├── tftp
+│   │   │   │   │   ├── blocksize.h
+│   │   │   │   │   ├── get.h
+│   │   │   │   │   ├── hpa
+│   │   │   │   │   │   └── compat.h
+│   │   │   │   │   ├── progress
+│   │   │   │   │   │   └── bar.h
+│   │   │   │   │   └── put.h
+│   │   │   │   ├── tls
+│   │   │   │   │   └── sha1.h
+│   │   │   │   ├── top
+│   │   │   │   │   ├── cpu
+│   │   │   │   │   │   ├── global
+│   │   │   │   │   │   │   └── percents.h
+│   │   │   │   │   │   └── usage
+│   │   │   │   │   │       └── percentage.h
+│   │   │   │   │   ├── decimals.h
+│   │   │   │   │   ├── interactive.h
+│   │   │   │   │   └── smp
+│   │   │   │   │       ├── cpu.h
+│   │   │   │   │       └── process.h
+│   │   │   │   ├── topmem.h
+│   │   │   │   ├── touch
+│   │   │   │   │   ├── noderef.h
+│   │   │   │   │   └── susv3.h
+│   │   │   │   ├── tr
+│   │   │   │   │   ├── classes.h
+│   │   │   │   │   └── equiv.h
+│   │   │   │   ├── traceroute
+│   │   │   │   │   ├── use
+│   │   │   │   │   │   └── icmp.h
+│   │   │   │   │   └── verbose.h
+│   │   │   │   ├── tunctl
+│   │   │   │   │   └── ug.h
+│   │   │   │   ├── udhcp
+│   │   │   │   │   ├── 8021q.h
+│   │   │   │   │   ├── port.h
+│   │   │   │   │   └── rfc3397.h
+│   │   │   │   ├── udhcpc
+│   │   │   │   │   ├── arping.h
+│   │   │   │   │   └── sanitizeopt.h
+│   │   │   │   ├── udhcpc6
+│   │   │   │   │   ├── rfc3646.h
+│   │   │   │   │   ├── rfc4704.h
+│   │   │   │   │   ├── rfc4833.h
+│   │   │   │   │   └── rfc5970.h
+│   │   │   │   ├── udhcpd
+│   │   │   │   │   ├── base
+│   │   │   │   │   │   └── ip
+│   │   │   │   │   │       └── on
+│   │   │   │   │   │           └── mac.h
+│   │   │   │   │   └── write
+│   │   │   │   │       └── leases
+│   │   │   │   │           └── early.h
+│   │   │   │   ├── umount
+│   │   │   │   │   └── all.h
+│   │   │   │   ├── unix
+│   │   │   │   │   └── local.h
+│   │   │   │   ├── unzip
+│   │   │   │   │   ├── bzip2.h
+│   │   │   │   │   ├── cdf.h
+│   │   │   │   │   ├── lzma.h
+│   │   │   │   │   └── xz.h
+│   │   │   │   ├── uptime
+│   │   │   │   │   └── utmp
+│   │   │   │   │       └── support.h
+│   │   │   │   ├── use
+│   │   │   │   │   ├── bss
+│   │   │   │   │   │   └── tail.h
+│   │   │   │   │   ├── inittab.h
+│   │   │   │   │   └── sendfile.h
+│   │   │   │   ├── username
+│   │   │   │   │   └── completion.h
+│   │   │   │   ├── utmp.h
+│   │   │   │   ├── verbose
+│   │   │   │   │   ├── cp
+│   │   │   │   │   │   └── message.h
+│   │   │   │   │   └── usage.h
+│   │   │   │   ├── verbose.h
+│   │   │   │   ├── vi
+│   │   │   │   │   ├── 8bit.h
+│   │   │   │   │   ├── ask
+│   │   │   │   │   │   └── terminal.h
+│   │   │   │   │   ├── colon.h
+│   │   │   │   │   ├── dot
+│   │   │   │   │   │   └── cmd.h
+│   │   │   │   │   ├── max
+│   │   │   │   │   │   └── len.h
+│   │   │   │   │   ├── readonly.h
+│   │   │   │   │   ├── regex
+│   │   │   │   │   │   └── search.h
+│   │   │   │   │   ├── search.h
+│   │   │   │   │   ├── set.h
+│   │   │   │   │   ├── setopts.h
+│   │   │   │   │   ├── undo
+│   │   │   │   │   │   ├── queue
+│   │   │   │   │   │   │   └── max.h
+│   │   │   │   │   │   └── queue.h
+│   │   │   │   │   ├── undo.h
+│   │   │   │   │   ├── use
+│   │   │   │   │   │   └── signals.h
+│   │   │   │   │   ├── win
+│   │   │   │   │   │   └── resize.h
+│   │   │   │   │   └── yankmark.h
+│   │   │   │   ├── volumeid
+│   │   │   │   │   ├── bcache.h
+│   │   │   │   │   ├── btrfs.h
+│   │   │   │   │   ├── cramfs.h
+│   │   │   │   │   ├── erofs.h
+│   │   │   │   │   ├── exfat.h
+│   │   │   │   │   ├── ext.h
+│   │   │   │   │   ├── f2fs.h
+│   │   │   │   │   ├── fat.h
+│   │   │   │   │   ├── hfs.h
+│   │   │   │   │   ├── iso9660.h
+│   │   │   │   │   ├── jfs.h
+│   │   │   │   │   ├── lfs.h
+│   │   │   │   │   ├── linuxraid.h
+│   │   │   │   │   ├── linuxswap.h
+│   │   │   │   │   ├── luks.h
+│   │   │   │   │   ├── minix.h
+│   │   │   │   │   ├── nilfs.h
+│   │   │   │   │   ├── ntfs.h
+│   │   │   │   │   ├── ocfs2.h
+│   │   │   │   │   ├── reiserfs.h
+│   │   │   │   │   ├── romfs.h
+│   │   │   │   │   ├── squashfs.h
+│   │   │   │   │   ├── sysv.h
+│   │   │   │   │   ├── ubifs.h
+│   │   │   │   │   ├── udf.h
+│   │   │   │   │   └── xfs.h
+│   │   │   │   ├── wait
+│   │   │   │   │   └── for
+│   │   │   │   │       └── init.h
+│   │   │   │   ├── wc
+│   │   │   │   │   └── large.h
+│   │   │   │   ├── wget
+│   │   │   │   │   ├── authentication.h
+│   │   │   │   │   ├── https.h
+│   │   │   │   │   ├── long
+│   │   │   │   │   │   └── options.h
+│   │   │   │   │   ├── openssl.h
+│   │   │   │   │   ├── statusbar.h
+│   │   │   │   │   └── timeout.h
+│   │   │   │   ├── wtmp.h
+│   │   │   │   └── xargs
+│   │   │   │       └── support
+│   │   │   │           ├── args
+│   │   │   │           │   └── file.h
+│   │   │   │           ├── confirmation.h
+│   │   │   │           ├── parallel.h
+│   │   │   │           ├── quotes.h
+│   │   │   │           ├── repl
+│   │   │   │           │   └── str.h
+│   │   │   │           ├── termopt.h
+│   │   │   │           └── zero
+│   │   │   │               └── term.h
+│   │   │   ├── fedora
+│   │   │   │   └── compat.h
+│   │   │   ├── fgconsole.h
+│   │   │   ├── fgrep.h
+│   │   │   ├── findfs.h
+│   │   │   ├── find.h
+│   │   │   ├── first
+│   │   │   │   └── system
+│   │   │   │       └── id.h
+│   │   │   ├── flash
+│   │   │   │   ├── eraseall.h
+│   │   │   │   ├── lock.h
+│   │   │   │   └── unlock.h
+│   │   │   ├── flashcp.h
+│   │   │   ├── float
+│   │   │   │   └── duration.h
+│   │   │   ├── flock.h
+│   │   │   ├── fold.h
+│   │   │   ├── free.h
+│   │   │   ├── freeramdisk.h
+│   │   │   ├── fsck
+│   │   │   │   └── minix.h
+│   │   │   ├── fsck.h
+│   │   │   ├── fsfreeze.h
+│   │   │   ├── fstrim.h
+│   │   │   ├── fsync.h
+│   │   │   ├── ftpd.h
+│   │   │   ├── ftpget.h
+│   │   │   ├── ftpput.h
+│   │   │   ├── fuser.h
+│   │   │   ├── getenforce.h
+│   │   │   ├── getopt.h
+│   │   │   ├── getsebool.h
+│   │   │   ├── getty.h
+│   │   │   ├── grep.h
+│   │   │   ├── groups.h
+│   │   │   ├── gunzip.h
+│   │   │   ├── gzip
+│   │   │   │   └── fast.h
+│   │   │   ├── gzip.h
+│   │   │   ├── halt.h
+│   │   │   ├── have
+│   │   │   │   └── dot
+│   │   │   │       └── config.h
+│   │   │   ├── hd.h
+│   │   │   ├── hdparm.h
+│   │   │   ├── head.h
+│   │   │   ├── hexdump.h
+│   │   │   ├── hexedit.h
+│   │   │   ├── hostid.h
+│   │   │   ├── hostname.h
+│   │   │   ├── httpd.h
+│   │   │   ├── hush
+│   │   │   │   ├── bash
+│   │   │   │   │   ├── compat.h
+│   │   │   │   │   └── source
+│   │   │   │   │       └── curdir.h
+│   │   │   │   ├── brace
+│   │   │   │   │   └── expansion.h
+│   │   │   │   ├── case.h
+│   │   │   │   ├── command.h
+│   │   │   │   ├── echo.h
+│   │   │   │   ├── export
+│   │   │   │   │   └── n.h
+│   │   │   │   ├── export.h
+│   │   │   │   ├── functions.h
+│   │   │   │   ├── getopts.h
+│   │   │   │   ├── help.h
+│   │   │   │   ├── if.h
+│   │   │   │   ├── interactive.h
+│   │   │   │   ├── job.h
+│   │   │   │   ├── kill.h
+│   │   │   │   ├── lineno
+│   │   │   │   │   └── var.h
+│   │   │   │   ├── local.h
+│   │   │   │   ├── loops.h
+│   │   │   │   ├── memleak.h
+│   │   │   │   ├── mode
+│   │   │   │   │   └── x.h
+│   │   │   │   ├── printf.h
+│   │   │   │   ├── random
+│   │   │   │   │   └── support.h
+│   │   │   │   ├── read.h
+│   │   │   │   ├── readonly.h
+│   │   │   │   ├── savehistory.h
+│   │   │   │   ├── set.h
+│   │   │   │   ├── test.h
+│   │   │   │   ├── tick.h
+│   │   │   │   ├── times.h
+│   │   │   │   ├── trap.h
+│   │   │   │   ├── type.h
+│   │   │   │   ├── ulimit.h
+│   │   │   │   ├── umask.h
+│   │   │   │   ├── unset.h
+│   │   │   │   └── wait.h
+│   │   │   ├── hush.h
+│   │   │   ├── hwclock.h
+│   │   │   ├── i2cdetect.h
+│   │   │   ├── i2cdump.h
+│   │   │   ├── i2cget.h
+│   │   │   ├── i2cset.h
+│   │   │   ├── i2ctransfer.h
+│   │   │   ├── id.h
+│   │   │   ├── ifconfig.h
+│   │   │   ├── ifdown.h
+│   │   │   ├── ifenslave.h
+│   │   │   ├── ifplugd.h
+│   │   │   ├── ifupdown
+│   │   │   │   ├── ifstate
+│   │   │   │   │   └── path.h
+│   │   │   │   └── udhcpc
+│   │   │   │       └── cmd
+│   │   │   │           └── options.h
+│   │   │   ├── ifup.h
+│   │   │   ├── include
+│   │   │   │   └── susv2.h
+│   │   │   ├── inetd.h
+│   │   │   ├── init
+│   │   │   │   └── terminal
+│   │   │   │       └── type.h
+│   │   │   ├── init.h
+│   │   │   ├── inotifyd.h
+│   │   │   ├── insmod.h
+│   │   │   ├── install
+│   │   │   │   ├── applet
+│   │   │   │   │   ├── dont.h
+│   │   │   │   │   ├── hardlinks.h
+│   │   │   │   │   ├── script
+│   │   │   │   │   │   └── wrappers.h
+│   │   │   │   │   └── symlinks.h
+│   │   │   │   ├── no
+│   │   │   │   │   └── usr.h
+│   │   │   │   └── sh
+│   │   │   │       └── applet
+│   │   │   │           ├── hardlink.h
+│   │   │   │           ├── script
+│   │   │   │           │   └── wrapper.h
+│   │   │   │           └── symlink.h
+│   │   │   ├── install.h
+│   │   │   ├── ioctl
+│   │   │   │   └── hex2str
+│   │   │   │       └── error.h
+│   │   │   ├── ionice.h
+│   │   │   ├── iostat.h
+│   │   │   ├── ipaddr.h
+│   │   │   ├── ipcalc.h
+│   │   │   ├── ipcrm.h
+│   │   │   ├── ipcs.h
+│   │   │   ├── ip.h
+│   │   │   ├── iplink.h
+│   │   │   ├── ipneigh.h
+│   │   │   ├── iproute.h
+│   │   │   ├── iprule.h
+│   │   │   ├── iptunnel.h
+│   │   │   ├── kbd
+│   │   │   │   └── mode.h
+│   │   │   ├── killall5.h
+│   │   │   ├── killall.h
+│   │   │   ├── kill.h
+│   │   │   ├── klogd.h
+│   │   │   ├── last
+│   │   │   │   ├── id.h
+│   │   │   │   ├── supported
+│   │   │   │   │   └── wchar.h
+│   │   │   │   └── system
+│   │   │   │       └── id.h
+│   │   │   ├── last.h
+│   │   │   ├── less.h
+│   │   │   ├── lfs.h
+│   │   │   ├── link.h
+│   │   │   ├── linux32.h
+│   │   │   ├── linux64.h
+│   │   │   ├── linuxrc.h
+│   │   │   ├── ln.h
+│   │   │   ├── load
+│   │   │   │   └── policy.h
+│   │   │   ├── loadfont.h
+│   │   │   ├── loadkmap.h
+│   │   │   ├── locale
+│   │   │   │   └── support.h
+│   │   │   ├── logger.h
+│   │   │   ├── login
+│   │   │   │   ├── scripts.h
+│   │   │   │   └── session
+│   │   │   │       └── as
+│   │   │   │           └── child.h
+│   │   │   ├── login.h
+│   │   │   ├── logname.h
+│   │   │   ├── logread.h
+│   │   │   ├── long
+│   │   │   │   └── opts.h
+│   │   │   ├── losetup.h
+│   │   │   ├── lpd.h
+│   │   │   ├── lpq.h
+│   │   │   ├── lpr.h
+│   │   │   ├── lsattr.h
+│   │   │   ├── ls.h
+│   │   │   ├── lsmod.h
+│   │   │   ├── lsof.h
+│   │   │   ├── lspci.h
+│   │   │   ├── lsscsi.h
+│   │   │   ├── lsusb.h
+│   │   │   ├── lzcat.h
+│   │   │   ├── lzma.h
+│   │   │   ├── lzop
+│   │   │   │   └── compr
+│   │   │   │       └── high.h
+│   │   │   ├── lzopcat.h
+│   │   │   ├── lzop.h
+│   │   │   ├── makedevs.h
+│   │   │   ├── makemime.h
+│   │   │   ├── man.h
+│   │   │   ├── MARKER
+│   │   │   ├── matchpathcon.h
+│   │   │   ├── md5
+│   │   │   │   └── small.h
+│   │   │   ├── md5sum.h
+│   │   │   ├── mdev.h
+│   │   │   ├── mesg.h
+│   │   │   ├── microcom.h
+│   │   │   ├── mim.h
+│   │   │   ├── minips.h
+│   │   │   ├── mkdir.h
+│   │   │   ├── mkdosfs.h
+│   │   │   ├── mke2fs.h
+│   │   │   ├── mkfifo.h
+│   │   │   ├── mkfs
+│   │   │   │   ├── ext2.h
+│   │   │   │   ├── minix.h
+│   │   │   │   ├── reiser.h
+│   │   │   │   └── vfat.h
+│   │   │   ├── mknod.h
+│   │   │   ├── mkpasswd.h
+│   │   │   ├── mkswap.h
+│   │   │   ├── mktemp.h
+│   │   │   ├── modinfo.h
+│   │   │   ├── modprobe
+│   │   │   │   └── small.h
+│   │   │   ├── modprobe.h
+│   │   │   ├── monotonic
+│   │   │   │   └── syscall.h
+│   │   │   ├── more.h
+│   │   │   ├── mount.h
+│   │   │   ├── mountpoint.h
+│   │   │   ├── mpstat.h
+│   │   │   ├── mt.h
+│   │   │   ├── mv.h
+│   │   │   ├── nameif.h
+│   │   │   ├── nanddump.h
+│   │   │   ├── nandwrite.h
+│   │   │   ├── nbdclient.h
+│   │   │   ├── nc
+│   │   │   │   ├── 110
+│   │   │   │   │   └── compat.h
+│   │   │   │   ├── extra.h
+│   │   │   │   └── server.h
+│   │   │   ├── nc.h
+│   │   │   ├── netcat.h
+│   │   │   ├── netstat.h
+│   │   │   ├── nice.h
+│   │   │   ├── nl.h
+│   │   │   ├── nmeter.h
+│   │   │   ├── no
+│   │   │   │   └── debug
+│   │   │   │       └── lib.h
+│   │   │   ├── nohup.h
+│   │   │   ├── nologin
+│   │   │   │   └── dependencies.h
+│   │   │   ├── nologin.h
+│   │   │   ├── nommu.h
+│   │   │   ├── nproc.h
+│   │   │   ├── nsenter.h
+│   │   │   ├── nslookup.h
+│   │   │   ├── ntpd.h
+│   │   │   ├── nuke.h
+│   │   │   ├── od.h
+│   │   │   ├── openvt.h
+│   │   │   ├── pam.h
+│   │   │   ├── partprobe.h
+│   │   │   ├── passwd.h
+│   │   │   ├── password
+│   │   │   │   └── minlen.h
+│   │   │   ├── paste.h
+│   │   │   ├── patch.h
+│   │   │   ├── pgrep.h
+│   │   │   ├── pid
+│   │   │   │   └── file
+│   │   │   │       └── path.h
+│   │   │   ├── pidof.h
+│   │   │   ├── pie.h
+│   │   │   ├── ping6.h
+│   │   │   ├── ping.h
+│   │   │   ├── pipe
+│   │   │   │   └── progress.h
+│   │   │   ├── pivot
+│   │   │   │   └── root.h
+│   │   │   ├── pkill.h
+│   │   │   ├── pmap.h
+│   │   │   ├── popmaildir.h
+│   │   │   ├── poweroff.h
+│   │   │   ├── powertop.h
+│   │   │   ├── prefix.h
+│   │   │   ├── printenv.h
+│   │   │   ├── printf.h
+│   │   │   ├── pscan.h
+│   │   │   ├── ps.h
+│   │   │   ├── pstree.h
+│   │   │   ├── pwd.h
+│   │   │   ├── pwdx.h
+│   │   │   ├── raidautorun.h
+│   │   │   ├── rdate.h
+│   │   │   ├── rdev.h
+│   │   │   ├── readahead.h
+│   │   │   ├── readlink.h
+│   │   │   ├── readprofile.h
+│   │   │   ├── realpath.h
+│   │   │   ├── reboot.h
+│   │   │   ├── reformime.h
+│   │   │   ├── remove
+│   │   │   │   └── shell.h
+│   │   │   ├── renice.h
+│   │   │   ├── reset.h
+│   │   │   ├── resize.h
+│   │   │   ├── restorecon.h
+│   │   │   ├── resume.h
+│   │   │   ├── rev.h
+│   │   │   ├── rfkill.h
+│   │   │   ├── rmdir.h
+│   │   │   ├── rm.h
+│   │   │   ├── rmmod.h
+│   │   │   ├── route.h
+│   │   │   ├── rpm2cpio.h
+│   │   │   ├── rpm.h
+│   │   │   ├── rtcwake.h
+│   │   │   ├── run
+│   │   │   │   ├── init.h
+│   │   │   │   └── parts.h
+│   │   │   ├── runcon.h
+│   │   │   ├── runlevel.h
+│   │   │   ├── runsvdir.h
+│   │   │   ├── runsv.h
+│   │   │   ├── rx.h
+│   │   │   ├── script.h
+│   │   │   ├── scriptreplay.h
+│   │   │   ├── sed.h
+│   │   │   ├── selinuxenabled.h
+│   │   │   ├── selinux.h
+│   │   │   ├── sendmail.h
+│   │   │   ├── seq.h
+│   │   │   ├── sestatus.h
+│   │   │   ├── setarch.h
+│   │   │   ├── setconsole.h
+│   │   │   ├── setenforce.h
+│   │   │   ├── setfattr.h
+│   │   │   ├── setfiles.h
+│   │   │   ├── setfont.h
+│   │   │   ├── setkeycodes.h
+│   │   │   ├── setlogcons.h
+│   │   │   ├── setpriv.h
+│   │   │   ├── setsebool.h
+│   │   │   ├── setserial.h
+│   │   │   ├── setsid.h
+│   │   │   ├── setuidgid.h
+│   │   │   ├── sh
+│   │   │   │   └── is
+│   │   │   │       ├── ash.h
+│   │   │   │       ├── hush.h
+│   │   │   │       └── none.h
+│   │   │   ├── sha1sum.h
+│   │   │   ├── sha256sum.h
+│   │   │   ├── sha3
+│   │   │   │   └── small.h
+│   │   │   ├── sha3sum.h
+│   │   │   ├── sha512sum.h
+│   │   │   ├── shell
+│   │   │   │   ├── ash.h
+│   │   │   │   └── hush.h
+│   │   │   ├── show
+│   │   │   │   └── usage.h
+│   │   │   ├── showkey.h
+│   │   │   ├── shred.h
+│   │   │   ├── shuf.h
+│   │   │   ├── slattach.h
+│   │   │   ├── sleep.h
+│   │   │   ├── smemcap.h
+│   │   │   ├── softlimit.h
+│   │   │   ├── sort.h
+│   │   │   ├── split.h
+│   │   │   ├── ssl
+│   │   │   │   └── client.h
+│   │   │   ├── stack
+│   │   │   │   └── optimization
+│   │   │   │       └── 386.h
+│   │   │   ├── start
+│   │   │   │   └── stop
+│   │   │   │       └── daemon.h
+│   │   │   ├── stat.h
+│   │   │   ├── static
+│   │   │   │   └── libgcc.h
+│   │   │   ├── static.h
+│   │   │   ├── strings.h
+│   │   │   ├── stty.h
+│   │   │   ├── subst
+│   │   │   │   └── wchar.h
+│   │   │   ├── su.h
+│   │   │   ├── sulogin.h
+│   │   │   ├── sum.h
+│   │   │   ├── sv
+│   │   │   │   └── default
+│   │   │   │       └── service
+│   │   │   │           └── dir.h
+│   │   │   ├── svc.h
+│   │   │   ├── sv.h
+│   │   │   ├── svlogd.h
+│   │   │   ├── svok.h
+│   │   │   ├── swapoff.h
+│   │   │   ├── swapon.h
+│   │   │   ├── switch
+│   │   │   │   └── root.h
+│   │   │   ├── sync.h
+│   │   │   ├── syslogd.h
+│   │   │   ├── sysroot.h
+│   │   │   ├── tac.h
+│   │   │   ├── tail.h
+│   │   │   ├── tar.h
+│   │   │   ├── taskset.h
+│   │   │   ├── tc.h
+│   │   │   ├── tcpsvd.h
+│   │   │   ├── tee.h
+│   │   │   ├── telinit
+│   │   │   │   └── path.h
+│   │   │   ├── telnetd.h
+│   │   │   ├── telnet.h
+│   │   │   ├── test1.h
+│   │   │   ├── test2.h
+│   │   │   ├── test.h
+│   │   │   ├── tftp
+│   │   │   │   └── debug.h
+│   │   │   ├── tftpd.h
+│   │   │   ├── tftp.h
+│   │   │   ├── time.h
+│   │   │   ├── timeout.h
+│   │   │   ├── tls.h
+│   │   │   ├── top.h
+│   │   │   ├── touch.h
+│   │   │   ├── traceroute6.h
+│   │   │   ├── traceroute.h
+│   │   │   ├── tr.h
+│   │   │   ├── true.h
+│   │   │   ├── truncate.h
+│   │   │   ├── ts.h
+│   │   │   ├── tty.h
+│   │   │   ├── ttysize.h
+│   │   │   ├── tunctl.h
+│   │   │   ├── tune2fs.h
+│   │   │   ├── ubiattach.h
+│   │   │   ├── ubidetach.h
+│   │   │   ├── ubimkvol.h
+│   │   │   ├── ubirename.h
+│   │   │   ├── ubirmvol.h
+│   │   │   ├── ubirsvol.h
+│   │   │   ├── ubiupdatevol.h
+│   │   │   ├── udhcp
+│   │   │   │   └── debug.h
+│   │   │   ├── udhcpc
+│   │   │   │   ├── default
+│   │   │   │   │   └── script.h
+│   │   │   │   └── slack
+│   │   │   │       └── for
+│   │   │   │           └── buggy
+│   │   │   │               └── servers.h
+│   │   │   ├── udhcpc6.h
+│   │   │   ├── udhcpc.h
+│   │   │   ├── udhcpd.h
+│   │   │   ├── udpsvd.h
+│   │   │   ├── uevent.h
+│   │   │   ├── umount.h
+│   │   │   ├── uname
+│   │   │   │   └── osname.h
+│   │   │   ├── uname.h
+│   │   │   ├── uncompress.h
+│   │   │   ├── unexpand.h
+│   │   │   ├── unicode
+│   │   │   │   ├── bidi
+│   │   │   │   │   └── support.h
+│   │   │   │   ├── combining
+│   │   │   │   │   └── wchars.h
+│   │   │   │   ├── neutral
+│   │   │   │   │   └── table.h
+│   │   │   │   ├── preserve
+│   │   │   │   │   └── broken.h
+│   │   │   │   ├── support.h
+│   │   │   │   ├── using
+│   │   │   │   │   └── locale.h
+│   │   │   │   └── wide
+│   │   │   │       └── wchars.h
+│   │   │   ├── uniq.h
+│   │   │   ├── unit
+│   │   │   │   └── test.h
+│   │   │   ├── unix2dos.h
+│   │   │   ├── unlink.h
+│   │   │   ├── unlzma.h
+│   │   │   ├── unlzop.h
+│   │   │   ├── unshare.h
+│   │   │   ├── unxz.h
+│   │   │   ├── unzip.h
+│   │   │   ├── uptime.h
+│   │   │   ├── use
+│   │   │   │   ├── bb
+│   │   │   │   │   ├── crypt
+│   │   │   │   │   │   └── sha.h
+│   │   │   │   │   ├── crypt.h
+│   │   │   │   │   ├── pwd
+│   │   │   │   │   │   └── grp.h
+│   │   │   │   │   └── shadow.h
+│   │   │   │   └── portable
+│   │   │   │       └── code.h
+│   │   │   ├── users.h
+│   │   │   ├── usleep.h
+│   │   │   ├── uudecode.h
+│   │   │   ├── uuencode.h
+│   │   │   ├── vconfig.h
+│   │   │   ├── verbose
+│   │   │   │   └── resolution
+│   │   │   │       └── errors.h
+│   │   │   ├── vi.h
+│   │   │   ├── vlock.h
+│   │   │   ├── volname.h
+│   │   │   ├── volumeid.h
+│   │   │   ├── wall.h
+│   │   │   ├── warn
+│   │   │   │   └── simple
+│   │   │   │       └── msg.h
+│   │   │   ├── watchdog.h
+│   │   │   ├── watch.h
+│   │   │   ├── wc.h
+│   │   │   ├── werror.h
+│   │   │   ├── wget.h
+│   │   │   ├── w.h
+│   │   │   ├── which.h
+│   │   │   ├── whoami.h
+│   │   │   ├── who.h
+│   │   │   ├── whois.h
+│   │   │   ├── xargs.h
+│   │   │   ├── xxd.h
+│   │   │   ├── xzcat.h
+│   │   │   ├── xz.h
+│   │   │   ├── yes.h
+│   │   │   ├── zcat.h
+│   │   │   └── zcip.h
+│   │   ├── dump.h
+│   │   ├── embedded_scripts.h
+│   │   ├── fix_u32.h
+│   │   ├── grp_.h
+│   │   ├── inet_common.h
+│   │   ├── libbb.h
+│   │   ├── liblzo_interface.h
+│   │   ├── NUM_APPLETS.h
+│   │   ├── platform.h
+│   │   ├── pwd_.h
+│   │   ├── rtc_.h
+│   │   ├── shadow_.h
+│   │   ├── unicode.h
+│   │   ├── usage_compressed.h
+│   │   ├── usage.h
+│   │   ├── usage.src.h
+│   │   ├── volume_id.h
+│   │   ├── xatonum.h
+│   │   └── xregex.h
+│   ├── init
+│   │   ├── bootchartd.c
+│   │   ├── bootchartd.o
+│   │   ├── built-in.o
+│   │   ├── Config.in
+│   │   ├── Config.src
+│   │   ├── halt.c
+│   │   ├── halt.o
+│   │   ├── init.c
+│   │   ├── init.o
+│   │   ├── Kbuild
+│   │   ├── Kbuild.src
+│   │   ├── lib.a
+│   │   └── reboot.h
+│   ├── INSTALL
+│   ├── klibc-utils
+│   │   ├── built-in.o
+│   │   ├── Config.in
+│   │   ├── Config.src
+│   │   ├── ipconfig.c.txt
+│   │   ├── Kbuild
+│   │   ├── Kbuild.src
+│   │   ├── lib.a
+│   │   ├── minips.c
+│   │   ├── nuke.c
+│   │   ├── nuke.o
+│   │   ├── resume.c
+│   │   ├── resume.o
+│   │   └── run-init.c
+│   ├── libbb
+│   │   ├── appletlib.c
+│   │   ├── appletlib.o
+│   │   ├── ask_confirmation.c
+│   │   ├── ask_confirmation.o
+│   │   ├── auto_string.c
+│   │   ├── auto_string.o
+│   │   ├── bb_askpass.c
+│   │   ├── bb_askpass.o
+│   │   ├── bb_bswap_64.c
+│   │   ├── bb_bswap_64.o
+│   │   ├── bb_cat.c
+│   │   ├── bb_cat.o
+│   │   ├── bb_do_delay.c
+│   │   ├── bb_do_delay.o
+│   │   ├── bb_getgroups.c
+│   │   ├── bb_getgroups.o
+│   │   ├── bb_getsockname.c
+│   │   ├── bb_getsockname.o
+│   │   ├── bb_pwd.c
+│   │   ├── bb_pwd.o
+│   │   ├── bb_qsort.c
+│   │   ├── bb_qsort.o
+│   │   ├── bb_strtod.c
+│   │   ├── bb_strtonum.c
+│   │   ├── bb_strtonum.o
+│   │   ├── bbunit.c
+│   │   ├── built-in.o
+│   │   ├── capability.c
+│   │   ├── capability.o
+│   │   ├── change_identity.c
+│   │   ├── change_identity.o
+│   │   ├── chomp.c
+│   │   ├── chomp.o
+│   │   ├── common_bufsiz.c
+│   │   ├── common_bufsiz.o
+│   │   ├── compare_string_array.c
+│   │   ├── compare_string_array.o
+│   │   ├── concat_path_file.c
+│   │   ├── concat_path_file.o
+│   │   ├── concat_subpath_file.c
+│   │   ├── concat_subpath_file.o
+│   │   ├── Config.in
+│   │   ├── Config.src
+│   │   ├── copyfd.c
+│   │   ├── copyfd.o
+│   │   ├── copy_file.c
+│   │   ├── copy_file.o
+│   │   ├── correct_password.c
+│   │   ├── correct_password.o
+│   │   ├── crc32.c
+│   │   ├── crc32.o
+│   │   ├── default_error_retval.c
+│   │   ├── default_error_retval.o
+│   │   ├── device_open.c
+│   │   ├── device_open.o
+│   │   ├── die_if_bad_username.c
+│   │   ├── dump.c
+│   │   ├── dump.o
+│   │   ├── duration.c
+│   │   ├── duration.o
+│   │   ├── endofname.c
+│   │   ├── endofname.o
+│   │   ├── executable.c
+│   │   ├── executable.o
+│   │   ├── fclose_nonstdin.c
+│   │   ├── fclose_nonstdin.o
+│   │   ├── fflush_stdout_and_exit.c
+│   │   ├── fflush_stdout_and_exit.o
+│   │   ├── fgets_str.c
+│   │   ├── fgets_str.o
+│   │   ├── find_mount_point.c
+│   │   ├── find_mount_point.o
+│   │   ├── find_pid_by_name.c
+│   │   ├── find_pid_by_name.o
+│   │   ├── find_root_device.c
+│   │   ├── find_root_device.o
+│   │   ├── full_write.c
+│   │   ├── full_write.o
+│   │   ├── get_console.c
+│   │   ├── get_console.o
+│   │   ├── get_cpu_count.c
+│   │   ├── get_cpu_count.o
+│   │   ├── get_last_path_component.c
+│   │   ├── get_last_path_component.o
+│   │   ├── get_line_from_file.c
+│   │   ├── get_line_from_file.o
+│   │   ├── getopt32.c
+│   │   ├── getopt32.o
+│   │   ├── getopt_allopts.c
+│   │   ├── getopt_allopts.o
+│   │   ├── getpty.c
+│   │   ├── getpty.o
+│   │   ├── get_shell_name.c
+│   │   ├── get_shell_name.o
+│   │   ├── get_volsize.c
+│   │   ├── get_volsize.o
+│   │   ├── hash_md5prime.c
+│   │   ├── hash_md5_sha.c
+│   │   ├── hash_md5_sha.o
+│   │   ├── herror_msg.c
+│   │   ├── herror_msg.o
+│   │   ├── human_readable.c
+│   │   ├── human_readable.o
+│   │   ├── inet_cksum.c
+│   │   ├── inet_cksum.o
+│   │   ├── inet_common.c
+│   │   ├── inet_common.o
+│   │   ├── in_ether.c
+│   │   ├── in_ether.o
+│   │   ├── inode_hash.c
+│   │   ├── inode_hash.o
+│   │   ├── isdirectory.c
+│   │   ├── isdirectory.o
+│   │   ├── isqrt.c
+│   │   ├── isqrt.o
+│   │   ├── Kbuild
+│   │   ├── Kbuild.src
+│   │   ├── kernel_version.c
+│   │   ├── kernel_version.o
+│   │   ├── last_char_is.c
+│   │   ├── last_char_is.o
+│   │   ├── lib.a
+│   │   ├── lineedit.c
+│   │   ├── lineedit.o
+│   │   ├── lineedit_ptr_hack.c
+│   │   ├── lineedit_ptr_hack.o
+│   │   ├── llist.c
+│   │   ├── llist.o
+│   │   ├── logenv.c
+│   │   ├── logenv.o
+│   │   ├── login.c
+│   │   ├── login.o
+│   │   ├── loop.c
+│   │   ├── loop.o
+│   │   ├── makedev.c
+│   │   ├── makedev.o
+│   │   ├── make_directory.c
+│   │   ├── make_directory.o
+│   │   ├── match_fstype.c
+│   │   ├── match_fstype.o
+│   │   ├── messages.c
+│   │   ├── messages.o
+│   │   ├── missing_syscalls.c
+│   │   ├── missing_syscalls.o
+│   │   ├── mode_string.c
+│   │   ├── mode_string.o
+│   │   ├── mtab.c
+│   │   ├── nuke_str.c
+│   │   ├── nuke_str.o
+│   │   ├── obscure.c
+│   │   ├── obscure.o
+│   │   ├── parse_config.c
+│   │   ├── parse_config.o
+│   │   ├── parse_mode.c
+│   │   ├── parse_mode.o
+│   │   ├── percent_decode.c
+│   │   ├── percent_decode.o
+│   │   ├── perror_msg.c
+│   │   ├── perror_msg.o
+│   │   ├── perror_nomsg_and_die.c
+│   │   ├── perror_nomsg_and_die.o
+│   │   ├── perror_nomsg.c
+│   │   ├── perror_nomsg.o
+│   │   ├── pidfile.c
+│   │   ├── pidfile.o
+│   │   ├── platform.c
+│   │   ├── platform.o
+│   │   ├── printable.c
+│   │   ├── printable.o
+│   │   ├── printable_string.c
+│   │   ├── printable_string.o
+│   │   ├── print_flags.c
+│   │   ├── print_flags.o
+│   │   ├── print_numbered_lines.c
+│   │   ├── print_numbered_lines.o
+│   │   ├── process_escape_sequence.c
+│   │   ├── process_escape_sequence.o
+│   │   ├── procps.c
+│   │   ├── procps.o
+│   │   ├── progress.c
+│   │   ├── progress.o
+│   │   ├── ptr_to_globals.c
+│   │   ├── ptr_to_globals.o
+│   │   ├── pw_encrypt.c
+│   │   ├── pw_encrypt_des.c
+│   │   ├── pw_encrypt_md5.c
+│   │   ├── pw_encrypt.o
+│   │   ├── pw_encrypt_sha.c
+│   │   ├── read.c
+│   │   ├── read_key.c
+│   │   ├── read_key.o
+│   │   ├── README
+│   │   ├── read.o
+│   │   ├── read_printf.c
+│   │   ├── read_printf.o
+│   │   ├── recursive_action.c
+│   │   ├── recursive_action.o
+│   │   ├── remove_file.c
+│   │   ├── remove_file.o
+│   │   ├── replace.c
+│   │   ├── replace.o
+│   │   ├── rtc.c
+│   │   ├── rtc.o
+│   │   ├── run_shell.c
+│   │   ├── run_shell.o
+│   │   ├── safe_gethostname.c
+│   │   ├── safe_gethostname.o
+│   │   ├── safe_poll.c
+│   │   ├── safe_poll.o
+│   │   ├── safe_strncpy.c
+│   │   ├── safe_strncpy.o
+│   │   ├── safe_write.c
+│   │   ├── safe_write.o
+│   │   ├── securetty.c
+│   │   ├── securetty.o
+│   │   ├── selinux_common.c
+│   │   ├── setup_environment.c
+│   │   ├── setup_environment.o
+│   │   ├── signals.c
+│   │   ├── signals.o
+│   │   ├── simplify_path.c
+│   │   ├── simplify_path.o
+│   │   ├── single_argv.c
+│   │   ├── single_argv.o
+│   │   ├── skip_whitespace.c
+│   │   ├── skip_whitespace.o
+│   │   ├── speed_table.c
+│   │   ├── speed_table.o
+│   │   ├── strrstr.c
+│   │   ├── strrstr.o
+│   │   ├── str_tolower.c
+│   │   ├── str_tolower.o
+│   │   ├── sysconf.c
+│   │   ├── sysconf.o
+│   │   ├── time.c
+│   │   ├── time.o
+│   │   ├── trim.c
+│   │   ├── trim.o
+│   │   ├── ubi.c
+│   │   ├── ubi.o
+│   │   ├── udp_io.c
+│   │   ├── udp_io.o
+│   │   ├── unicode.c
+│   │   ├── unicode.o
+│   │   ├── update_passwd.c
+│   │   ├── update_passwd.o
+│   │   ├── u_signal_names.c
+│   │   ├── u_signal_names.o
+│   │   ├── utmp.c
+│   │   ├── utmp.o
+│   │   ├── uuencode.c
+│   │   ├── uuencode.o
+│   │   ├── verror_msg.c
+│   │   ├── verror_msg.o
+│   │   ├── vfork_daemon_rexec.c
+│   │   ├── vfork_daemon_rexec.o
+│   │   ├── warn_ignoring_args.c
+│   │   ├── warn_ignoring_args.o
+│   │   ├── wfopen.c
+│   │   ├── wfopen_input.c
+│   │   ├── wfopen_input.o
+│   │   ├── wfopen.o
+│   │   ├── write.c
+│   │   ├── write.o
+│   │   ├── xatonum.c
+│   │   ├── xatonum.o
+│   │   ├── xatonum_template.c
+│   │   ├── xconnect.c
+│   │   ├── xconnect.o
+│   │   ├── xfunc_die.c
+│   │   ├── xfunc_die.o
+│   │   ├── xfuncs.c
+│   │   ├── xfuncs.o
+│   │   ├── xfuncs_printf.c
+│   │   ├── xfuncs_printf.o
+│   │   ├── xgetcwd.c
+│   │   ├── xgetcwd.o
+│   │   ├── xgethostbyname.c
+│   │   ├── xgethostbyname.o
+│   │   ├── xreadlink.c
+│   │   ├── xreadlink.o
+│   │   ├── xrealloc_vector.c
+│   │   ├── xrealloc_vector.o
+│   │   ├── xregcomp.c
+│   │   └── xregcomp.o
+│   ├── libpwdgrp
+│   │   ├── built-in.o
+│   │   ├── Kbuild
+│   │   ├── Kbuild.src
+│   │   ├── lib.a
+│   │   ├── pwd_grp.c
+│   │   ├── pwd_grp.o
+│   │   ├── uidgid_get.c
+│   │   └── uidgid_get.o
+│   ├── LICENSE
+│   ├── loginutils
+│   │   ├── addgroup.c
+│   │   ├── addgroup.o
+│   │   ├── add-remove-shell.c
+│   │   ├── add-remove-shell.o
+│   │   ├── adduser.c
+│   │   ├── adduser.o
+│   │   ├── built-in.o
+│   │   ├── chpasswd.c
+│   │   ├── chpasswd.o
+│   │   ├── Config.in
+│   │   ├── Config.src
+│   │   ├── cryptpw.c
+│   │   ├── cryptpw.o
+│   │   ├── deluser.c
+│   │   ├── deluser.o
+│   │   ├── getty.c
+│   │   ├── getty.o
+│   │   ├── Kbuild
+│   │   ├── Kbuild.src
+│   │   ├── lib.a
+│   │   ├── login.c
+│   │   ├── login.o
+│   │   ├── passwd.c
+│   │   ├── passwd.o
+│   │   ├── README
+│   │   ├── su.c
+│   │   ├── sulogin.c
+│   │   ├── sulogin.o
+│   │   ├── su.o
+│   │   ├── vlock.c
+│   │   └── vlock.o
+│   ├── mailutils
+│   │   ├── built-in.o
+│   │   ├── Config.in
+│   │   ├── Config.src
+│   │   ├── Kbuild
+│   │   ├── Kbuild.src
+│   │   ├── lib.a
+│   │   ├── mail.c
+│   │   ├── mail.h
+│   │   ├── mail.o
+│   │   ├── makemime.c
+│   │   ├── makemime.o
+│   │   ├── popmaildir.c
+│   │   ├── popmaildir.o
+│   │   ├── reformime.c
+│   │   ├── reformime.o
+│   │   ├── sendmail.c
+│   │   └── sendmail.o
+│   ├── Makefile
+│   ├── Makefile.custom
+│   ├── Makefile.flags
+│   ├── Makefile.help
+│   ├── make_single_applets.sh
+│   ├── miscutils
+│   │   ├── adjtimex.c
+│   │   ├── adjtimex.o
+│   │   ├── bbconfig.c
+│   │   ├── bc.c
+│   │   ├── bc.o
+│   │   ├── beep.c
+│   │   ├── beep.o
+│   │   ├── built-in.o
+│   │   ├── chat.c
+│   │   ├── chat.o
+│   │   ├── Config.in
+│   │   ├── Config.src
+│   │   ├── conspy.c
+│   │   ├── conspy.o
+│   │   ├── crond.c
+│   │   ├── crond.o
+│   │   ├── crontab.c
+│   │   ├── crontab.o
+│   │   ├── dc.c
+│   │   ├── devfsd.c
+│   │   ├── devmem.c
+│   │   ├── devmem.o
+│   │   ├── fbsplash.c
+│   │   ├── fbsplash.cfg
+│   │   ├── fbsplash.o
+│   │   ├── flashcp.c
+│   │   ├── flash_eraseall.c
+│   │   ├── flash_lock_unlock.c
+│   │   ├── hdparm.c
+│   │   ├── hdparm.o
+│   │   ├── hexedit.c
+│   │   ├── hexedit.o
+│   │   ├── i2c_tools.c
+│   │   ├── i2c_tools.o
+│   │   ├── inotifyd.c
+│   │   ├── Kbuild
+│   │   ├── Kbuild.src
+│   │   ├── less.c
+│   │   ├── less.o
+│   │   ├── lib.a
+│   │   ├── lsscsi.c
+│   │   ├── lsscsi.o
+│   │   ├── makedevs.c
+│   │   ├── makedevs.o
+│   │   ├── man.c
+│   │   ├── man.o
+│   │   ├── microcom.c
+│   │   ├── microcom.o
+│   │   ├── mim.c
+│   │   ├── mt.c
+│   │   ├── mt.o
+│   │   ├── nandwrite.c
+│   │   ├── nandwrite.o
+│   │   ├── partprobe.c
+│   │   ├── partprobe.o
+│   │   ├── raidautorun.c
+│   │   ├── raidautorun.o
+│   │   ├── readahead.c
+│   │   ├── readahead.o
+│   │   ├── rfkill.c
+│   │   ├── runlevel.c
+│   │   ├── runlevel.o
+│   │   ├── rx.c
+│   │   ├── rx.o
+│   │   ├── setfattr.c
+│   │   ├── setfattr.o
+│   │   ├── setserial.c
+│   │   ├── setserial.o
+│   │   ├── strings.c
+│   │   ├── strings.o
+│   │   ├── time.c
+│   │   ├── time.o
+│   │   ├── ts.c
+│   │   ├── ts.o
+│   │   ├── ttysize.c
+│   │   ├── ttysize.o
+│   │   ├── ubirename.c
+│   │   ├── ubirename.o
+│   │   ├── ubi_tools.c
+│   │   ├── ubi_tools.o
+│   │   ├── volname.c
+│   │   ├── volname.o
+│   │   ├── watchdog.c
+│   │   └── watchdog.o
+│   ├── modutils
+│   │   ├── built-in.o
+│   │   ├── Config.in
+│   │   ├── Config.src
+│   │   ├── depmod.c
+│   │   ├── depmod_process.sh
+│   │   ├── insmod.c
+│   │   ├── Kbuild
+│   │   ├── Kbuild.src
+│   │   ├── lib.a
+│   │   ├── lsmod.c
+│   │   ├── modinfo.c
+│   │   ├── modinfo.o
+│   │   ├── modprobe.c
+│   │   ├── modprobe-small.c
+│   │   ├── modprobe-small.o
+│   │   ├── modutils-24.c
+│   │   ├── modutils.c
+│   │   ├── modutils.h
+│   │   ├── modutils.o
+│   │   └── rmmod.c
+│   ├── networking
+│   │   ├── arp.c
+│   │   ├── arping.c
+│   │   ├── arping.o
+│   │   ├── arp.o
+│   │   ├── brctl.c
+│   │   ├── brctl.o
+│   │   ├── built-in.o
+│   │   ├── Config.in
+│   │   ├── Config.src
+│   │   ├── dnsd.c
+│   │   ├── dnsd.o
+│   │   ├── ether-wake.c
+│   │   ├── ether-wake.o
+│   │   ├── ftpd.c
+│   │   ├── ftpd.o
+│   │   ├── ftpgetput.c
+│   │   ├── ftpgetput.o
+│   │   ├── hostname.c
+│   │   ├── hostname.o
+│   │   ├── httpd.c
+│   │   ├── httpd_helpers.sh
+│   │   ├── httpd_indexcgi.c
+│   │   ├── httpd.o
+│   │   ├── httpd_post_upload.cgi
+│   │   ├── httpd_ssi.c
+│   │   ├── ifconfig.c
+│   │   ├── ifconfig.o
+│   │   ├── ifenslave.c
+│   │   ├── ifenslave.o
+│   │   ├── ifplugd.c
+│   │   ├── ifplugd.o
+│   │   ├── ifupdown.c
+│   │   ├── ifupdown.o
+│   │   ├── inetd.c
+│   │   ├── inetd.o
+│   │   ├── interface.c
+│   │   ├── interface.o
+│   │   ├── ip.c
+│   │   ├── ipcalc.c
+│   │   ├── ipcalc.o
+│   │   ├── ip.o
+│   │   ├── isrv.c
+│   │   ├── isrv.h
+│   │   ├── isrv_identd.c
+│   │   ├── isrv_identd.o
+│   │   ├── isrv.o
+│   │   ├── Kbuild
+│   │   ├── Kbuild.src
+│   │   ├── lib.a
+│   │   ├── libiproute
+│   │   │   ├── built-in.o
+│   │   │   ├── ipaddress.c
+│   │   │   ├── ipaddress.o
+│   │   │   ├── ip_common.h
+│   │   │   ├── iplink.c
+│   │   │   ├── iplink.o
+│   │   │   ├── ipneigh.c
+│   │   │   ├── ipneigh.o
+│   │   │   ├── ip_parse_common_args.c
+│   │   │   ├── ip_parse_common_args.o
+│   │   │   ├── iproute.c
+│   │   │   ├── iproute.o
+│   │   │   ├── iprule.c
+│   │   │   ├── iprule.o
+│   │   │   ├── iptunnel.c
+│   │   │   ├── iptunnel.o
+│   │   │   ├── Kbuild
+│   │   │   ├── Kbuild.src
+│   │   │   ├── lib.a
+│   │   │   ├── libnetlink.c
+│   │   │   ├── libnetlink.h
+│   │   │   ├── libnetlink.o
+│   │   │   ├── ll_addr.c
+│   │   │   ├── ll_addr.o
+│   │   │   ├── ll_map.c
+│   │   │   ├── ll_map.h
+│   │   │   ├── ll_map.o
+│   │   │   ├── ll_proto.c
+│   │   │   ├── ll_proto.o
+│   │   │   ├── ll_types.c
+│   │   │   ├── ll_types.o
+│   │   │   ├── rtm_map.c
+│   │   │   ├── rtm_map.h
+│   │   │   ├── rtm_map.o
+│   │   │   ├── rt_names.c
+│   │   │   ├── rt_names.h
+│   │   │   ├── rt_names.o
+│   │   │   ├── utils.c
+│   │   │   ├── utils.h
+│   │   │   └── utils.o
+│   │   ├── nameif.c
+│   │   ├── nameif.o
+│   │   ├── nbd-client.c
+│   │   ├── nbd-client.o
+│   │   ├── nc_bloaty.c
+│   │   ├── nc.c
+│   │   ├── nc.o
+│   │   ├── netstat.c
+│   │   ├── netstat.o
+│   │   ├── nslookup.c
+│   │   ├── nslookup.o
+│   │   ├── ntpd.c
+│   │   ├── ntpd.diff
+│   │   ├── ntpd.o
+│   │   ├── parse_pasv_epsv.c
+│   │   ├── parse_pasv_epsv.o
+│   │   ├── ping.c
+│   │   ├── ping.o
+│   │   ├── pscan.c
+│   │   ├── pscan.o
+│   │   ├── route.c
+│   │   ├── route.o
+│   │   ├── slattach.c
+│   │   ├── slattach.o
+│   │   ├── ssl_client.c
+│   │   ├── ssl_client.o
+│   │   ├── ssl_helper
+│   │   │   ├── README
+│   │   │   ├── ssl_helper.c
+│   │   │   └── ssl_helper.sh
+│   │   ├── ssl_helper-wolfssl
+│   │   │   ├── 00cfg-wolfssl-3.6.8
+│   │   │   ├── 00cfg-wolfssl-3.9.8
+│   │   │   ├── README
+│   │   │   ├── ssl_helper.c
+│   │   │   └── ssl_helper.sh
+│   │   ├── tc.c
+│   │   ├── tc.o
+│   │   ├── tcpudp.c
+│   │   ├── tcpudp.o
+│   │   ├── tcpudp_perhost.c
+│   │   ├── tcpudp_perhost.h
+│   │   ├── tcpudp_perhost.o
+│   │   ├── telnet.c
+│   │   ├── telnetd.c
+│   │   ├── telnetd.ctrlSQ.patch
+│   │   ├── telnetd.IAC_test.sh
+│   │   ├── telnetd.o
+│   │   ├── telnet.o
+│   │   ├── tftp.c
+│   │   ├── tftp.o
+│   │   ├── tls_aes.c
+│   │   ├── tls_aesgcm.c
+│   │   ├── tls_aesgcm.h
+│   │   ├── tls_aesgcm.o
+│   │   ├── tls_aes.h
+│   │   ├── tls_aes.o
+│   │   ├── tls.c
+│   │   ├── tls_fe.c
+│   │   ├── tls_fe.h
+│   │   ├── tls_fe.o
+│   │   ├── tls.h
+│   │   ├── tls.o
+│   │   ├── tls_pstm.c
+│   │   ├── tls_pstm.h
+│   │   ├── tls_pstm_montgomery_reduce.c
+│   │   ├── tls_pstm_montgomery_reduce.o
+│   │   ├── tls_pstm_mul_comba.c
+│   │   ├── tls_pstm_mul_comba.o
+│   │   ├── tls_pstm.o
+│   │   ├── tls_pstm_sqr_comba.c
+│   │   ├── tls_pstm_sqr_comba.o
+│   │   ├── tls_rsa.c
+│   │   ├── tls_rsa.h
+│   │   ├── tls_rsa.o
+│   │   ├── tls_symmetric.h
+│   │   ├── traceroute.c
+│   │   ├── traceroute.o
+│   │   ├── tunctl.c
+│   │   ├── tunctl.o
+│   │   ├── udhcp
+│   │   │   ├── arpping.c
+│   │   │   ├── arpping.o
+│   │   │   ├── built-in.o
+│   │   │   ├── common.c
+│   │   │   ├── common.h
+│   │   │   ├── common.o
+│   │   │   ├── Config.in
+│   │   │   ├── Config.src
+│   │   │   ├── d6_common.h
+│   │   │   ├── d6_dhcpc.c
+│   │   │   ├── d6_dhcpc.o
+│   │   │   ├── d6_packet.c
+│   │   │   ├── d6_packet.o
+│   │   │   ├── d6_socket.c
+│   │   │   ├── d6_socket.o
+│   │   │   ├── dhcpc.c
+│   │   │   ├── dhcpc.h
+│   │   │   ├── dhcpc.o
+│   │   │   ├── dhcpd.c
+│   │   │   ├── dhcpd.h
+│   │   │   ├── dhcpd.o
+│   │   │   ├── dhcprelay.c
+│   │   │   ├── dhcprelay.o
+│   │   │   ├── domain_codec.c
+│   │   │   ├── domain_codec.o
+│   │   │   ├── dumpleases.c
+│   │   │   ├── dumpleases.o
+│   │   │   ├── Kbuild
+│   │   │   ├── Kbuild.src
+│   │   │   ├── lib.a
+│   │   │   ├── packet.c
+│   │   │   ├── packet.o
+│   │   │   ├── signalpipe.c
+│   │   │   ├── signalpipe.o
+│   │   │   ├── socket.c
+│   │   │   └── socket.o
+│   │   ├── vconfig.c
+│   │   ├── vconfig.o
+│   │   ├── wget.c
+│   │   ├── wget.o
+│   │   ├── whois.c
+│   │   ├── whois.o
+│   │   ├── zcip.c
+│   │   └── zcip.o
+│   ├── NOFORK_NOEXEC.lst
+│   ├── NOFORK_NOEXEC.sh
+│   ├── printutils
+│   │   ├── built-in.o
+│   │   ├── Config.in
+│   │   ├── Config.src
+│   │   ├── Kbuild
+│   │   ├── Kbuild.src
+│   │   ├── lib.a
+│   │   ├── lpd.c
+│   │   ├── lpd.o
+│   │   ├── lpr.c
+│   │   └── lpr.o
+│   ├── procps
+│   │   ├── built-in.o
+│   │   ├── Config.in
+│   │   ├── Config.src
+│   │   ├── free.c
+│   │   ├── free.o
+│   │   ├── fuser.c
+│   │   ├── fuser.o
+│   │   ├── iostat.c
+│   │   ├── iostat.o
+│   │   ├── Kbuild
+│   │   ├── Kbuild.src
+│   │   ├── kill.c
+│   │   ├── kill.o
+│   │   ├── lib.a
+│   │   ├── lsof.c
+│   │   ├── lsof.o
+│   │   ├── mpstat.c
+│   │   ├── mpstat.o
+│   │   ├── nmeter.c
+│   │   ├── nmeter.o
+│   │   ├── pgrep.c
+│   │   ├── pgrep.o
+│   │   ├── pidof.c
+│   │   ├── pidof.o
+│   │   ├── pmap.c
+│   │   ├── pmap.o
+│   │   ├── powertop.c
+│   │   ├── powertop.o
+│   │   ├── ps.c
+│   │   ├── ps.o
+│   │   ├── ps.posix
+│   │   ├── pstree.c
+│   │   ├── pstree.o
+│   │   ├── pwdx.c
+│   │   ├── pwdx.o
+│   │   ├── smemcap.c
+│   │   ├── smemcap.o
+│   │   ├── sysctl.c
+│   │   ├── sysctl.o
+│   │   ├── top.c
+│   │   ├── top.o
+│   │   ├── uptime.c
+│   │   ├── uptime.o
+│   │   ├── watch.c
+│   │   └── watch.o
+│   ├── qemu_multiarch_testing
+│   │   ├── extract_od_binary.sh
+│   │   ├── extract_uuencoded_binary.sh
+│   │   ├── hdc.dir
+│   │   │   ├── build
+│   │   │   └── init
+│   │   ├── make-hdc-img.sh
+│   │   ├── parallel-build-hdc-img.sh
+│   │   └── README
+│   ├── README
+│   ├── runit
+│   │   ├── built-in.o
+│   │   ├── chpst.c
+│   │   ├── chpst.o
+│   │   ├── Config.in
+│   │   ├── Config.src
+│   │   ├── Kbuild
+│   │   ├── Kbuild.src
+│   │   ├── lib.a
+│   │   ├── runit_lib.h
+│   │   ├── runsv.c
+│   │   ├── runsvdir.c
+│   │   ├── runsvdir.o
+│   │   ├── runsv.o
+│   │   ├── sv.c
+│   │   ├── svlogd.c
+│   │   ├── svlogd.o
+│   │   └── sv.o
+│   ├── scripts
+│   │   ├── basic
+│   │   │   ├── docproc
+│   │   │   ├── docproc.c
+│   │   │   ├── fixdep
+│   │   │   ├── fixdep.c
+│   │   │   ├── Makefile
+│   │   │   ├── split-include
+│   │   │   └── split-include.c
+│   │   ├── bb_release
+│   │   ├── bloat-o-meter
+│   │   ├── checkhelp.awk
+│   │   ├── checkstack.pl
+│   │   ├── cleanup_printf2puts
+│   │   ├── echo.c
+│   │   ├── embedded_scripts
+│   │   ├── find_bad_common_bufsiz
+│   │   ├── find_stray_common_vars
+│   │   ├── find_stray_empty_lines
+│   │   ├── fix_ws.sh
+│   │   ├── gcc-version.sh
+│   │   ├── gen_build_files.sh
+│   │   ├── generate_BUFSIZ.sh
+│   │   ├── Kbuild
+│   │   ├── Kbuild.include
+│   │   ├── Kbuild.src
+│   │   ├── kconfig
+│   │   │   ├── check.sh
+│   │   │   ├── conf
+│   │   │   ├── conf.c
+│   │   │   ├── confdata.c
+│   │   │   ├── conf.o
+│   │   │   ├── expr.c
+│   │   │   ├── expr.h
+│   │   │   ├── gconf.c
+│   │   │   ├── gconf.glade
+│   │   │   ├── images.c
+│   │   │   ├── kconfig_load.c
+│   │   │   ├── kxgettext.c
+│   │   │   ├── kxgettext.o
+│   │   │   ├── lex.zconf.c
+│   │   │   ├── lex.zconf.c_shipped
+│   │   │   ├── lkc.h
+│   │   │   ├── lkc_proto.h
+│   │   │   ├── lxdialog
+│   │   │   │   ├── BIG.FAT.WARNING
+│   │   │   │   ├── checklist.c
+│   │   │   │   ├── check-lxdialog.sh
+│   │   │   │   ├── colors.h
+│   │   │   │   ├── dialog.h
+│   │   │   │   ├── inputbox.c
+│   │   │   │   ├── lxdialog.c
+│   │   │   │   ├── Makefile
+│   │   │   │   ├── menubox.c
+│   │   │   │   ├── msgbox.c
+│   │   │   │   ├── textbox.c
+│   │   │   │   ├── util.c
+│   │   │   │   └── yesno.c
+│   │   │   ├── Makefile
+│   │   │   ├── mconf.c
+│   │   │   ├── mconf.o
+│   │   │   ├── menu.c
+│   │   │   ├── POTFILES.in
+│   │   │   ├── qconf.cc
+│   │   │   ├── qconf.h
+│   │   │   ├── symbol.c
+│   │   │   ├── util.c
+│   │   │   ├── zconf.gperf
+│   │   │   ├── zconf.hash.c
+│   │   │   ├── zconf.hash.c_shipped
+│   │   │   ├── zconf.l
+│   │   │   ├── zconf.tab.c
+│   │   │   ├── zconf.tab.c_shipped
+│   │   │   ├── zconf.tab.o
+│   │   │   └── zconf.y
+│   │   ├── Makefile.build
+│   │   ├── Makefile.clean
+│   │   ├── Makefile.host
+│   │   ├── Makefile.IMA
+│   │   ├── Makefile.lib
+│   │   ├── memusage
+│   │   ├── mkconfigs
+│   │   ├── mkdiff_obj
+│   │   ├── mkdiff_obj_bloat
+│   │   ├── mkmakefile
+│   │   ├── objsizes
+│   │   ├── randomtest
+│   │   ├── randomtest.loop
+│   │   ├── sample_pmap
+│   │   ├── showasm
+│   │   ├── test_make_clean
+│   │   ├── test_make_O
+│   │   ├── test_setenv_leak.c
+│   │   └── trylink
+│   ├── selinux
+│   │   ├── built-in.o
+│   │   ├── chcon.c
+│   │   ├── Config.in
+│   │   ├── Config.src
+│   │   ├── getenforce.c
+│   │   ├── getsebool.c
+│   │   ├── Kbuild
+│   │   ├── Kbuild.src
+│   │   ├── lib.a
+│   │   ├── load_policy.c
+│   │   ├── matchpathcon.c
+│   │   ├── runcon.c
+│   │   ├── selinuxenabled.c
+│   │   ├── sestatus.c
+│   │   ├── setenforce.c
+│   │   ├── setfiles.c
+│   │   └── setsebool.c
+│   ├── shell
+│   │   ├── ash.c
+│   │   ├── ash_doc.txt
+│   │   ├── ash.o
+│   │   ├── ash_ptr_hack.c
+│   │   ├── ash_ptr_hack.o
+│   │   ├── ash_test
+│   │   │   ├── ash-alias
+│   │   │   │   ├── alias.right
+│   │   │   │   └── alias.tests
+│   │   │   ├── ash-arith
+│   │   │   │   ├── arith1.sub
+│   │   │   │   ├── arith2.sub
+│   │   │   │   ├── arith-bash1.right
+│   │   │   │   ├── arith-bash1.tests
+│   │   │   │   ├── arith-for.right
+│   │   │   │   ├── arith-for.testsx
+│   │   │   │   ├── arith_nested1.right
+│   │   │   │   ├── arith_nested1.tests
+│   │   │   │   ├── arith-postinc.right
+│   │   │   │   ├── arith-postinc.tests
+│   │   │   │   ├── arith.right
+│   │   │   │   ├── arith.tests
+│   │   │   │   └── README.ash
+│   │   │   ├── ash-getopts
+│   │   │   │   ├── getopt_nested.right
+│   │   │   │   ├── getopt_nested.tests
+│   │   │   │   ├── getopt_optarg.right
+│   │   │   │   ├── getopt_optarg.tests
+│   │   │   │   ├── getopt_positional.right
+│   │   │   │   ├── getopt_positional.tests
+│   │   │   │   ├── getopt_silent.right
+│   │   │   │   ├── getopt_silent.tests
+│   │   │   │   ├── getopt_simple.right
+│   │   │   │   ├── getopt_simple.tests
+│   │   │   │   ├── getopt_test_libc_bug.right
+│   │   │   │   └── getopt_test_libc_bug.tests
+│   │   │   ├── ash-glob
+│   │   │   │   ├── glob1.right
+│   │   │   │   ├── glob1.tests
+│   │   │   │   ├── glob2.right
+│   │   │   │   ├── glob2.tests
+│   │   │   │   ├── glob3.right
+│   │   │   │   ├── glob3.tests
+│   │   │   │   ├── glob_altvalue1.right
+│   │   │   │   ├── glob_altvalue1.tests
+│   │   │   │   ├── glob_and_assign.right
+│   │   │   │   ├── glob_and_assign.tests
+│   │   │   │   ├── glob_bkslash_in_var.right
+│   │   │   │   ├── glob_bkslash_in_var.tests
+│   │   │   │   ├── glob_dir.right
+│   │   │   │   ├── glob_dir.tests
+│   │   │   │   ├── glob_redir.right
+│   │   │   │   └── glob_redir.tests
+│   │   │   ├── ash-heredoc
+│   │   │   │   ├── heredoc1.right
+│   │   │   │   ├── heredoc1.tests
+│   │   │   │   ├── heredoc2.right
+│   │   │   │   ├── heredoc2.tests
+│   │   │   │   ├── heredoc3.right
+│   │   │   │   ├── heredoc3.tests
+│   │   │   │   ├── heredoc4.right
+│   │   │   │   ├── heredoc4.tests
+│   │   │   │   ├── heredoc5.right
+│   │   │   │   ├── heredoc5.tests
+│   │   │   │   ├── heredoc6.right
+│   │   │   │   ├── heredoc6.tests
+│   │   │   │   ├── heredoc7.right
+│   │   │   │   ├── heredoc7.tests
+│   │   │   │   ├── heredoc8.right
+│   │   │   │   ├── heredoc8.tests
+│   │   │   │   ├── heredoc9.right
+│   │   │   │   ├── heredoc9.tests
+│   │   │   │   ├── heredoc_after_compound1.right
+│   │   │   │   ├── heredoc_after_compound1.tests
+│   │   │   │   ├── heredocA.right
+│   │   │   │   ├── heredocA.tests
+│   │   │   │   ├── heredoc_backquote1.right
+│   │   │   │   ├── heredoc_backquote1.tests
+│   │   │   │   ├── heredoc_backslash1.right
+│   │   │   │   ├── heredoc_backslash1.tests
+│   │   │   │   ├── heredoc_bkslash_newline1.right
+│   │   │   │   ├── heredoc_bkslash_newline1.tests
+│   │   │   │   ├── heredoc_bkslash_newline2.right
+│   │   │   │   ├── heredoc_bkslash_newline2.tests
+│   │   │   │   ├── heredocB.right
+│   │   │   │   ├── heredocB.tests
+│   │   │   │   ├── heredoc_empty2.right
+│   │   │   │   ├── heredoc_empty2.tests
+│   │   │   │   ├── heredoc_empty3.right
+│   │   │   │   ├── heredoc_empty3.tests
+│   │   │   │   ├── heredoc_empty.right
+│   │   │   │   ├── heredoc_empty.tests
+│   │   │   │   ├── heredoc_huge.right
+│   │   │   │   ├── heredoc_huge.tests
+│   │   │   │   ├── heredoc.right
+│   │   │   │   ├── heredoc_side_effects.right
+│   │   │   │   ├── heredoc_side_effects.tests
+│   │   │   │   ├── heredoc.tests
+│   │   │   │   ├── heredoc_var_expand1.right
+│   │   │   │   └── heredoc_var_expand1.tests
+│   │   │   ├── ash-invert
+│   │   │   │   ├── invert.right
+│   │   │   │   └── invert.tests
+│   │   │   ├── ash-misc
+│   │   │   │   ├── and-or.right
+│   │   │   │   ├── and-or.tests
+│   │   │   │   ├── assignment1.right
+│   │   │   │   ├── assignment1.tests
+│   │   │   │   ├── assignment2.right
+│   │   │   │   ├── assignment2.tests
+│   │   │   │   ├── assignment3.right
+│   │   │   │   ├── assignment3.tests
+│   │   │   │   ├── assignment4.right
+│   │   │   │   ├── assignment4.tests
+│   │   │   │   ├── assignment5.right
+│   │   │   │   ├── assignment5.tests
+│   │   │   │   ├── break1.right
+│   │   │   │   ├── break1.tests
+│   │   │   │   ├── break2.right
+│   │   │   │   ├── break2.tests
+│   │   │   │   ├── break3.right
+│   │   │   │   ├── break3.tests
+│   │   │   │   ├── break4.right
+│   │   │   │   ├── break4.tests
+│   │   │   │   ├── break5.right
+│   │   │   │   ├── break5.tests
+│   │   │   │   ├── builtin1.right
+│   │   │   │   ├── builtin1.tests
+│   │   │   │   ├── case1.right
+│   │   │   │   ├── case1.tests
+│   │   │   │   ├── colon.right
+│   │   │   │   ├── colon.tests
+│   │   │   │   ├── command2.right
+│   │   │   │   ├── command2.tests
+│   │   │   │   ├── command.right
+│   │   │   │   ├── command.tests
+│   │   │   │   ├── compound.right
+│   │   │   │   ├── compound.tests
+│   │   │   │   ├── continue1.right
+│   │   │   │   ├── continue1.tests
+│   │   │   │   ├── continue2.right
+│   │   │   │   ├── continue2.tests
+│   │   │   │   ├── continue3.right
+│   │   │   │   ├── continue3.tests
+│   │   │   │   ├── control_char1.right
+│   │   │   │   ├── control_char1.tests
+│   │   │   │   ├── control_char2.right
+│   │   │   │   ├── control_char2.tests
+│   │   │   │   ├── echo_write_error.right
+│   │   │   │   ├── echo_write_error.tests
+│   │   │   │   ├── empty_args.right
+│   │   │   │   ├── empty_args.tests
+│   │   │   │   ├── empty_for1.right
+│   │   │   │   ├── empty_for1.tests
+│   │   │   │   ├── empty_for2.right
+│   │   │   │   ├── empty_for2.tests
+│   │   │   │   ├── empty_for.right
+│   │   │   │   ├── empty_for.tests
+│   │   │   │   ├── env_and_func.right
+│   │   │   │   ├── env_and_func.tests
+│   │   │   │   ├── errexit1.right
+│   │   │   │   ├── errexit1.tests
+│   │   │   │   ├── eval1.right
+│   │   │   │   ├── eval1.tests
+│   │   │   │   ├── eval2.right
+│   │   │   │   ├── eval2.tests
+│   │   │   │   ├── exec.right
+│   │   │   │   ├── exec.tests
+│   │   │   │   ├── exit1.right
+│   │   │   │   ├── exit1.tests
+│   │   │   │   ├── exitcode1.right
+│   │   │   │   ├── exitcode1.tests
+│   │   │   │   ├── exitcode2.right
+│   │   │   │   ├── exitcode2.tests
+│   │   │   │   ├── exitcode_EACCES.right
+│   │   │   │   ├── exitcode_EACCES.tests
+│   │   │   │   ├── exitcode_ENOENT.right
+│   │   │   │   ├── exitcode_ENOENT.tests
+│   │   │   │   ├── exitcode_trap1.right
+│   │   │   │   ├── exitcode_trap1.tests
+│   │   │   │   ├── exitcode_trap2.right
+│   │   │   │   ├── exitcode_trap2.tests
+│   │   │   │   ├── exitcode_trap3.right
+│   │   │   │   ├── exitcode_trap3.tests
+│   │   │   │   ├── exitcode_trap4.right
+│   │   │   │   ├── exitcode_trap4.tests
+│   │   │   │   ├── exitcode_trap5.right
+│   │   │   │   ├── exitcode_trap5.tests
+│   │   │   │   ├── exitcode_trap6.right
+│   │   │   │   ├── exitcode_trap6.tests
+│   │   │   │   ├── export1.right
+│   │   │   │   ├── export1.tests
+│   │   │   │   ├── for.right
+│   │   │   │   ├── for.tests
+│   │   │   │   ├── for_with_bslashes.right
+│   │   │   │   ├── for_with_bslashes.tests
+│   │   │   │   ├── for_with_keywords.right
+│   │   │   │   ├── for_with_keywords.tests
+│   │   │   │   ├── func1.right
+│   │   │   │   ├── func1.tests
+│   │   │   │   ├── func2.right
+│   │   │   │   ├── func2.tests
+│   │   │   │   ├── func3.right
+│   │   │   │   ├── func3.tests
+│   │   │   │   ├── func4.right
+│   │   │   │   ├── func4.tests
+│   │   │   │   ├── func5.right
+│   │   │   │   ├── func5.tests
+│   │   │   │   ├── func_args1.right
+│   │   │   │   ├── func_args1.tests
+│   │   │   │   ├── func_bash1.right
+│   │   │   │   ├── func_bash1.tests
+│   │   │   │   ├── func_compound1.right
+│   │   │   │   ├── func_compound1.tests
+│   │   │   │   ├── func_local1.right
+│   │   │   │   ├── func_local1.tests
+│   │   │   │   ├── func_local2.right
+│   │   │   │   ├── func_local2.tests
+│   │   │   │   ├── func_prio_over_builtins.right
+│   │   │   │   ├── func_prio_over_builtins.tests
+│   │   │   │   ├── func_return1.right
+│   │   │   │   ├── func_return1.tests
+│   │   │   │   ├── func_return2.right
+│   │   │   │   ├── func_return2.tests
+│   │   │   │   ├── group_in_braces.right
+│   │   │   │   ├── group_in_braces.tests
+│   │   │   │   ├── if_false_exitcode.right
+│   │   │   │   ├── if_false_exitcode.tests
+│   │   │   │   ├── last_amp.right
+│   │   │   │   ├── last_amp.tests
+│   │   │   │   ├── local1.right
+│   │   │   │   ├── local1.tests
+│   │   │   │   ├── local2.right
+│   │   │   │   ├── local2.tests
+│   │   │   │   ├── nommu1.right
+│   │   │   │   ├── nommu1.tests
+│   │   │   │   ├── nommu2.right
+│   │   │   │   ├── nommu2.tests
+│   │   │   │   ├── nommu3.right
+│   │   │   │   ├── nommu3.tests
+│   │   │   │   ├── nulltick1.right
+│   │   │   │   ├── nulltick1.tests
+│   │   │   │   ├── opts1.right
+│   │   │   │   ├── opts1.tests
+│   │   │   │   ├── pid.right
+│   │   │   │   ├── pid.tests
+│   │   │   │   ├── piped_input.right
+│   │   │   │   ├── piped_input.tests
+│   │   │   │   ├── pipefail.right
+│   │   │   │   ├── pipefail.tests
+│   │   │   │   ├── read.right
+│   │   │   │   ├── read.tests
+│   │   │   │   ├── return1.right
+│   │   │   │   ├── return1.tests
+│   │   │   │   ├── shift1.right
+│   │   │   │   ├── shift1.tests
+│   │   │   │   ├── shift.right
+│   │   │   │   ├── shift.tests
+│   │   │   │   ├── source1.right
+│   │   │   │   ├── source1.tests
+│   │   │   │   ├── source2.right
+│   │   │   │   ├── source2.tests
+│   │   │   │   ├── source3.right
+│   │   │   │   ├── source3.tests
+│   │   │   │   ├── source5.right
+│   │   │   │   ├── source5.tests
+│   │   │   │   ├── source_argv_and_shift.right
+│   │   │   │   ├── source_argv_and_shift.tests
+│   │   │   │   ├── tickquote1.right
+│   │   │   │   ├── tickquote1.tests
+│   │   │   │   ├── unicode1.right
+│   │   │   │   ├── unicode1.tests
+│   │   │   │   ├── until1.right
+│   │   │   │   ├── until1.tests
+│   │   │   │   ├── wait4.right
+│   │   │   │   ├── wait4.tests
+│   │   │   │   ├── wait5.right
+│   │   │   │   ├── wait5.tests
+│   │   │   │   ├── wait6.right
+│   │   │   │   ├── wait6.tests
+│   │   │   │   ├── wait7.right
+│   │   │   │   ├── wait7.tests
+│   │   │   │   ├── while1.right
+│   │   │   │   ├── while1.tests
+│   │   │   │   ├── while2.right
+│   │   │   │   ├── while2.tests
+│   │   │   │   ├── while4.right
+│   │   │   │   ├── while4.tests
+│   │   │   │   ├── while_in_subshell.right
+│   │   │   │   └── while_in_subshell.tests
+│   │   │   ├── ash-parsing
+│   │   │   │   ├── and_or_and_backgrounding.right
+│   │   │   │   ├── and_or_and_backgrounding.tests
+│   │   │   │   ├── argv0.right
+│   │   │   │   ├── argv0.tests
+│   │   │   │   ├── bkslash_eof1.right
+│   │   │   │   ├── bkslash_eof1.tests
+│   │   │   │   ├── bkslash_newline1.right
+│   │   │   │   ├── bkslash_newline1.tests
+│   │   │   │   ├── bkslash_newline2.right
+│   │   │   │   ├── bkslash_newline2.tests
+│   │   │   │   ├── bkslash_newline3.right
+│   │   │   │   ├── bkslash_newline3.tests
+│   │   │   │   ├── brace1.right
+│   │   │   │   ├── brace1.tests
+│   │   │   │   ├── brace2.right
+│   │   │   │   ├── brace2.tests
+│   │   │   │   ├── comment1.right
+│   │   │   │   ├── comment1.tests
+│   │   │   │   ├── comment2.right
+│   │   │   │   ├── comment2.tests
+│   │   │   │   ├── eol1.right
+│   │   │   │   ├── eol1.tests
+│   │   │   │   ├── escape1.right
+│   │   │   │   ├── escape1.tests
+│   │   │   │   ├── escape2.right
+│   │   │   │   ├── escape2.tests
+│   │   │   │   ├── escape3.right
+│   │   │   │   ├── escape3.tests
+│   │   │   │   ├── escape4.right
+│   │   │   │   ├── escape4.tests
+│   │   │   │   ├── escape5.right
+│   │   │   │   ├── escape5.tests
+│   │   │   │   ├── group1.right
+│   │   │   │   ├── group1.tests
+│   │   │   │   ├── group2.right
+│   │   │   │   ├── group2.tests
+│   │   │   │   ├── groups_and_keywords1.right
+│   │   │   │   ├── groups_and_keywords1.tests
+│   │   │   │   ├── groups_and_keywords2.right
+│   │   │   │   ├── groups_and_keywords2.tests
+│   │   │   │   ├── negate.right
+│   │   │   │   ├── negate.tests
+│   │   │   │   ├── noeol2.right
+│   │   │   │   ├── noeol2.tests
+│   │   │   │   ├── noeol3.right
+│   │   │   │   ├── noeol3.tests
+│   │   │   │   ├── noeol.right
+│   │   │   │   ├── noeol.tests
+│   │   │   │   ├── process_subst.right
+│   │   │   │   ├── process_subst.tests
+│   │   │   │   ├── quote1.right
+│   │   │   │   ├── quote1.tests
+│   │   │   │   ├── quote2.right
+│   │   │   │   ├── quote2.tests
+│   │   │   │   ├── quote3.right
+│   │   │   │   ├── quote3.tests
+│   │   │   │   ├── quote4.right
+│   │   │   │   ├── quote4.tests
+│   │   │   │   ├── starquoted2.right
+│   │   │   │   ├── starquoted2.tests
+│   │   │   │   ├── starquoted3.right
+│   │   │   │   ├── starquoted3.tests
+│   │   │   │   ├── starquoted.right
+│   │   │   │   └── starquoted.tests
+│   │   │   ├── ash-psubst
+│   │   │   │   ├── emptytick.right
+│   │   │   │   ├── emptytick.tests
+│   │   │   │   ├── tick2.right
+│   │   │   │   ├── tick2.tests
+│   │   │   │   ├── tick3.right
+│   │   │   │   ├── tick3.tests
+│   │   │   │   ├── tick4.right
+│   │   │   │   ├── tick4.tests
+│   │   │   │   ├── tick_huge.right
+│   │   │   │   ├── tick_huge.tests
+│   │   │   │   ├── tick_in_heredoc.right
+│   │   │   │   ├── tick_in_heredoc.tests
+│   │   │   │   ├── tick.right
+│   │   │   │   └── tick.tests
+│   │   │   ├── ash-quoting
+│   │   │   │   ├── bkslash_case1.right
+│   │   │   │   ├── bkslash_case1.tests
+│   │   │   │   ├── bkslash_case2.right
+│   │   │   │   ├── bkslash_case2.tests
+│   │   │   │   ├── bkslash_in_varexp1.right
+│   │   │   │   ├── bkslash_in_varexp1.tests
+│   │   │   │   ├── bkslash_in_varexp.right
+│   │   │   │   ├── bkslash_in_varexp.tests
+│   │   │   │   ├── case_glob1.right
+│   │   │   │   ├── case_glob1.tests
+│   │   │   │   ├── dollar_altvalue1.right
+│   │   │   │   ├── dollar_altvalue1.tests
+│   │   │   │   ├── dollar_altvalue2.right
+│   │   │   │   ├── dollar_altvalue2.tests
+│   │   │   │   ├── dollar_altvalue9.right
+│   │   │   │   ├── dollar_altvalue9.tests
+│   │   │   │   ├── dollar_repl_bash1.right
+│   │   │   │   ├── dollar_repl_bash1.tests
+│   │   │   │   ├── dollar_repl_slash_bash1.right
+│   │   │   │   ├── dollar_repl_slash_bash1.tests
+│   │   │   │   ├── dollar_repl_slash_bash2.right
+│   │   │   │   ├── dollar_repl_slash_bash2.tests
+│   │   │   │   ├── dollar_squote_bash1.right
+│   │   │   │   ├── dollar_squote_bash1.tests
+│   │   │   │   ├── dollar_squote_bash2.right
+│   │   │   │   ├── dollar_squote_bash2.tests
+│   │   │   │   ├── mode_x.right
+│   │   │   │   ├── mode_x.tests
+│   │   │   │   ├── negative_arith.right
+│   │   │   │   ├── negative_arith.tests
+│   │   │   │   ├── quoted_punct.right
+│   │   │   │   ├── quoted_punct.tests
+│   │   │   │   ├── quote_in_varexp1.right
+│   │   │   │   ├── quote_in_varexp1.tests
+│   │   │   │   ├── squote_in_varexp1.right
+│   │   │   │   ├── squote_in_varexp1.tests
+│   │   │   │   ├── squote_in_varexp2.right
+│   │   │   │   ├── squote_in_varexp2.tests
+│   │   │   │   ├── squote_in_varexp3.right
+│   │   │   │   ├── squote_in_varexp3.tests
+│   │   │   │   ├── squote_in_varexp.right
+│   │   │   │   ├── squote_in_varexp.tests
+│   │   │   │   ├── unicode_8x_chars.right
+│   │   │   │   └── unicode_8x_chars.tests
+│   │   │   ├── ash-read
+│   │   │   │   ├── read_d0.right
+│   │   │   │   ├── read_d0.tests
+│   │   │   │   ├── read_ifs.right
+│   │   │   │   ├── read_ifs.tests
+│   │   │   │   ├── read_n.right
+│   │   │   │   ├── read_n.tests
+│   │   │   │   ├── read_REPLY.right
+│   │   │   │   ├── read_REPLY.tests
+│   │   │   │   ├── read_r.right
+│   │   │   │   ├── read_r.tests
+│   │   │   │   ├── read_SIGCHLD.right
+│   │   │   │   ├── read_SIGCHLD.tests
+│   │   │   │   ├── read_t0.right
+│   │   │   │   ├── read_t0.tests
+│   │   │   │   ├── read_t.right
+│   │   │   │   └── read_t.tests
+│   │   │   ├── ash-redir
+│   │   │   │   ├── redir1.right
+│   │   │   │   ├── redir1.tests
+│   │   │   │   ├── redir2.right
+│   │   │   │   ├── redir2.tests
+│   │   │   │   ├── redir3.right
+│   │   │   │   ├── redir3.tests
+│   │   │   │   ├── redir4.right
+│   │   │   │   ├── redir4.tests
+│   │   │   │   ├── redir5.right
+│   │   │   │   ├── redir5.tests
+│   │   │   │   ├── redir6.right
+│   │   │   │   ├── redir6.tests
+│   │   │   │   ├── redir7.right
+│   │   │   │   ├── redir7.tests
+│   │   │   │   ├── redir8.right
+│   │   │   │   ├── redir8.tests
+│   │   │   │   ├── redir9.right
+│   │   │   │   ├── redir9.tests
+│   │   │   │   ├── redirA.right
+│   │   │   │   ├── redirA.tests
+│   │   │   │   ├── redir_children_should_not_see_saved_fd_1.right
+│   │   │   │   ├── redir_children_should_not_see_saved_fd_1.tests
+│   │   │   │   ├── redir_children_should_not_see_saved_fd_2.right
+│   │   │   │   ├── redir_children_should_not_see_saved_fd_2.tests
+│   │   │   │   ├── redir_children_should_not_see_saved_fd_3.right
+│   │   │   │   ├── redir_children_should_not_see_saved_fd_3.tests
+│   │   │   │   ├── redir_escapednum.right
+│   │   │   │   ├── redir_escapednum.tests
+│   │   │   │   ├── redir_exec1.right
+│   │   │   │   ├── redir_exec1.tests
+│   │   │   │   ├── redir_expand.right
+│   │   │   │   ├── redir_expand.tests
+│   │   │   │   ├── redir_leak.right
+│   │   │   │   ├── redir_leak.tests
+│   │   │   │   ├── redir_multi.right
+│   │   │   │   ├── redir_multi.tests
+│   │   │   │   ├── redir.right
+│   │   │   │   ├── redir_script.right
+│   │   │   │   ├── redir_script.tests
+│   │   │   │   ├── redir_space.right
+│   │   │   │   ├── redir_space.tests
+│   │   │   │   ├── redir_stdin1.right
+│   │   │   │   ├── redir_stdin1.tests
+│   │   │   │   ├── redir.tests
+│   │   │   │   ├── redir_to_bad_fd255.right
+│   │   │   │   ├── redir_to_bad_fd255.tests
+│   │   │   │   ├── redir_to_bad_fd3.right
+│   │   │   │   ├── redir_to_bad_fd3.tests
+│   │   │   │   ├── redir_to_bad_fd.right
+│   │   │   │   └── redir_to_bad_fd.tests
+│   │   │   ├── ash-signals
+│   │   │   │   ├── catch.right
+│   │   │   │   ├── catch.tests
+│   │   │   │   ├── continue_and_trap1.right
+│   │   │   │   ├── continue_and_trap1.tests
+│   │   │   │   ├── reap1.right
+│   │   │   │   ├── reap1.tests
+│   │   │   │   ├── return_in_trap1.right
+│   │   │   │   ├── return_in_trap1.tests
+│   │   │   │   ├── save-ret.right
+│   │   │   │   ├── save-ret.tests
+│   │   │   │   ├── savetrap.right
+│   │   │   │   ├── savetrap.tests
+│   │   │   │   ├── sigint1.right
+│   │   │   │   ├── sigint1.tests
+│   │   │   │   ├── signal1.right
+│   │   │   │   ├── signal1.tests
+│   │   │   │   ├── signal2.right
+│   │   │   │   ├── signal2.tests
+│   │   │   │   ├── signal3.right
+│   │   │   │   ├── signal3.tests
+│   │   │   │   ├── signal4.right
+│   │   │   │   ├── signal4.tests
+│   │   │   │   ├── signal5.right
+│   │   │   │   ├── signal5.tests
+│   │   │   │   ├── signal6.right
+│   │   │   │   ├── signal6.tests
+│   │   │   │   ├── signal7.right
+│   │   │   │   ├── signal7.tests
+│   │   │   │   ├── signal8.right
+│   │   │   │   ├── signal8.tests
+│   │   │   │   ├── signal9.right
+│   │   │   │   ├── signal9.tests
+│   │   │   │   ├── signal_read2.right
+│   │   │   │   ├── signal_read2.tests
+│   │   │   │   ├── sigquit_exec.right
+│   │   │   │   ├── sigquit_exec.tests
+│   │   │   │   ├── subshell.right
+│   │   │   │   ├── subshell.tests
+│   │   │   │   ├── usage.right
+│   │   │   │   └── usage.tests
+│   │   │   ├── ash-standalone
+│   │   │   │   ├── noexec_gets_no_env.right
+│   │   │   │   ├── noexec_gets_no_env.tests
+│   │   │   │   ├── nofork_env.right
+│   │   │   │   ├── nofork_env.tests
+│   │   │   │   ├── nofork_trashes_getopt.right
+│   │   │   │   ├── nofork_trashes_getopt.tests
+│   │   │   │   ├── var_standalone1.right
+│   │   │   │   └── var_standalone1.tests
+│   │   │   ├── ash-vars
+│   │   │   │   ├── empty.right
+│   │   │   │   ├── empty.tests
+│   │   │   │   ├── glob_and_vars.right
+│   │   │   │   ├── glob_and_vars.tests
+│   │   │   │   ├── param_expand_alt2.right
+│   │   │   │   ├── param_expand_alt2.tests
+│   │   │   │   ├── param_expand_alt.right
+│   │   │   │   ├── param_expand_alt.tests
+│   │   │   │   ├── param_expand_assign.right
+│   │   │   │   ├── param_expand_assign.tests
+│   │   │   │   ├── param_expand_bash_substring.right
+│   │   │   │   ├── param_expand_bash_substring.tests
+│   │   │   │   ├── param_expand_default.right
+│   │   │   │   ├── param_expand_default.tests
+│   │   │   │   ├── param_expand_indicate_error.right
+│   │   │   │   ├── param_expand_indicate_error.tests
+│   │   │   │   ├── param_expand_len1.right
+│   │   │   │   ├── param_expand_len1.tests
+│   │   │   │   ├── param_expand_len.right
+│   │   │   │   ├── param_expand_len.tests
+│   │   │   │   ├── param_glob.right
+│   │   │   │   ├── param_glob.tests
+│   │   │   │   ├── param_subshell.right
+│   │   │   │   ├── param_subshell.tests
+│   │   │   │   ├── readonly0.right
+│   │   │   │   ├── readonly0.tests
+│   │   │   │   ├── readonly1.right
+│   │   │   │   ├── readonly1.tests
+│   │   │   │   ├── star.right
+│   │   │   │   ├── star.tests
+│   │   │   │   ├── unset.right
+│   │   │   │   ├── unset.tests
+│   │   │   │   ├── var_10.right
+│   │   │   │   ├── var_10.tests
+│   │   │   │   ├── var1.right
+│   │   │   │   ├── var1.tests
+│   │   │   │   ├── var2.right
+│   │   │   │   ├── var2.tests
+│   │   │   │   ├── var3.right
+│   │   │   │   ├── var3.tests
+│   │   │   │   ├── var4.right
+│   │   │   │   ├── var4.tests
+│   │   │   │   ├── var5.right
+│   │   │   │   ├── var5.tests
+│   │   │   │   ├── var_bash1a.right
+│   │   │   │   ├── var_bash1a.tests
+│   │   │   │   ├── var_bash1b.right
+│   │   │   │   ├── var_bash1b.tests
+│   │   │   │   ├── var_bash1.right
+│   │   │   │   ├── var_bash1.tests
+│   │   │   │   ├── var_bash2.right
+│   │   │   │   ├── var_bash2.tests
+│   │   │   │   ├── var_bash3.right
+│   │   │   │   ├── var_bash3.tests
+│   │   │   │   ├── var_bash4.right
+│   │   │   │   ├── var_bash4.tests
+│   │   │   │   ├── var_bash5.right
+│   │   │   │   ├── var_bash5.tests
+│   │   │   │   ├── var_bash6.right
+│   │   │   │   ├── var_bash6.tests
+│   │   │   │   ├── var_bash7.right
+│   │   │   │   ├── var_bash7.tests
+│   │   │   │   ├── var_bash_pattern_starting_with_slash.right
+│   │   │   │   ├── var_bash_pattern_starting_with_slash.tests
+│   │   │   │   ├── var_bash_repl_empty_pattern.right
+│   │   │   │   ├── var_bash_repl_empty_pattern.tests
+│   │   │   │   ├── var_bash_repl_empty_var.right
+│   │   │   │   ├── var_bash_repl_empty_var.tests
+│   │   │   │   ├── var-do-not-collapse-arithmetic-expansion-at-parse-time.right
+│   │   │   │   ├── var-do-not-collapse-arithmetic-expansion-at-parse-time.tests
+│   │   │   │   ├── var-do-not-expand-tilde-in-parameter-expansion-in-quotes.right
+│   │   │   │   ├── var-do-not-expand-tilde-in-parameter-expansion-in-quotes.tests
+│   │   │   │   ├── var-do-not-quote-backslashes-in-parameter-expansions-outside-quotes.right
+│   │   │   │   ├── var-do-not-quote-backslashes-in-parameter-expansions-outside-quotes.tests
+│   │   │   │   ├── var_expand_in_assign.right
+│   │   │   │   ├── var_expand_in_assign.tests
+│   │   │   │   ├── var_expand_in_redir.right
+│   │   │   │   ├── var_expand_in_redir.tests
+│   │   │   │   ├── var_expand_on_ifs.right
+│   │   │   │   ├── var_expand_on_ifs.tests
+│   │   │   │   ├── var-expand-tilde-in-parameter-expansion.right
+│   │   │   │   ├── var-expand-tilde-in-parameter-expansion.tests
+│   │   │   │   ├── var_in_pipes.right
+│   │   │   │   ├── var_in_pipes.tests
+│   │   │   │   ├── var_leak.right
+│   │   │   │   ├── var_leaks.right
+│   │   │   │   ├── var_leaks.tests
+│   │   │   │   ├── var_leak.tests
+│   │   │   │   ├── var_LINENO1.right
+│   │   │   │   ├── var_LINENO1.tests
+│   │   │   │   ├── var-pattern-replacement-in-parameter-expansion-1.right
+│   │   │   │   ├── var-pattern-replacement-in-parameter-expansion-1.tests
+│   │   │   │   ├── var-pattern-replacement-in-parameter-expansion-2.right
+│   │   │   │   ├── var-pattern-replacement-in-parameter-expansion-2.tests
+│   │   │   │   ├── var-pattern-replacement-in-parameter-expansion-3.right
+│   │   │   │   ├── var-pattern-replacement-in-parameter-expansion-3.tests
+│   │   │   │   ├── var-pattern-replacement-in-parameter-expansion-4.right
+│   │   │   │   ├── var-pattern-replacement-in-parameter-expansion-4.tests
+│   │   │   │   ├── var-pattern-replacement-in-parameter-expansion-5.right
+│   │   │   │   ├── var-pattern-replacement-in-parameter-expansion-5.tests
+│   │   │   │   ├── var_posix1.right
+│   │   │   │   ├── var_posix1.tests
+│   │   │   │   ├── var-runtime-quote-detection.right
+│   │   │   │   ├── var-runtime-quote-detection.tests
+│   │   │   │   ├── var_serial.right
+│   │   │   │   ├── var_serial.tests
+│   │   │   │   ├── var_subst_in_for.right
+│   │   │   │   ├── var_subst_in_for.tests
+│   │   │   │   ├── var_unbackslash1.right
+│   │   │   │   ├── var_unbackslash1.tests
+│   │   │   │   ├── var_unbackslash.right
+│   │   │   │   ├── var_unbackslash.tests
+│   │   │   │   ├── var-utf8-length.right
+│   │   │   │   ├── var-utf8-length.tests
+│   │   │   │   ├── var_wordsplit_ifs1.right
+│   │   │   │   ├── var_wordsplit_ifs1.tests
+│   │   │   │   ├── var_wordsplit_ifs2.right
+│   │   │   │   ├── var_wordsplit_ifs2.tests
+│   │   │   │   ├── var_wordsplit_ifs3.right
+│   │   │   │   ├── var_wordsplit_ifs3.tests
+│   │   │   │   ├── var_wordsplit_ifs4.right
+│   │   │   │   ├── var_wordsplit_ifs4.tests
+│   │   │   │   ├── var_wordsplit_ifs5.right
+│   │   │   │   └── var_wordsplit_ifs5.tests
+│   │   │   ├── ash-z_slow
+│   │   │   │   ├── many_ifs.right
+│   │   │   │   └── many_ifs.tests
+│   │   │   ├── printenv.c
+│   │   │   ├── recho.c
+│   │   │   ├── run-all
+│   │   │   └── zecho.c
+│   │   ├── brace.txt
+│   │   ├── built-in.o
+│   │   ├── Config.in
+│   │   ├── Config.src
+│   │   ├── cttyhack.c
+│   │   ├── cttyhack.o
+│   │   ├── hush.c
+│   │   ├── hush_doc.txt
+│   │   ├── hush_leaktool.sh
+│   │   ├── hush.o
+│   │   ├── hush_test
+│   │   │   ├── hush-arith
+│   │   │   │   ├── arith1.sub
+│   │   │   │   ├── arith2.sub
+│   │   │   │   ├── arith_nested1.right
+│   │   │   │   ├── arith_nested1.tests
+│   │   │   │   ├── arith-postinc.right
+│   │   │   │   ├── arith-postinc.tests
+│   │   │   │   ├── arith.right
+│   │   │   │   └── arith.tests
+│   │   │   ├── hush-bugs
+│   │   │   │   ├── export_exp.right
+│   │   │   │   ├── export_exp.tests.disabled
+│   │   │   │   ├── strops5_bug.right
+│   │   │   │   └── strops5_bug.tests
+│   │   │   ├── hush-getopts
+│   │   │   │   ├── getopt_nested.right
+│   │   │   │   ├── getopt_nested.tests
+│   │   │   │   ├── getopt_optarg.right
+│   │   │   │   ├── getopt_optarg.tests
+│   │   │   │   ├── getopt_positional.right
+│   │   │   │   ├── getopt_positional.tests
+│   │   │   │   ├── getopt_silent.right
+│   │   │   │   ├── getopt_silent.tests
+│   │   │   │   ├── getopt_simple.right
+│   │   │   │   ├── getopt_simple.tests
+│   │   │   │   ├── getopt_test_libc_bug.right
+│   │   │   │   └── getopt_test_libc_bug.tests
+│   │   │   ├── hush-glob
+│   │   │   │   ├── bash_brace1.right
+│   │   │   │   ├── bash_brace1.tests
+│   │   │   │   ├── glob1.right
+│   │   │   │   ├── glob1.tests
+│   │   │   │   ├── glob2.right
+│   │   │   │   ├── glob2.tests
+│   │   │   │   ├── glob3.right
+│   │   │   │   ├── glob3.tests
+│   │   │   │   ├── glob_altvalue1.right
+│   │   │   │   ├── glob_altvalue1.tests
+│   │   │   │   ├── glob_and_assign.right
+│   │   │   │   ├── glob_and_assign.tests
+│   │   │   │   ├── glob_bkslash_in_var.right
+│   │   │   │   ├── glob_bkslash_in_var.tests
+│   │   │   │   ├── glob_dir.right
+│   │   │   │   ├── glob_dir.tests
+│   │   │   │   ├── glob_redir.right
+│   │   │   │   └── glob_redir.tests
+│   │   │   ├── hush-heredoc
+│   │   │   │   ├── heredoc1.right
+│   │   │   │   ├── heredoc1.tests
+│   │   │   │   ├── heredoc2.right
+│   │   │   │   ├── heredoc2.tests
+│   │   │   │   ├── heredoc3.right
+│   │   │   │   ├── heredoc3.tests
+│   │   │   │   ├── heredoc4.right
+│   │   │   │   ├── heredoc4.tests
+│   │   │   │   ├── heredoc5.right
+│   │   │   │   ├── heredoc5.tests
+│   │   │   │   ├── heredoc6.right
+│   │   │   │   ├── heredoc6.tests
+│   │   │   │   ├── heredoc7.right
+│   │   │   │   ├── heredoc7.tests
+│   │   │   │   ├── heredoc8.right
+│   │   │   │   ├── heredoc8.tests
+│   │   │   │   ├── heredoc9.right
+│   │   │   │   ├── heredoc9.tests
+│   │   │   │   ├── heredoc_after_compound1.right
+│   │   │   │   ├── heredoc_after_compound1.tests
+│   │   │   │   ├── heredocA.right
+│   │   │   │   ├── heredocA.tests
+│   │   │   │   ├── heredoc_backslash1.right
+│   │   │   │   ├── heredoc_backslash1.tests
+│   │   │   │   ├── heredoc_bkslash_newline1.right
+│   │   │   │   ├── heredoc_bkslash_newline1.tests
+│   │   │   │   ├── heredoc_bkslash_newline2.right
+│   │   │   │   ├── heredoc_bkslash_newline2.tests
+│   │   │   │   ├── heredocB.right
+│   │   │   │   ├── heredocB.tests
+│   │   │   │   ├── heredoc_empty2.right
+│   │   │   │   ├── heredoc_empty2.tests
+│   │   │   │   ├── heredoc_empty3.right
+│   │   │   │   ├── heredoc_empty3.tests
+│   │   │   │   ├── heredoc_huge.right
+│   │   │   │   ├── heredoc_huge.tests
+│   │   │   │   ├── heredoc.right
+│   │   │   │   ├── heredoc.tests
+│   │   │   │   ├── heredoc_var_expand1.right
+│   │   │   │   └── heredoc_var_expand1.tests
+│   │   │   ├── hush-invert
+│   │   │   │   ├── invert.right
+│   │   │   │   └── invert.tests
+│   │   │   ├── hush-leak
+│   │   │   │   ├── leak_argv1.right
+│   │   │   │   └── leak_argv1.tests
+│   │   │   ├── hush-misc
+│   │   │   │   ├── and-or.right
+│   │   │   │   ├── and-or.tests
+│   │   │   │   ├── assignment1.right
+│   │   │   │   ├── assignment1.tests
+│   │   │   │   ├── assignment2.right
+│   │   │   │   ├── assignment2.tests
+│   │   │   │   ├── assignment3.right
+│   │   │   │   ├── assignment3.tests
+│   │   │   │   ├── assignment4.right
+│   │   │   │   ├── assignment4.tests
+│   │   │   │   ├── assignment5.right
+│   │   │   │   ├── assignment5.tests
+│   │   │   │   ├── break1.right
+│   │   │   │   ├── break1.tests
+│   │   │   │   ├── break2.right
+│   │   │   │   ├── break2.tests
+│   │   │   │   ├── break3.right
+│   │   │   │   ├── break3.tests
+│   │   │   │   ├── break4.right
+│   │   │   │   ├── break4.tests
+│   │   │   │   ├── break5.right
+│   │   │   │   ├── break5.tests
+│   │   │   │   ├── builtin1.right
+│   │   │   │   ├── builtin1.tests
+│   │   │   │   ├── case1.right
+│   │   │   │   ├── case1.tests
+│   │   │   │   ├── colon.right
+│   │   │   │   ├── colon.tests
+│   │   │   │   ├── command2.right
+│   │   │   │   ├── command2.tests
+│   │   │   │   ├── compound.right
+│   │   │   │   ├── compound.tests
+│   │   │   │   ├── continue1.right
+│   │   │   │   ├── continue1.tests
+│   │   │   │   ├── continue2.right
+│   │   │   │   ├── continue2.tests
+│   │   │   │   ├── continue3.right
+│   │   │   │   ├── continue3.tests
+│   │   │   │   ├── control_char1.right
+│   │   │   │   ├── control_char1.tests
+│   │   │   │   ├── control_char2.right
+│   │   │   │   ├── control_char2.tests
+│   │   │   │   ├── echo_write_error.right
+│   │   │   │   ├── echo_write_error.tests
+│   │   │   │   ├── empty_args.right
+│   │   │   │   ├── empty_args.tests
+│   │   │   │   ├── empty_for1.right
+│   │   │   │   ├── empty_for1.tests
+│   │   │   │   ├── empty_for2.right
+│   │   │   │   ├── empty_for2.tests
+│   │   │   │   ├── empty_for.right
+│   │   │   │   ├── empty_for.tests
+│   │   │   │   ├── env_and_func.right
+│   │   │   │   ├── env_and_func.tests
+│   │   │   │   ├── errexit1.right
+│   │   │   │   ├── errexit1.tests
+│   │   │   │   ├── eval1.right
+│   │   │   │   ├── eval1.tests
+│   │   │   │   ├── eval2.right
+│   │   │   │   ├── eval2.tests
+│   │   │   │   ├── exec.right
+│   │   │   │   ├── exec.tests
+│   │   │   │   ├── exit1.right
+│   │   │   │   ├── exit1.tests
+│   │   │   │   ├── exitcode1.right
+│   │   │   │   ├── exitcode1.tests
+│   │   │   │   ├── exitcode2.right
+│   │   │   │   ├── exitcode2.tests
+│   │   │   │   ├── exitcode_EACCES.right
+│   │   │   │   ├── exitcode_EACCES.tests
+│   │   │   │   ├── exitcode_ENOENT.right
+│   │   │   │   ├── exitcode_ENOENT.tests
+│   │   │   │   ├── exitcode_trap2.right
+│   │   │   │   ├── exitcode_trap2.tests
+│   │   │   │   ├── exitcode_trap3.right
+│   │   │   │   ├── exitcode_trap3.tests
+│   │   │   │   ├── exitcode_trap4.right
+│   │   │   │   ├── exitcode_trap4.tests
+│   │   │   │   ├── exitcode_trap5.right
+│   │   │   │   ├── exitcode_trap5.tests
+│   │   │   │   ├── exitcode_trap6.right
+│   │   │   │   ├── exitcode_trap6.tests
+│   │   │   │   ├── export1.right
+│   │   │   │   ├── export1.tests
+│   │   │   │   ├── export-n.right
+│   │   │   │   ├── export-n.tests
+│   │   │   │   ├── export.right
+│   │   │   │   ├── export.tests
+│   │   │   │   ├── for.right
+│   │   │   │   ├── for.tests
+│   │   │   │   ├── for_with_bslashes.right
+│   │   │   │   ├── for_with_bslashes.tests
+│   │   │   │   ├── for_with_keywords.right
+│   │   │   │   ├── for_with_keywords.tests
+│   │   │   │   ├── func1.right
+│   │   │   │   ├── func1.tests
+│   │   │   │   ├── func2.right
+│   │   │   │   ├── func2.tests
+│   │   │   │   ├── func3.right
+│   │   │   │   ├── func3.tests
+│   │   │   │   ├── func4.right
+│   │   │   │   ├── func4.tests
+│   │   │   │   ├── func5.right
+│   │   │   │   ├── func5.tests
+│   │   │   │   ├── func_args1.right
+│   │   │   │   ├── func_args1.tests
+│   │   │   │   ├── func_local1.right
+│   │   │   │   ├── func_local1.tests
+│   │   │   │   ├── func_local2.right
+│   │   │   │   ├── func_local2.tests
+│   │   │   │   ├── func_prio_over_builtins.right
+│   │   │   │   ├── func_prio_over_builtins.tests
+│   │   │   │   ├── func_return1.right
+│   │   │   │   ├── func_return1.tests
+│   │   │   │   ├── func_return2.right
+│   │   │   │   ├── func_return2.tests
+│   │   │   │   ├── group_in_braces.right
+│   │   │   │   ├── group_in_braces.tests
+│   │   │   │   ├── if_false_exitcode.right
+│   │   │   │   ├── if_false_exitcode.tests
+│   │   │   │   ├── last_amp.right
+│   │   │   │   ├── last_amp.tests
+│   │   │   │   ├── local1.right
+│   │   │   │   ├── local1.tests
+│   │   │   │   ├── nommu1.right
+│   │   │   │   ├── nommu1.tests
+│   │   │   │   ├── nommu2.right
+│   │   │   │   ├── nommu2.tests
+│   │   │   │   ├── nommu3.right
+│   │   │   │   ├── nommu3.tests
+│   │   │   │   ├── nulltick1.right
+│   │   │   │   ├── nulltick1.tests
+│   │   │   │   ├── opts1.right
+│   │   │   │   ├── opts1.tests
+│   │   │   │   ├── pid.right
+│   │   │   │   ├── pid.tests
+│   │   │   │   ├── piped_input.right
+│   │   │   │   ├── piped_input.tests
+│   │   │   │   ├── pipefail.right
+│   │   │   │   ├── pipefail.tests
+│   │   │   │   ├── read.right
+│   │   │   │   ├── read.tests
+│   │   │   │   ├── return1.right
+│   │   │   │   ├── return1.tests
+│   │   │   │   ├── shift1.right
+│   │   │   │   ├── shift1.tests
+│   │   │   │   ├── shift.right
+│   │   │   │   ├── shift.tests
+│   │   │   │   ├── sig_exitcode.right
+│   │   │   │   ├── sig_exitcode.tests
+│   │   │   │   ├── source1.right
+│   │   │   │   ├── source1.tests
+│   │   │   │   ├── source2.right
+│   │   │   │   ├── source2.tests
+│   │   │   │   ├── source3.right
+│   │   │   │   ├── source3.tests
+│   │   │   │   ├── source4.right
+│   │   │   │   ├── source4.tests
+│   │   │   │   ├── source5.right
+│   │   │   │   ├── source5.tests
+│   │   │   │   ├── source_argv_and_shift.right
+│   │   │   │   ├── source_argv_and_shift.tests
+│   │   │   │   ├── syntax_err_negate.right
+│   │   │   │   ├── syntax_err_negate.tests
+│   │   │   │   ├── syntax_err.right
+│   │   │   │   ├── syntax_err.tests
+│   │   │   │   ├── tickquote1.right
+│   │   │   │   ├── tickquote1.tests
+│   │   │   │   ├── unicode1.right
+│   │   │   │   ├── unicode1.tests
+│   │   │   │   ├── until1.right
+│   │   │   │   ├── until1.tests
+│   │   │   │   ├── wait1.right
+│   │   │   │   ├── wait1.tests
+│   │   │   │   ├── wait2.right
+│   │   │   │   ├── wait2.tests
+│   │   │   │   ├── wait3.right
+│   │   │   │   ├── wait3.tests
+│   │   │   │   ├── wait4.right
+│   │   │   │   ├── wait4.tests
+│   │   │   │   ├── wait5.right
+│   │   │   │   ├── wait5.tests
+│   │   │   │   ├── wait6.right
+│   │   │   │   ├── wait6.tests
+│   │   │   │   ├── wait7.right
+│   │   │   │   ├── wait7.tests
+│   │   │   │   ├── while1.right
+│   │   │   │   ├── while1.tests
+│   │   │   │   ├── while2.right
+│   │   │   │   ├── while2.tests
+│   │   │   │   ├── while3.right
+│   │   │   │   ├── while3.tests
+│   │   │   │   ├── while4.right
+│   │   │   │   ├── while4.tests
+│   │   │   │   ├── while_in_subshell.right
+│   │   │   │   └── while_in_subshell.tests
+│   │   │   ├── hush-parsing
+│   │   │   │   ├── and_or_and_backgrounding.right
+│   │   │   │   ├── and_or_and_backgrounding.tests
+│   │   │   │   ├── argv0.right
+│   │   │   │   ├── argv0.tests
+│   │   │   │   ├── bkslash_eof1.right
+│   │   │   │   ├── bkslash_eof1.tests
+│   │   │   │   ├── bkslash_eof2.right
+│   │   │   │   ├── bkslash_eof2.tests
+│   │   │   │   ├── bkslash_newline1.right
+│   │   │   │   ├── bkslash_newline1.tests
+│   │   │   │   ├── bkslash_newline2.right
+│   │   │   │   ├── bkslash_newline2.tests
+│   │   │   │   ├── bkslash_newline3.right
+│   │   │   │   ├── bkslash_newline3.tests
+│   │   │   │   ├── brace1.right
+│   │   │   │   ├── brace1.tests
+│   │   │   │   ├── brace2.right
+│   │   │   │   ├── brace2.tests
+│   │   │   │   ├── comment1.right
+│   │   │   │   ├── comment1.tests
+│   │   │   │   ├── comment2.right
+│   │   │   │   ├── comment2.tests
+│   │   │   │   ├── eol1.right
+│   │   │   │   ├── eol1.tests
+│   │   │   │   ├── escape1.right
+│   │   │   │   ├── escape1.tests
+│   │   │   │   ├── escape2.right
+│   │   │   │   ├── escape2.tests
+│   │   │   │   ├── escape3.right
+│   │   │   │   ├── escape3.tests
+│   │   │   │   ├── escape4.right
+│   │   │   │   ├── escape4.tests
+│   │   │   │   ├── escape5.right
+│   │   │   │   ├── escape5.tests
+│   │   │   │   ├── group1.right
+│   │   │   │   ├── group1.tests
+│   │   │   │   ├── group2.right
+│   │   │   │   ├── group2.tests
+│   │   │   │   ├── groups_and_keywords1.right
+│   │   │   │   ├── groups_and_keywords1.tests
+│   │   │   │   ├── groups_and_keywords2.right
+│   │   │   │   ├── groups_and_keywords2.tests
+│   │   │   │   ├── negate.right
+│   │   │   │   ├── negate.tests
+│   │   │   │   ├── noeol2.right
+│   │   │   │   ├── noeol2.tests
+│   │   │   │   ├── noeol3.right
+│   │   │   │   ├── noeol3.tests
+│   │   │   │   ├── noeol.right
+│   │   │   │   ├── noeol.tests
+│   │   │   │   ├── process_subst.right
+│   │   │   │   ├── process_subst.tests
+│   │   │   │   ├── quote1.right
+│   │   │   │   ├── quote1.tests
+│   │   │   │   ├── quote2.right
+│   │   │   │   ├── quote2.tests
+│   │   │   │   ├── quote3.right
+│   │   │   │   ├── quote3.tests
+│   │   │   │   ├── quote4.right
+│   │   │   │   ├── quote4.tests
+│   │   │   │   ├── starquoted2.right
+│   │   │   │   ├── starquoted2.tests
+│   │   │   │   ├── starquoted3.right
+│   │   │   │   ├── starquoted3.tests
+│   │   │   │   ├── starquoted.right
+│   │   │   │   └── starquoted.tests
+│   │   │   ├── hush-psubst
+│   │   │   │   ├── emptytick.right
+│   │   │   │   ├── emptytick.tests
+│   │   │   │   ├── falsetick2.right
+│   │   │   │   ├── falsetick2.tests
+│   │   │   │   ├── falsetick.right
+│   │   │   │   ├── falsetick.tests
+│   │   │   │   ├── tick2.right
+│   │   │   │   ├── tick2.tests
+│   │   │   │   ├── tick3.right
+│   │   │   │   ├── tick3.tests
+│   │   │   │   ├── tick4.right
+│   │   │   │   ├── tick4.tests
+│   │   │   │   ├── tick5.right
+│   │   │   │   ├── tick5.tests
+│   │   │   │   ├── tick6.right
+│   │   │   │   ├── tick6.tests
+│   │   │   │   ├── tick_huge.right
+│   │   │   │   ├── tick_huge.tests
+│   │   │   │   ├── tick_in_heredoc.right
+│   │   │   │   ├── tick_in_heredoc.tests
+│   │   │   │   ├── tick.right
+│   │   │   │   └── tick.tests
+│   │   │   ├── hush-quoting
+│   │   │   │   ├── bkslash_case1.right
+│   │   │   │   ├── bkslash_case1.tests
+│   │   │   │   ├── bkslash_case2.right
+│   │   │   │   ├── bkslash_case2.tests
+│   │   │   │   ├── bkslash_in_varexp1.right
+│   │   │   │   ├── bkslash_in_varexp1.tests
+│   │   │   │   ├── bkslash_in_varexp.right
+│   │   │   │   ├── bkslash_in_varexp.tests
+│   │   │   │   ├── case_glob1.right
+│   │   │   │   ├── case_glob1.tests
+│   │   │   │   ├── dollar_altvalue1.right
+│   │   │   │   ├── dollar_altvalue1.tests
+│   │   │   │   ├── dollar_altvalue2.right
+│   │   │   │   ├── dollar_altvalue2.tests
+│   │   │   │   ├── dollar_altvalue9.right
+│   │   │   │   ├── dollar_altvalue9.tests
+│   │   │   │   ├── dollar_repl_bash1.right
+│   │   │   │   ├── dollar_repl_bash1.tests
+│   │   │   │   ├── dollar_repl_slash_bash1.right
+│   │   │   │   ├── dollar_repl_slash_bash1.tests
+│   │   │   │   ├── dollar_repl_slash_bash2.right
+│   │   │   │   ├── dollar_repl_slash_bash2.tests
+│   │   │   │   ├── negative_arith.right
+│   │   │   │   ├── negative_arith.tests
+│   │   │   │   ├── quoted_punct.right
+│   │   │   │   ├── quoted_punct.tests
+│   │   │   │   ├── quote_in_varexp1.right
+│   │   │   │   ├── quote_in_varexp1.tests
+│   │   │   │   ├── squote_in_varexp1.right
+│   │   │   │   ├── squote_in_varexp1.tests
+│   │   │   │   ├── squote_in_varexp2.right
+│   │   │   │   ├── squote_in_varexp2.tests
+│   │   │   │   ├── squote_in_varexp3.right
+│   │   │   │   ├── squote_in_varexp3.tests
+│   │   │   │   ├── squote_in_varexp.right
+│   │   │   │   ├── squote_in_varexp.tests
+│   │   │   │   ├── unicode_8x_chars.right
+│   │   │   │   └── unicode_8x_chars.tests
+│   │   │   ├── hush-read
+│   │   │   │   ├── read_d0.right
+│   │   │   │   ├── read_d0.tests
+│   │   │   │   ├── read_ifs2.right
+│   │   │   │   ├── read_ifs2.tests
+│   │   │   │   ├── read_ifs.right
+│   │   │   │   ├── read_ifs.tests
+│   │   │   │   ├── read_n.right
+│   │   │   │   ├── read_n.tests
+│   │   │   │   ├── read_REPLY.right
+│   │   │   │   ├── read_REPLY.tests
+│   │   │   │   ├── read_r.right
+│   │   │   │   ├── read_r.tests
+│   │   │   │   ├── read_SIGCHLD.right
+│   │   │   │   ├── read_SIGCHLD.tests
+│   │   │   │   ├── read_t0.right
+│   │   │   │   ├── read_t0.tests
+│   │   │   │   ├── read_t.right
+│   │   │   │   └── read_t.tests
+│   │   │   ├── hush-redir
+│   │   │   │   ├── redir1.right
+│   │   │   │   ├── redir1.tests
+│   │   │   │   ├── redir2.right
+│   │   │   │   ├── redir2.tests
+│   │   │   │   ├── redir3.right
+│   │   │   │   ├── redir3.tests
+│   │   │   │   ├── redir4.right
+│   │   │   │   ├── redir4.tests
+│   │   │   │   ├── redir5.right
+│   │   │   │   ├── redir5.tests
+│   │   │   │   ├── redir6.right
+│   │   │   │   ├── redir6.tests
+│   │   │   │   ├── redir7.right
+│   │   │   │   ├── redir7.tests
+│   │   │   │   ├── redir8.right
+│   │   │   │   ├── redir8.tests
+│   │   │   │   ├── redir9.right
+│   │   │   │   ├── redir9.tests
+│   │   │   │   ├── redirA.right
+│   │   │   │   ├── redirA.tests
+│   │   │   │   ├── redir_backquote1.right
+│   │   │   │   ├── redir_backquote1.tests
+│   │   │   │   ├── redir_children_should_not_see_saved_fd_1.right
+│   │   │   │   ├── redir_children_should_not_see_saved_fd_1.tests
+│   │   │   │   ├── redir_children_should_not_see_saved_fd_2.right
+│   │   │   │   ├── redir_children_should_not_see_saved_fd_2.tests
+│   │   │   │   ├── redir_children_should_not_see_saved_fd_3.right
+│   │   │   │   ├── redir_children_should_not_see_saved_fd_3.tests
+│   │   │   │   ├── redir_errors.right
+│   │   │   │   ├── redir_errors.tests
+│   │   │   │   ├── redir_escapednum.right
+│   │   │   │   ├── redir_escapednum.tests
+│   │   │   │   ├── redir_exec1.right
+│   │   │   │   ├── redir_exec1.tests
+│   │   │   │   ├── redir_expand.right
+│   │   │   │   ├── redir_expand.tests
+│   │   │   │   ├── redir_leak.right
+│   │   │   │   ├── redir_leak.tests
+│   │   │   │   ├── redir_multi.right
+│   │   │   │   ├── redir_multi.tests
+│   │   │   │   ├── redir.right
+│   │   │   │   ├── redir_script.right
+│   │   │   │   ├── redir_script.tests
+│   │   │   │   ├── redir_space.right
+│   │   │   │   ├── redir_space.tests
+│   │   │   │   ├── redir_stdin1.right
+│   │   │   │   ├── redir_stdin1.tests
+│   │   │   │   ├── redir.tests
+│   │   │   │   ├── redir_to_bad_fd255.right
+│   │   │   │   ├── redir_to_bad_fd255.tests
+│   │   │   │   ├── redir_to_bad_fd3.right
+│   │   │   │   ├── redir_to_bad_fd3.tests
+│   │   │   │   ├── redir_to_bad_fd.right
+│   │   │   │   └── redir_to_bad_fd.tests
+│   │   │   ├── hush-signals
+│   │   │   │   ├── catch.right
+│   │   │   │   ├── catch.tests
+│   │   │   │   ├── continue_and_trap1.right
+│   │   │   │   ├── continue_and_trap1.tests
+│   │   │   │   ├── exit.right
+│   │   │   │   ├── exit.tests
+│   │   │   │   ├── reap1.right
+│   │   │   │   ├── reap1.tests
+│   │   │   │   ├── return_in_trap1.right
+│   │   │   │   ├── return_in_trap1.tests
+│   │   │   │   ├── save-ret.right
+│   │   │   │   ├── save-ret.tests
+│   │   │   │   ├── savetrap.right
+│   │   │   │   ├── savetrap.tests
+│   │   │   │   ├── sigint1.right
+│   │   │   │   ├── sigint1.tests
+│   │   │   │   ├── signal1.right
+│   │   │   │   ├── signal1.tests
+│   │   │   │   ├── signal2.right
+│   │   │   │   ├── signal2.tests
+│   │   │   │   ├── signal3.right
+│   │   │   │   ├── signal3.tests
+│   │   │   │   ├── signal4.right
+│   │   │   │   ├── signal4.tests
+│   │   │   │   ├── signal5.right
+│   │   │   │   ├── signal5.tests
+│   │   │   │   ├── signal6.right
+│   │   │   │   ├── signal6.tests
+│   │   │   │   ├── signal7.right
+│   │   │   │   ├── signal7.tests
+│   │   │   │   ├── signal8.right
+│   │   │   │   ├── signal8.tests
+│   │   │   │   ├── signal9.right
+│   │   │   │   ├── signal9.tests
+│   │   │   │   ├── signal_read1.right
+│   │   │   │   ├── signal_read1.tests
+│   │   │   │   ├── signal_read2.right
+│   │   │   │   ├── signal_read2.tests
+│   │   │   │   ├── sigquit_exec.right
+│   │   │   │   ├── sigquit_exec.tests
+│   │   │   │   ├── subshell.right
+│   │   │   │   ├── subshell.tests
+│   │   │   │   ├── usage.right
+│   │   │   │   └── usage.tests
+│   │   │   ├── hush-standalone
+│   │   │   │   ├── noexec_gets_no_env.right
+│   │   │   │   ├── noexec_gets_no_env.tests
+│   │   │   │   ├── nofork_env.right
+│   │   │   │   ├── nofork_env.tests
+│   │   │   │   ├── nofork_trashes_getopt.right
+│   │   │   │   ├── nofork_trashes_getopt.tests
+│   │   │   │   ├── var_standalone1.right
+│   │   │   │   └── var_standalone1.tests
+│   │   │   ├── hush-test2
+│   │   │   │   ├── andor1.right
+│   │   │   │   ├── andor1.tests
+│   │   │   │   ├── noglob1.right
+│   │   │   │   ├── noglob1.tests
+│   │   │   │   ├── strops1.right
+│   │   │   │   ├── strops1.tests
+│   │   │   │   ├── strops2.right
+│   │   │   │   ├── strops2.tests
+│   │   │   │   ├── strops3.right
+│   │   │   │   ├── strops3.tests
+│   │   │   │   ├── strops4.right
+│   │   │   │   ├── strops4.tests
+│   │   │   │   ├── strops5.right
+│   │   │   │   └── strops5.tests
+│   │   │   ├── hush-vars
+│   │   │   │   ├── empty.right
+│   │   │   │   ├── empty.tests
+│   │   │   │   ├── glob_and_vars.right
+│   │   │   │   ├── glob_and_vars.tests
+│   │   │   │   ├── param_expand_alt2.right
+│   │   │   │   ├── param_expand_alt2.tests
+│   │   │   │   ├── param_expand_alt.right
+│   │   │   │   ├── param_expand_alt.tests
+│   │   │   │   ├── param_expand_assign.right
+│   │   │   │   ├── param_expand_assign.tests
+│   │   │   │   ├── param_expand_bash_substring.right
+│   │   │   │   ├── param_expand_bash_substring.tests
+│   │   │   │   ├── param_expand_default.right
+│   │   │   │   ├── param_expand_default.tests
+│   │   │   │   ├── param_expand_indicate_error.right
+│   │   │   │   ├── param_expand_indicate_error.tests
+│   │   │   │   ├── param_expand_len1.right
+│   │   │   │   ├── param_expand_len1.tests
+│   │   │   │   ├── param_expand_len.right
+│   │   │   │   ├── param_expand_len.tests
+│   │   │   │   ├── param_glob.right
+│   │   │   │   ├── param_glob.tests
+│   │   │   │   ├── param_subshell.right
+│   │   │   │   ├── param_subshell.tests
+│   │   │   │   ├── readonly0.right
+│   │   │   │   ├── readonly0.tests
+│   │   │   │   ├── readonly2.right
+│   │   │   │   ├── readonly2.tests
+│   │   │   │   ├── readonly3.right
+│   │   │   │   ├── readonly3.tests
+│   │   │   │   ├── star.right
+│   │   │   │   ├── star.tests
+│   │   │   │   ├── unset.right
+│   │   │   │   ├── unset.tests
+│   │   │   │   ├── var_10.right
+│   │   │   │   ├── var_10.tests
+│   │   │   │   ├── var1.right
+│   │   │   │   ├── var1.tests
+│   │   │   │   ├── var2.right
+│   │   │   │   ├── var2.tests
+│   │   │   │   ├── var3.right
+│   │   │   │   ├── var3.tests
+│   │   │   │   ├── var4.right
+│   │   │   │   ├── var4.tests
+│   │   │   │   ├── var5.right
+│   │   │   │   ├── var5.tests
+│   │   │   │   ├── var6.right
+│   │   │   │   ├── var6.tests
+│   │   │   │   ├── var_bash1a.right
+│   │   │   │   ├── var_bash1a.tests
+│   │   │   │   ├── var_bash1b.right
+│   │   │   │   ├── var_bash1b.tests
+│   │   │   │   ├── var_bash1.right
+│   │   │   │   ├── var_bash1.tests
+│   │   │   │   ├── var_bash2.right
+│   │   │   │   ├── var_bash2.tests
+│   │   │   │   ├── var_bash3.right
+│   │   │   │   ├── var_bash3.tests
+│   │   │   │   ├── var_bash4.right
+│   │   │   │   ├── var_bash4.tests
+│   │   │   │   ├── var_bash5.right
+│   │   │   │   ├── var_bash5.tests
+│   │   │   │   ├── var_bash6.right
+│   │   │   │   ├── var_bash6.tests
+│   │   │   │   ├── var_bash_pattern_starting_with_slash.right
+│   │   │   │   ├── var_bash_pattern_starting_with_slash.tests
+│   │   │   │   ├── var_bash_repl_empty_pattern.right
+│   │   │   │   ├── var_bash_repl_empty_pattern.tests
+│   │   │   │   ├── var_bash_repl_empty_var.right
+│   │   │   │   ├── var_bash_repl_empty_var.tests
+│   │   │   │   ├── var-do-not-collapse-arithmetic-expansion-at-parse-time.right
+│   │   │   │   ├── var-do-not-collapse-arithmetic-expansion-at-parse-time.tests
+│   │   │   │   ├── var-do-not-expand-tilde-in-parameter-expansion-in-quotes.right
+│   │   │   │   ├── var-do-not-expand-tilde-in-parameter-expansion-in-quotes.tests
+│   │   │   │   ├── var-do-not-quote-backslashes-in-parameter-expansions-outside-quotes.right
+│   │   │   │   ├── var-do-not-quote-backslashes-in-parameter-expansions-outside-quotes.tests
+│   │   │   │   ├── var_expand_in_assign.right
+│   │   │   │   ├── var_expand_in_assign.tests
+│   │   │   │   ├── var_expand_in_redir.right
+│   │   │   │   ├── var_expand_in_redir.tests
+│   │   │   │   ├── var_expand_on_ifs.right
+│   │   │   │   ├── var_expand_on_ifs.tests
+│   │   │   │   ├── var_in_pipes.right
+│   │   │   │   ├── var_in_pipes.tests
+│   │   │   │   ├── var_leaks.right
+│   │   │   │   ├── var_leaks.tests
+│   │   │   │   ├── var_LINENO1.right
+│   │   │   │   ├── var_LINENO1.tests
+│   │   │   │   ├── var_nested1.right
+│   │   │   │   ├── var_nested1.tests
+│   │   │   │   ├── var_nested2.right
+│   │   │   │   ├── var_nested2.tests
+│   │   │   │   ├── var-pattern-replacement-in-parameter-expansion-1.right
+│   │   │   │   ├── var-pattern-replacement-in-parameter-expansion-1.tests
+│   │   │   │   ├── var-pattern-replacement-in-parameter-expansion-2.right
+│   │   │   │   ├── var-pattern-replacement-in-parameter-expansion-2.tests
+│   │   │   │   ├── var-pattern-replacement-in-parameter-expansion-3.right
+│   │   │   │   ├── var-pattern-replacement-in-parameter-expansion-3.tests
+│   │   │   │   ├── var-pattern-replacement-in-parameter-expansion-4.right
+│   │   │   │   ├── var-pattern-replacement-in-parameter-expansion-4.tests
+│   │   │   │   ├── var-pattern-replacement-in-parameter-expansion-5.right
+│   │   │   │   ├── var-pattern-replacement-in-parameter-expansion-5.tests
+│   │   │   │   ├── var_posix1.right
+│   │   │   │   ├── var_posix1.tests
+│   │   │   │   ├── var_preserved.right
+│   │   │   │   ├── var_preserved.tests
+│   │   │   │   ├── var-runtime-quote-detection.right
+│   │   │   │   ├── var-runtime-quote-detection.tests
+│   │   │   │   ├── var_serial.right
+│   │   │   │   ├── var_serial.tests
+│   │   │   │   ├── var_subst_in_for.right
+│   │   │   │   ├── var_subst_in_for.tests
+│   │   │   │   ├── var_unbackslash1.right
+│   │   │   │   ├── var_unbackslash1.tests
+│   │   │   │   ├── var_unbackslash.right
+│   │   │   │   ├── var_unbackslash.tests
+│   │   │   │   ├── var-utf8-length.right
+│   │   │   │   ├── var-utf8-length.tests
+│   │   │   │   ├── var_wordsplit_ifs1.right
+│   │   │   │   ├── var_wordsplit_ifs1.tests
+│   │   │   │   ├── var_wordsplit_ifs2.right
+│   │   │   │   ├── var_wordsplit_ifs2.tests
+│   │   │   │   ├── var_wordsplit_ifs3.right
+│   │   │   │   ├── var_wordsplit_ifs3.tests
+│   │   │   │   ├── var_wordsplit_ifs4.right
+│   │   │   │   ├── var_wordsplit_ifs4.tests
+│   │   │   │   ├── var_wordsplit_ifs5.right
+│   │   │   │   └── var_wordsplit_ifs5.tests
+│   │   │   ├── hush-z_slow
+│   │   │   │   ├── leak_all1.right
+│   │   │   │   ├── leak_all1.tests
+│   │   │   │   ├── leak_all2.right
+│   │   │   │   ├── leak_all2.tests
+│   │   │   │   ├── leak_empty_tick.right
+│   │   │   │   ├── leak_empty_tick.tests
+│   │   │   │   ├── leak_heredoc1.right
+│   │   │   │   ├── leak_heredoc1.tests
+│   │   │   │   ├── leak_var2.right
+│   │   │   │   ├── leak_var2.tests
+│   │   │   │   ├── leak_var3.right
+│   │   │   │   ├── leak_var3.tests
+│   │   │   │   ├── leak_var.right
+│   │   │   │   ├── leak_var.tests
+│   │   │   │   ├── many_ifs.right
+│   │   │   │   └── many_ifs.tests
+│   │   │   └── run-all
+│   │   ├── Kbuild
+│   │   ├── Kbuild.src
+│   │   ├── lib.a
+│   │   ├── match.c
+│   │   ├── match.h
+│   │   ├── match.o
+│   │   ├── math.c
+│   │   ├── math.h
+│   │   ├── math.o
+│   │   ├── random.c
+│   │   ├── random.h
+│   │   ├── random.o
+│   │   ├── README
+│   │   ├── README.job
+│   │   ├── shell_common.c
+│   │   ├── shell_common.h
+│   │   └── shell_common.o
+│   ├── size_single_applets.sh
+│   ├── sysklogd
+│   │   ├── built-in.o
+│   │   ├── Config.in
+│   │   ├── Config.src
+│   │   ├── Kbuild
+│   │   ├── Kbuild.src
+│   │   ├── klogd.c
+│   │   ├── klogd.o
+│   │   ├── lib.a
+│   │   ├── logger.c
+│   │   ├── logread.c
+│   │   ├── logread.o
+│   │   ├── syslogd_and_logger.c
+│   │   ├── syslogd_and_logger.o
+│   │   └── syslogd.c
+│   ├── testsuite
+│   │   ├── all_sourcecode.tests
+│   │   ├── ar.tests
+│   │   ├── ash.tests
+│   │   ├── awk_t1.tar.bz2
+│   │   ├── awk.tests
+│   │   ├── basename
+│   │   │   ├── basename-does-not-remove-identical-extension
+│   │   │   └── basename-works
+│   │   ├── bc_add.bc
+│   │   ├── bc_add_results.txt
+│   │   ├── bc_arctangent.bc
+│   │   ├── bc_arctangent_results.txt
+│   │   ├── bc_array.bc
+│   │   ├── bc_array_results.txt
+│   │   ├── bc_arrays.bc
+│   │   ├── bc_arrays_results.txt
+│   │   ├── bc_bessel.bc
+│   │   ├── bc_bessel_results.txt
+│   │   ├── bc_boolean.bc
+│   │   ├── bc_boolean_results.txt
+│   │   ├── bc_cosine.bc
+│   │   ├── bc_cosine_results.txt
+│   │   ├── bc_decimal.bc
+│   │   ├── bc_decimal_results.txt
+│   │   ├── bc_divide.bc
+│   │   ├── bc_divide_results.txt
+│   │   ├── bc_exponent.bc
+│   │   ├── bc_exponent_results.txt
+│   │   ├── bc_log.bc
+│   │   ├── bc_log_results.txt
+│   │   ├── bc_misc1.bc
+│   │   ├── bc_misc1_results.txt
+│   │   ├── bc_misc2.bc
+│   │   ├── bc_misc2_results.txt
+│   │   ├── bc_misc.bc
+│   │   ├── bc_misc_results.txt
+│   │   ├── bc_modulus.bc
+│   │   ├── bc_modulus_results.txt
+│   │   ├── bc_multiply.bc
+│   │   ├── bc_multiply_results.txt
+│   │   ├── bc_numbers1.bc
+│   │   ├── bc_numbers1_results.txt
+│   │   ├── bc_numbers2.bc
+│   │   ├── bc_numbers2_results.txt
+│   │   ├── bc_pi.bc
+│   │   ├── bc_pi_results.txt
+│   │   ├── bc_power.bc
+│   │   ├── bc_power_results.txt
+│   │   ├── bc_references.bc
+│   │   ├── bc_references_results.txt
+│   │   ├── bc_sine.bc
+│   │   ├── bc_sine_results.txt
+│   │   ├── bc_sqrt.bc
+│   │   ├── bc_sqrt_results.txt
+│   │   ├── bc_strings.bc
+│   │   ├── bc_strings_results.txt
+│   │   ├── bc_subtract.bc
+│   │   ├── bc_subtract_results.txt
+│   │   ├── bc.tests
+│   │   ├── bc_vars.bc
+│   │   ├── bc_vars_results.txt
+│   │   ├── bunzip2
+│   │   │   ├── bunzip2-reads-from-standard-input
+│   │   │   └── bunzip2-removes-compressed-file
+│   │   ├── bunzip2.tests
+│   │   ├── busybox.tests
+│   │   ├── bz2_issue_11.bz2
+│   │   ├── bz2_issue_12.bz2
+│   │   ├── bzcat
+│   │   │   └── bzcat-does-not-remove-compressed-file
+│   │   ├── bzcat.tests
+│   │   ├── cal.tests
+│   │   ├── cat
+│   │   │   ├── cat-prints-a-file
+│   │   │   └── cat-prints-a-file-and-standard-input
+│   │   ├── cat.tests
+│   │   ├── cmp
+│   │   │   └── cmp-detects-difference
+│   │   ├── comm.tests
+│   │   ├── cp
+│   │   │   ├── cp-a-files-to-dir
+│   │   │   ├── cp-a-preserves-links
+│   │   │   ├── cp-copies-empty-file
+│   │   │   ├── cp-copies-large-file
+│   │   │   ├── cp-copies-small-file
+│   │   │   ├── cp-dev-file
+│   │   │   ├── cp-d-files-to-dir
+│   │   │   ├── cp-dir-create-dir
+│   │   │   ├── cp-dir-existing-dir
+│   │   │   ├── cp-does-not-copy-unreadable-file
+│   │   │   ├── cp-files-to-dir
+│   │   │   ├── cp-follows-links
+│   │   │   ├── cp-parents
+│   │   │   ├── cp-preserves-hard-links
+│   │   │   ├── cp-preserves-links
+│   │   │   ├── cp-preserves-source-file
+│   │   │   └── cp-RHL-does_not_preserve-links
+│   │   ├── cpio.tests
+│   │   ├── cp.tests
+│   │   ├── cryptpw.tests
+│   │   ├── cut
+│   │   │   ├── cut-cuts-a-character
+│   │   │   ├── cut-cuts-a-closed-range
+│   │   │   ├── cut-cuts-a-field
+│   │   │   ├── cut-cuts-an-open-range
+│   │   │   └── cut-cuts-an-unclosed-range
+│   │   ├── cut.tests
+│   │   ├── date
+│   │   │   ├── date-format-works
+│   │   │   ├── date-R-works
+│   │   │   ├── date-u-works
+│   │   │   ├── date-@-works
+│   │   │   ├── date-works
+│   │   │   └── date-works-1
+│   │   ├── dc_add.dc
+│   │   ├── dc_add_results.txt
+│   │   ├── dc_boolean.dc
+│   │   ├── dc_boolean_results.txt
+│   │   ├── dc_decimal.dc
+│   │   ├── dc_decimal_results.txt
+│   │   ├── dc_divide.dc
+│   │   ├── dc_divide_results.txt
+│   │   ├── dc_divmod.dc
+│   │   ├── dc_divmod_results.txt
+│   │   ├── dc_misc.dc
+│   │   ├── dc_misc_results.txt
+│   │   ├── dc_modexp.dc
+│   │   ├── dc_modexp_results.txt
+│   │   ├── dc_modulus.dc
+│   │   ├── dc_modulus_results.txt
+│   │   ├── dc_multiply.dc
+│   │   ├── dc_multiply_results.txt
+│   │   ├── dc_power.dc
+│   │   ├── dc_power_results.txt
+│   │   ├── dc_sqrt.dc
+│   │   ├── dc_sqrt_results.txt
+│   │   ├── dc_strings.dc
+│   │   ├── dc_strings_results.txt
+│   │   ├── dc_subtract.dc
+│   │   ├── dc_subtract_results.txt
+│   │   ├── dc.tests
+│   │   ├── dcx_vars.dc
+│   │   ├── dcx_vars_results.txt
+│   │   ├── dd
+│   │   │   ├── dd-accepts-if
+│   │   │   ├── dd-accepts-of
+│   │   │   ├── dd-copies-from-standard-input-to-standard-output
+│   │   │   ├── dd-prints-count-to-standard-error
+│   │   │   └── dd-reports-write-errors
+│   │   ├── diff.tests
+│   │   ├── dirname
+│   │   │   ├── dirname-handles-absolute-path
+│   │   │   ├── dirname-handles-empty-path
+│   │   │   ├── dirname-handles-multiple-slashes
+│   │   │   ├── dirname-handles-relative-path
+│   │   │   ├── dirname-handles-root
+│   │   │   ├── dirname-handles-single-component
+│   │   │   └── dirname-works
+│   │   ├── du
+│   │   │   ├── du-h-works
+│   │   │   ├── du-k-works
+│   │   │   ├── du-l-works
+│   │   │   ├── du-m-works
+│   │   │   ├── du-s-works
+│   │   │   └── du-works
+│   │   ├── echo
+│   │   │   ├── echo-does-not-print-newline
+│   │   │   ├── echo-prints-argument
+│   │   │   ├── echo-prints-arguments
+│   │   │   ├── echo-prints-dash
+│   │   │   ├── echo-prints-newline
+│   │   │   ├── echo-prints-non-opts
+│   │   │   ├── echo-prints-slash_00041
+│   │   │   ├── echo-prints-slash_0041
+│   │   │   ├── echo-prints-slash_041
+│   │   │   ├── echo-prints-slash_41
+│   │   │   └── echo-prints-slash-zero
+│   │   ├── expand.tests
+│   │   ├── expr
+│   │   │   ├── expr-big
+│   │   │   └── expr-works
+│   │   ├── factor.tests
+│   │   ├── false
+│   │   │   ├── false-is-silent
+│   │   │   └── false-returns-failure
+│   │   ├── find
+│   │   │   └── find-supports-minus-xdev
+│   │   ├── find.tests
+│   │   ├── fold.tests
+│   │   ├── grep.tests
+│   │   ├── gunzip
+│   │   │   └── gunzip-reads-from-standard-input
+│   │   ├── gunzip.tests
+│   │   ├── gzip
+│   │   │   ├── gzip-accepts-multiple-files
+│   │   │   ├── gzip-accepts-single-minus
+│   │   │   ├── gzip-compression-levels
+│   │   │   └── gzip-removes-original-file
+│   │   ├── head.tests
+│   │   ├── hexdump.tests
+│   │   ├── hostid
+│   │   │   └── hostid-works
+│   │   ├── hostname
+│   │   │   ├── hostname-d-works
+│   │   │   ├── hostname-i-works
+│   │   │   ├── hostname-s-works
+│   │   │   └── hostname-works
+│   │   ├── id
+│   │   │   ├── id-g-works
+│   │   │   ├── id-un-works
+│   │   │   ├── id-ur-works
+│   │   │   └── id-u-works
+│   │   ├── ln
+│   │   │   ├── ln-creates-hard-links
+│   │   │   ├── ln-creates-soft-links
+│   │   │   ├── ln-force-creates-hard-links
+│   │   │   ├── ln-force-creates-soft-links
+│   │   │   ├── ln-preserves-hard-links
+│   │   │   └── ln-preserves-soft-links
+│   │   ├── ls
+│   │   │   ├── ls-1-works
+│   │   │   ├── ls-h-works
+│   │   │   ├── ls-l-works
+│   │   │   └── ls-s-works
+│   │   ├── ls.mk_uni_tests
+│   │   ├── ls.tests
+│   │   ├── makedevs.device_table.txt
+│   │   ├── makedevs.tests
+│   │   ├── md5sum
+│   │   │   └── md5sum-verifies-non-binary-file
+│   │   ├── md5sum.tests
+│   │   ├── mdev.tests
+│   │   ├── mkdir
+│   │   │   ├── mkdir-makes-a-directory
+│   │   │   └── mkdir-makes-parent-directories
+│   │   ├── mkfs.minix.tests
+│   │   ├── mount.testroot
+│   │   ├── mount.tests
+│   │   ├── mv
+│   │   │   ├── mv-files-to-dir
+│   │   │   ├── mv-follows-links
+│   │   │   ├── mv-moves-empty-file
+│   │   │   ├── mv-moves-file
+│   │   │   ├── mv-moves-hardlinks
+│   │   │   ├── mv-moves-large-file
+│   │   │   ├── mv-moves-small-file
+│   │   │   ├── mv-moves-symlinks
+│   │   │   ├── mv-moves-unreadable-files
+│   │   │   ├── mv-preserves-hard-links
+│   │   │   ├── mv-preserves-links
+│   │   │   ├── mv-refuses-mv-dir-to-subdir
+│   │   │   └── mv-removes-source-file
+│   │   ├── od.tests
+│   │   ├── parse.tests
+│   │   ├── paste
+│   │   │   ├── paste
+│   │   │   ├── paste-back-cuted-lines
+│   │   │   ├── paste-multi-stdin
+│   │   │   ├── paste-pairs
+│   │   │   └── paste-separate
+│   │   ├── patch.tests
+│   │   ├── pidof.tests
+│   │   ├── printf.tests
+│   │   ├── pwd
+│   │   │   └── pwd-prints-working-directory
+│   │   ├── readlink.tests
+│   │   ├── README
+│   │   ├── rm
+│   │   │   └── rm-removes-file
+│   │   ├── rmdir
+│   │   │   └── rmdir-removes-parent-directories
+│   │   ├── runtest
+│   │   ├── rx.tests
+│   │   ├── sed.tests
+│   │   ├── seq.tests
+│   │   ├── sha1sum.tests
+│   │   ├── sha256sum.tests
+│   │   ├── sha3sum.tests
+│   │   ├── sha512sum.tests
+│   │   ├── sort.tests
+│   │   ├── start-stop-daemon.tests
+│   │   ├── strings
+│   │   │   └── strings-works-like-GNU
+│   │   ├── sum.tests
+│   │   ├── tail
+│   │   │   ├── tail-n-works
+│   │   │   └── tail-works
+│   │   ├── tail.tests
+│   │   ├── tar
+│   │   │   ├── tar-archives-multiple-files
+│   │   │   ├── tar-complains-about-missing-file
+│   │   │   ├── tar-demands-at-least-one-ctx
+│   │   │   ├── tar-demands-at-most-one-ctx
+│   │   │   ├── tar-extracts-all-subdirs
+│   │   │   ├── tar-extracts-file
+│   │   │   ├── tar-extracts-from-standard-input
+│   │   │   ├── tar-extracts-multiple-files
+│   │   │   ├── tar-extracts-to-standard-output
+│   │   │   ├── tar-handles-cz-options
+│   │   │   ├── tar-handles-empty-include-and-non-empty-exclude-list
+│   │   │   ├── tar-handles-exclude-and-extract-lists
+│   │   │   ├── tar-handles-multiple-X-options
+│   │   │   ├── tar-handles-nested-exclude
+│   │   │   ├── tar_with_link_with_size
+│   │   │   └── tar_with_prefix_fields
+│   │   ├── tar.tests
+│   │   ├── tar.utf8.tar.bz2
+│   │   ├── taskset.tests
+│   │   ├── tee
+│   │   │   ├── tee-appends-input
+│   │   │   └── tee-tees-input
+│   │   ├── testing.sh
+│   │   ├── test.tests
+│   │   ├── TODO
+│   │   ├── touch
+│   │   │   ├── touch-creates-file
+│   │   │   ├── touch-does-not-create-file
+│   │   │   └── touch-touches-files-after-non-existent-file
+│   │   ├── tr
+│   │   │   ├── tr-d-alnum-works
+│   │   │   ├── tr-d-works
+│   │   │   ├── tr-non-gnu
+│   │   │   ├── tr-rejects-wrong-class
+│   │   │   └── tr-works
+│   │   ├── tr.tests
+│   │   ├── true
+│   │   │   ├── true-is-silent
+│   │   │   └── true-returns-success
+│   │   ├── umlwrapper.sh
+│   │   ├── uncompress.tests
+│   │   ├── unexpand.tests
+│   │   ├── uniq.tests
+│   │   ├── unlzma_issue_1.lzma
+│   │   ├── unlzma_issue_2.lzma
+│   │   ├── unlzma.tests
+│   │   ├── unzip_bad_lzma_1.zip
+│   │   ├── unzip_bad_lzma_2.zip
+│   │   ├── unzip.tests
+│   │   ├── uptime
+│   │   │   └── uptime-works
+│   │   ├── uuencode.tests
+│   │   ├── wc
+│   │   │   ├── wc-counts-all
+│   │   │   ├── wc-counts-characters
+│   │   │   ├── wc-counts-lines
+│   │   │   ├── wc-counts-words
+│   │   │   └── wc-prints-longest-line-length
+│   │   ├── wget
+│   │   │   ├── wget-handles-empty-path
+│   │   │   ├── wget--O-overrides--P
+│   │   │   ├── wget-retrieves-google-index
+│   │   │   └── wget-supports--P
+│   │   ├── which
+│   │   │   └── which-uses-default-path
+│   │   ├── xargs
+│   │   │   └── xargs-works
+│   │   ├── xargs.tests
+│   │   └── xxd.tests
+│   ├── TODO
+│   ├── TODO_unicode
+│   └── util-linux
+│       ├── acpid.c
+│       ├── acpid.o
+│       ├── blkdiscard.c
+│       ├── blkdiscard.o
+│       ├── blkid.c
+│       ├── blkid.o
+│       ├── blockdev.c
+│       ├── blockdev.o
+│       ├── built-in.o
+│       ├── cal.c
+│       ├── cal.o
+│       ├── chrt.c
+│       ├── chrt.o
+│       ├── Config.in
+│       ├── Config.src
+│       ├── dmesg.c
+│       ├── dmesg.o
+│       ├── eject.c
+│       ├── eject.o
+│       ├── fallocate.c
+│       ├── fallocate.o
+│       ├── fatattr.c
+│       ├── fatattr.o
+│       ├── fbset.c
+│       ├── fbset.o
+│       ├── fdformat.c
+│       ├── fdformat.o
+│       ├── fdisk_aix.c
+│       ├── fdisk.c
+│       ├── fdisk_gpt.c
+│       ├── fdisk.o
+│       ├── fdisk_osf.c
+│       ├── fdisk_sgi.c
+│       ├── fdisk_sun.c
+│       ├── findfs.c
+│       ├── findfs.o
+│       ├── flock.c
+│       ├── flock.o
+│       ├── freeramdisk.c
+│       ├── freeramdisk.o
+│       ├── fsck_minix.c
+│       ├── fsck_minix.o
+│       ├── fsfreeze.c
+│       ├── fsfreeze.o
+│       ├── fstrim.c
+│       ├── fstrim.o
+│       ├── getopt.c
+│       ├── getopt.o
+│       ├── hexdump.c
+│       ├── hexdump.o
+│       ├── hexdump_xxd.c
+│       ├── hexdump_xxd.o
+│       ├── hwclock.c
+│       ├── hwclock.o
+│       ├── ionice.c
+│       ├── ionice.o
+│       ├── ipcrm.c
+│       ├── ipcrm.o
+│       ├── ipcs.c
+│       ├── ipcs.o
+│       ├── Kbuild
+│       ├── Kbuild.src
+│       ├── last.c
+│       ├── last_fancy.c
+│       ├── last_fancy.o
+│       ├── lib.a
+│       ├── losetup.c
+│       ├── losetup.o
+│       ├── lspci.c
+│       ├── lspci.o
+│       ├── lsusb.c
+│       ├── lsusb.o
+│       ├── mdev.c
+│       ├── mdev.o
+│       ├── mesg.c
+│       ├── mesg.o
+│       ├── minix.h
+│       ├── mkfs_ext2.c
+│       ├── mkfs_ext2.o
+│       ├── mkfs_ext2_test.sh
+│       ├── mkfs_ext2.txt
+│       ├── mkfs_minix.c
+│       ├── mkfs_minix.o
+│       ├── mkfs_reiser.c
+│       ├── mkfs_vfat.c
+│       ├── mkfs_vfat.o
+│       ├── mkswap.c
+│       ├── mkswap.o
+│       ├── more.c
+│       ├── more.o
+│       ├── mount.c
+│       ├── mount.o
+│       ├── mountpoint.c
+│       ├── mountpoint.o
+│       ├── nologin.c
+│       ├── nsenter.c
+│       ├── nsenter.o
+│       ├── pivot_root.c
+│       ├── pivot_root.o
+│       ├── rdate.c
+│       ├── rdate.o
+│       ├── rdev.c
+│       ├── rdev.o
+│       ├── readprofile.c
+│       ├── readprofile.o
+│       ├── renice.c
+│       ├── renice.o
+│       ├── rev.c
+│       ├── rev.o
+│       ├── rtcwake.c
+│       ├── rtcwake.o
+│       ├── script.c
+│       ├── script.o
+│       ├── scriptreplay.c
+│       ├── scriptreplay.o
+│       ├── setarch.c
+│       ├── setarch.o
+│       ├── setpriv.c
+│       ├── setpriv.o
+│       ├── setsid.c
+│       ├── setsid.o
+│       ├── swaponoff.c
+│       ├── swaponoff.o
+│       ├── switch_root.c
+│       ├── switch_root.o
+│       ├── taskset.c
+│       ├── taskset.o
+│       ├── uevent.c
+│       ├── uevent.o
+│       ├── umount.c
+│       ├── umount.o
+│       ├── unshare.c
+│       ├── unshare.o
+│       ├── volume_id
+│       │   ├── bcache.c
+│       │   ├── bcache.o
+│       │   ├── btrfs.c
+│       │   ├── btrfs.o
+│       │   ├── built-in.o
+│       │   ├── Config.in
+│       │   ├── Config.src
+│       │   ├── cramfs.c
+│       │   ├── cramfs.o
+│       │   ├── erofs.c
+│       │   ├── erofs.o
+│       │   ├── exfat.c
+│       │   ├── exfat.o
+│       │   ├── ext.c
+│       │   ├── ext.o
+│       │   ├── f2fs.c
+│       │   ├── f2fs.o
+│       │   ├── fat.c
+│       │   ├── fat.o
+│       │   ├── get_devname.c
+│       │   ├── get_devname.o
+│       │   ├── hfs.c
+│       │   ├── hfs.o
+│       │   ├── iso9660.c
+│       │   ├── iso9660.o
+│       │   ├── jfs.c
+│       │   ├── jfs.o
+│       │   ├── Kbuild
+│       │   ├── Kbuild.src
+│       │   ├── lfs.c
+│       │   ├── lfs.o
+│       │   ├── lib.a
+│       │   ├── linux_raid.c
+│       │   ├── linux_raid.o
+│       │   ├── linux_swap.c
+│       │   ├── linux_swap.o
+│       │   ├── luks.c
+│       │   ├── luks.o
+│       │   ├── minix.c
+│       │   ├── minix.o
+│       │   ├── nilfs.c
+│       │   ├── nilfs.o
+│       │   ├── ntfs.c
+│       │   ├── ntfs.o
+│       │   ├── ocfs2.c
+│       │   ├── ocfs2.o
+│       │   ├── reiserfs.c
+│       │   ├── reiserfs.o
+│       │   ├── romfs.c
+│       │   ├── romfs.o
+│       │   ├── squashfs.c
+│       │   ├── squashfs.o
+│       │   ├── sysv.c
+│       │   ├── sysv.o
+│       │   ├── ubifs.c
+│       │   ├── ubifs.o
+│       │   ├── udf.c
+│       │   ├── udf.o
+│       │   ├── unused_highpoint.c
+│       │   ├── unused_hpfs.c
+│       │   ├── unused_isw_raid.c
+│       │   ├── unused_lsi_raid.c
+│       │   ├── unused_lvm.c
+│       │   ├── unused_mac.c
+│       │   ├── unused_msdos.c
+│       │   ├── unused_nvidia_raid.c
+│       │   ├── unused_promise_raid.c
+│       │   ├── unused_silicon_raid.c
+│       │   ├── unused_ufs.c
+│       │   ├── unused_via_raid.c
+│       │   ├── util.c
+│       │   ├── util.o
+│       │   ├── volume_id.c
+│       │   ├── volume_id_internal.h
+│       │   ├── volume_id.o
+│       │   ├── xfs.c
+│       │   └── xfs.o
+│       ├── wall.c
+│       └── wall.o
+├── dev
+├── etc
+├── home
+│   ├── autorun-qemu.sh
+│   ├── conf
+│   │   ├── assignment.txt
+│   │   └── username.txt
+│   ├── finder.sh
+│   ├── finder-test.sh
+│   ├── writer
+│   └── writer.c
+├── initramfs.cpio.gz
+├── lib
+│   └── ld-linux-aarch64.so.1
+├── lib64
+│   ├── libc.so.6
+│   ├── libm.so.6
+│   └── libresolv.so.2
+├── linuxrc -> bin/busybox
+├── proc
+├── sbin
+│   ├── acpid -> ../bin/busybox
+│   ├── adjtimex -> ../bin/busybox
+│   ├── arp -> ../bin/busybox
+│   ├── blkid -> ../bin/busybox
+│   ├── blockdev -> ../bin/busybox
+│   ├── bootchartd -> ../bin/busybox
+│   ├── depmod -> ../bin/busybox
+│   ├── devmem -> ../bin/busybox
+│   ├── fbsplash -> ../bin/busybox
+│   ├── fdisk -> ../bin/busybox
+│   ├── findfs -> ../bin/busybox
+│   ├── freeramdisk -> ../bin/busybox
+│   ├── fsck -> ../bin/busybox
+│   ├── fsck.minix -> ../bin/busybox
+│   ├── fstrim -> ../bin/busybox
+│   ├── getty -> ../bin/busybox
+│   ├── halt -> ../bin/busybox
+│   ├── hdparm -> ../bin/busybox
+│   ├── hwclock -> ../bin/busybox
+│   ├── ifconfig -> ../bin/busybox
+│   ├── ifdown -> ../bin/busybox
+│   ├── ifenslave -> ../bin/busybox
+│   ├── ifup -> ../bin/busybox
+│   ├── init -> ../bin/busybox
+│   ├── insmod -> ../bin/busybox
+│   ├── ip -> ../bin/busybox
+│   ├── ipaddr -> ../bin/busybox
+│   ├── iplink -> ../bin/busybox
+│   ├── ipneigh -> ../bin/busybox
+│   ├── iproute -> ../bin/busybox
+│   ├── iprule -> ../bin/busybox
+│   ├── iptunnel -> ../bin/busybox
+│   ├── klogd -> ../bin/busybox
+│   ├── loadkmap -> ../bin/busybox
+│   ├── logread -> ../bin/busybox
+│   ├── losetup -> ../bin/busybox
+│   ├── lsmod -> ../bin/busybox
+│   ├── makedevs -> ../bin/busybox
+│   ├── mdev -> ../bin/busybox
+│   ├── mkdosfs -> ../bin/busybox
+│   ├── mke2fs -> ../bin/busybox
+│   ├── mkfs.ext2 -> ../bin/busybox
+│   ├── mkfs.minix -> ../bin/busybox
+│   ├── mkfs.vfat -> ../bin/busybox
+│   ├── mkswap -> ../bin/busybox
+│   ├── modinfo -> ../bin/busybox
+│   ├── modprobe -> ../bin/busybox
+│   ├── nameif -> ../bin/busybox
+│   ├── pivot_root -> ../bin/busybox
+│   ├── poweroff -> ../bin/busybox
+│   ├── raidautorun -> ../bin/busybox
+│   ├── reboot -> ../bin/busybox
+│   ├── rmmod -> ../bin/busybox
+│   ├── route -> ../bin/busybox
+│   ├── run-init -> ../bin/busybox
+│   ├── runlevel -> ../bin/busybox
+│   ├── setconsole -> ../bin/busybox
+│   ├── slattach -> ../bin/busybox
+│   ├── start-stop-daemon -> ../bin/busybox
+│   ├── sulogin -> ../bin/busybox
+│   ├── swapoff -> ../bin/busybox
+│   ├── swapon -> ../bin/busybox
+│   ├── switch_root -> ../bin/busybox
+│   ├── sysctl -> ../bin/busybox
+│   ├── syslogd -> ../bin/busybox
+│   ├── tc -> ../bin/busybox
+│   ├── tunctl -> ../bin/busybox
+│   ├── udhcpc -> ../bin/busybox
+│   ├── uevent -> ../bin/busybox
+│   ├── vconfig -> ../bin/busybox
+│   ├── watchdog -> ../bin/busybox
+│   └── zcip -> ../bin/busybox
+├── sys
+├── tmp
+├── usr
+│   ├── bin
+│   │   ├── [ -> ../../bin/busybox
+│   │   ├── [[ -> ../../bin/busybox
+│   │   ├── awk -> ../../bin/busybox
+│   │   ├── basename -> ../../bin/busybox
+│   │   ├── bc -> ../../bin/busybox
+│   │   ├── beep -> ../../bin/busybox
+│   │   ├── blkdiscard -> ../../bin/busybox
+│   │   ├── bunzip2 -> ../../bin/busybox
+│   │   ├── bzcat -> ../../bin/busybox
+│   │   ├── bzip2 -> ../../bin/busybox
+│   │   ├── cal -> ../../bin/busybox
+│   │   ├── chpst -> ../../bin/busybox
+│   │   ├── chrt -> ../../bin/busybox
+│   │   ├── chvt -> ../../bin/busybox
+│   │   ├── cksum -> ../../bin/busybox
+│   │   ├── clear -> ../../bin/busybox
+│   │   ├── cmp -> ../../bin/busybox
+│   │   ├── comm -> ../../bin/busybox
+│   │   ├── crontab -> ../../bin/busybox
+│   │   ├── cryptpw -> ../../bin/busybox
+│   │   ├── cut -> ../../bin/busybox
+│   │   ├── dc -> ../../bin/busybox
+│   │   ├── deallocvt -> ../../bin/busybox
+│   │   ├── diff -> ../../bin/busybox
+│   │   ├── dirname -> ../../bin/busybox
+│   │   ├── dos2unix -> ../../bin/busybox
+│   │   ├── dpkg -> ../../bin/busybox
+│   │   ├── dpkg-deb -> ../../bin/busybox
+│   │   ├── du -> ../../bin/busybox
+│   │   ├── dumpleases -> ../../bin/busybox
+│   │   ├── eject -> ../../bin/busybox
+│   │   ├── env -> ../../bin/busybox
+│   │   ├── envdir -> ../../bin/busybox
+│   │   ├── envuidgid -> ../../bin/busybox
+│   │   ├── expand -> ../../bin/busybox
+│   │   ├── expr -> ../../bin/busybox
+│   │   ├── factor -> ../../bin/busybox
+│   │   ├── fallocate -> ../../bin/busybox
+│   │   ├── fgconsole -> ../../bin/busybox
+│   │   ├── find -> ../../bin/busybox
+│   │   ├── flock -> ../../bin/busybox
+│   │   ├── fold -> ../../bin/busybox
+│   │   ├── free -> ../../bin/busybox
+│   │   ├── ftpget -> ../../bin/busybox
+│   │   ├── ftpput -> ../../bin/busybox
+│   │   ├── fuser -> ../../bin/busybox
+│   │   ├── groups -> ../../bin/busybox
+│   │   ├── hd -> ../../bin/busybox
+│   │   ├── head -> ../../bin/busybox
+│   │   ├── hexdump -> ../../bin/busybox
+│   │   ├── hexedit -> ../../bin/busybox
+│   │   ├── hostid -> ../../bin/busybox
+│   │   ├── id -> ../../bin/busybox
+│   │   ├── install -> ../../bin/busybox
+│   │   ├── ipcrm -> ../../bin/busybox
+│   │   ├── ipcs -> ../../bin/busybox
+│   │   ├── killall -> ../../bin/busybox
+│   │   ├── last -> ../../bin/busybox
+│   │   ├── less -> ../../bin/busybox
+│   │   ├── logger -> ../../bin/busybox
+│   │   ├── logname -> ../../bin/busybox
+│   │   ├── lpq -> ../../bin/busybox
+│   │   ├── lpr -> ../../bin/busybox
+│   │   ├── lsof -> ../../bin/busybox
+│   │   ├── lspci -> ../../bin/busybox
+│   │   ├── lsscsi -> ../../bin/busybox
+│   │   ├── lsusb -> ../../bin/busybox
+│   │   ├── lzcat -> ../../bin/busybox
+│   │   ├── lzma -> ../../bin/busybox
+│   │   ├── man -> ../../bin/busybox
+│   │   ├── md5sum -> ../../bin/busybox
+│   │   ├── mesg -> ../../bin/busybox
+│   │   ├── microcom -> ../../bin/busybox
+│   │   ├── mkfifo -> ../../bin/busybox
+│   │   ├── mkpasswd -> ../../bin/busybox
+│   │   ├── nc -> ../../bin/busybox
+│   │   ├── nl -> ../../bin/busybox
+│   │   ├── nmeter -> ../../bin/busybox
+│   │   ├── nohup -> ../../bin/busybox
+│   │   ├── nproc -> ../../bin/busybox
+│   │   ├── nsenter -> ../../bin/busybox
+│   │   ├── nslookup -> ../../bin/busybox
+│   │   ├── od -> ../../bin/busybox
+│   │   ├── openvt -> ../../bin/busybox
+│   │   ├── passwd -> ../../bin/busybox
+│   │   ├── paste -> ../../bin/busybox
+│   │   ├── patch -> ../../bin/busybox
+│   │   ├── pgrep -> ../../bin/busybox
+│   │   ├── pkill -> ../../bin/busybox
+│   │   ├── pmap -> ../../bin/busybox
+│   │   ├── printf -> ../../bin/busybox
+│   │   ├── pscan -> ../../bin/busybox
+│   │   ├── pstree -> ../../bin/busybox
+│   │   ├── pwdx -> ../../bin/busybox
+│   │   ├── readlink -> ../../bin/busybox
+│   │   ├── realpath -> ../../bin/busybox
+│   │   ├── renice -> ../../bin/busybox
+│   │   ├── reset -> ../../bin/busybox
+│   │   ├── resize -> ../../bin/busybox
+│   │   ├── rpm2cpio -> ../../bin/busybox
+│   │   ├── runsv -> ../../bin/busybox
+│   │   ├── runsvdir -> ../../bin/busybox
+│   │   ├── rx -> ../../bin/busybox
+│   │   ├── script -> ../../bin/busybox
+│   │   ├── seq -> ../../bin/busybox
+│   │   ├── setfattr -> ../../bin/busybox
+│   │   ├── setkeycodes -> ../../bin/busybox
+│   │   ├── setsid -> ../../bin/busybox
+│   │   ├── setuidgid -> ../../bin/busybox
+│   │   ├── sha1sum -> ../../bin/busybox
+│   │   ├── sha256sum -> ../../bin/busybox
+│   │   ├── sha3sum -> ../../bin/busybox
+│   │   ├── sha512sum -> ../../bin/busybox
+│   │   ├── showkey -> ../../bin/busybox
+│   │   ├── shred -> ../../bin/busybox
+│   │   ├── shuf -> ../../bin/busybox
+│   │   ├── smemcap -> ../../bin/busybox
+│   │   ├── softlimit -> ../../bin/busybox
+│   │   ├── sort -> ../../bin/busybox
+│   │   ├── split -> ../../bin/busybox
+│   │   ├── ssl_client -> ../../bin/busybox
+│   │   ├── strings -> ../../bin/busybox
+│   │   ├── sum -> ../../bin/busybox
+│   │   ├── sv -> ../../bin/busybox
+│   │   ├── svc -> ../../bin/busybox
+│   │   ├── svok -> ../../bin/busybox
+│   │   ├── tac -> ../../bin/busybox
+│   │   ├── tail -> ../../bin/busybox
+│   │   ├── taskset -> ../../bin/busybox
+│   │   ├── tcpsvd -> ../../bin/busybox
+│   │   ├── tee -> ../../bin/busybox
+│   │   ├── telnet -> ../../bin/busybox
+│   │   ├── test -> ../../bin/busybox
+│   │   ├── tftp -> ../../bin/busybox
+│   │   ├── time -> ../../bin/busybox
+│   │   ├── timeout -> ../../bin/busybox
+│   │   ├── top -> ../../bin/busybox
+│   │   ├── tr -> ../../bin/busybox
+│   │   ├── traceroute -> ../../bin/busybox
+│   │   ├── traceroute6 -> ../../bin/busybox
+│   │   ├── truncate -> ../../bin/busybox
+│   │   ├── ts -> ../../bin/busybox
+│   │   ├── tty -> ../../bin/busybox
+│   │   ├── ttysize -> ../../bin/busybox
+│   │   ├── udhcpc6 -> ../../bin/busybox
+│   │   ├── udpsvd -> ../../bin/busybox
+│   │   ├── unexpand -> ../../bin/busybox
+│   │   ├── uniq -> ../../bin/busybox
+│   │   ├── unix2dos -> ../../bin/busybox
+│   │   ├── unlink -> ../../bin/busybox
+│   │   ├── unlzma -> ../../bin/busybox
+│   │   ├── unshare -> ../../bin/busybox
+│   │   ├── unxz -> ../../bin/busybox
+│   │   ├── unzip -> ../../bin/busybox
+│   │   ├── uptime -> ../../bin/busybox
+│   │   ├── users -> ../../bin/busybox
+│   │   ├── uudecode -> ../../bin/busybox
+│   │   ├── uuencode -> ../../bin/busybox
+│   │   ├── vlock -> ../../bin/busybox
+│   │   ├── volname -> ../../bin/busybox
+│   │   ├── w -> ../../bin/busybox
+│   │   ├── wall -> ../../bin/busybox
+│   │   ├── wc -> ../../bin/busybox
+│   │   ├── wget -> ../../bin/busybox
+│   │   ├── which -> ../../bin/busybox
+│   │   ├── who -> ../../bin/busybox
+│   │   ├── whoami -> ../../bin/busybox
+│   │   ├── whois -> ../../bin/busybox
+│   │   ├── xargs -> ../../bin/busybox
+│   │   ├── xxd -> ../../bin/busybox
+│   │   ├── xz -> ../../bin/busybox
+│   │   ├── xzcat -> ../../bin/busybox
+│   │   └── yes -> ../../bin/busybox
+│   ├── lib
+│   └── sbin
+│       ├── addgroup -> ../../bin/busybox
+│       ├── add-shell -> ../../bin/busybox
+│       ├── adduser -> ../../bin/busybox
+│       ├── arping -> ../../bin/busybox
+│       ├── brctl -> ../../bin/busybox
+│       ├── chat -> ../../bin/busybox
+│       ├── chpasswd -> ../../bin/busybox
+│       ├── chroot -> ../../bin/busybox
+│       ├── crond -> ../../bin/busybox
+│       ├── delgroup -> ../../bin/busybox
+│       ├── deluser -> ../../bin/busybox
+│       ├── dhcprelay -> ../../bin/busybox
+│       ├── dnsd -> ../../bin/busybox
+│       ├── ether-wake -> ../../bin/busybox
+│       ├── fakeidentd -> ../../bin/busybox
+│       ├── fbset -> ../../bin/busybox
+│       ├── fdformat -> ../../bin/busybox
+│       ├── fsfreeze -> ../../bin/busybox
+│       ├── ftpd -> ../../bin/busybox
+│       ├── httpd -> ../../bin/busybox
+│       ├── i2cdetect -> ../../bin/busybox
+│       ├── i2cdump -> ../../bin/busybox
+│       ├── i2cget -> ../../bin/busybox
+│       ├── i2cset -> ../../bin/busybox
+│       ├── i2ctransfer -> ../../bin/busybox
+│       ├── ifplugd -> ../../bin/busybox
+│       ├── inetd -> ../../bin/busybox
+│       ├── killall5 -> ../../bin/busybox
+│       ├── loadfont -> ../../bin/busybox
+│       ├── lpd -> ../../bin/busybox
+│       ├── mim -> ../../bin/busybox
+│       ├── nanddump -> ../../bin/busybox
+│       ├── nandwrite -> ../../bin/busybox
+│       ├── nbd-client -> ../../bin/busybox
+│       ├── nologin -> ../../bin/busybox
+│       ├── ntpd -> ../../bin/busybox
+│       ├── partprobe -> ../../bin/busybox
+│       ├── popmaildir -> ../../bin/busybox
+│       ├── powertop -> ../../bin/busybox
+│       ├── rdate -> ../../bin/busybox
+│       ├── rdev -> ../../bin/busybox
+│       ├── readahead -> ../../bin/busybox
+│       ├── readprofile -> ../../bin/busybox
+│       ├── remove-shell -> ../../bin/busybox
+│       ├── rtcwake -> ../../bin/busybox
+│       ├── sendmail -> ../../bin/busybox
+│       ├── setfont -> ../../bin/busybox
+│       ├── setlogcons -> ../../bin/busybox
+│       ├── svlogd -> ../../bin/busybox
+│       ├── telnetd -> ../../bin/busybox
+│       ├── tftpd -> ../../bin/busybox
+│       ├── ubiattach -> ../../bin/busybox
+│       ├── ubidetach -> ../../bin/busybox
+│       ├── ubimkvol -> ../../bin/busybox
+│       ├── ubirename -> ../../bin/busybox
+│       ├── ubirmvol -> ../../bin/busybox
+│       ├── ubirsvol -> ../../bin/busybox
+│       ├── ubiupdatevol -> ../../bin/busybox
+│       └── udhcpd -> ../../bin/busybox
+└── var
+    └── log
+
+664 directories, 4870 files

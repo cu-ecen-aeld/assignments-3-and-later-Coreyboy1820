@@ -6,8 +6,7 @@ set -e
 set -u
 
 OUTDIR="/tmp/aeld"
-
-WORKING_DIRECTORY=/home/corey/code/assignment-1-Coreyboy1820/finder-app
+WORKING_DIRECTORY=/home/vboxuser/code/assignments-3-and-later-Coreyboy1820/finder-app
 KERNEL_REPO=git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
 KERNEL_VERSION=v5.15.163
 BUSYBOX_VERSION=1_33_1
@@ -51,78 +50,81 @@ if [ ! -e ${OUTDIR}/linux-stable/arch/${ARCH}/boot/Image ]; then
     
     # Then make the modules
     echo MAKING ALL MODULES
-    make ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} modules 
+    # make ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} modules 
     
     # Finally build the device tree
     echo BUILDING DEVICE TREE
-    make ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} dtbs
+    # make ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} dtbs
 fi
 
-echo "Adding the Image in outdir"
+cp ${OUTDIR}/linux-stable/arch/arm64/boot/Image ${OUTDIR}
 
 echo "Creating the staging directory for the root filesystem"
 cd "$OUTDIR"
 if [ -d "${OUTDIR}/rootfs" ]
 then
 	echo "Deleting rootfs directory at ${OUTDIR}/rootfs and starting over"
-    sudo rm  -rf ${OUTDIR}/rootfs
+    rm  -rf ${OUTDIR}/rootfs
 fi
 
 # Create necessary base directories
 echo making base directories
+mkdir -p rootfs
+cd rootfs
+
 mkdir -p bin dev etc home lib lib64 proc sbin sys tmp usr var
 mkdir -p usr/bin usr/lib usr/sbin
 mkdir -p var/log
 
-cd "$OUTDIR"
+cd ${OUTDIR}
 if [ ! -d "${OUTDIR}/busybox" ]
 then
-git clone git://busybox.net/busybox.git
+    git clone git://busybox.net/busybox.git
     cd busybox
     git checkout ${BUSYBOX_VERSION}
     # TODO:  Configure busybox
+    make ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} defconfig
 else
     cd busybox
 fi
 
 # Make and install busybox
-echo making and installing busybox
+echo Making and installing busybox
 make distclean
 make defconfig
 make ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE}
-make CONFIG_PREFIX=${OUTDIR}/bin ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} install
-
+make CONFIG_PREFIX=${OUTDIR}/rootfs ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} install
 
 echo "Copying Library dependencies"
-mapfile -t dependencies < <(${CROSS_COMPILE}readelf -a "${OUTDIR}/bin/busybox" \
+mapfile -t dependencies < <(${CROSS_COMPILE}readelf -a "${OUTDIR}/rootfs/bin/busybox" \
                              | grep "program interpreter" \
                              | grep -o '/[^]]*')
 
 for dependency in "${dependencies[@]}"
 do
     file_name=$(basename $dependency)
-    cp /home/corey/.local/opt/arm-gnu-toolchain-13.3.rel1-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib/$file_name ${OUTDIR}/lib64/
+    cp /toolchains/arm-gnu-toolchain-13.3.rel1-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib/$file_name ${OUTDIR}/rootfs/lib/
 done
 
-mapfile -t dependencies < <(${CROSS_COMPILE}readelf -a "${OUTDIR}/bin/busybox" \
+mapfile -t dependencies < <(${CROSS_COMPILE}readelf -a "${OUTDIR}/rootfs/bin/busybox" \
     | grep "Shared library" \
     | grep -oP '(?<=\[)[^]]+(?=\])')
 
 for dependency in "${dependencies[@]}"
 do
-    cp /home/corey/.local/opt/arm-gnu-toolchain-13.3.rel1-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/$dependency ${OUTDIR}/lib64/
+    cp /toolchains/arm-gnu-toolchain-13.3.rel1-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/$dependency ${OUTDIR}/rootfs/lib64/
 done
 
 # Make device nodes
-cd "$OUTDIR"
+cd "$OUTDIR/rootfs"
 echo Making Device Nodes
-if [ -e "dev/null"]
+if [ -e "dev/null" ]
 then
     sudo mknod -m 666 dev/null c 1 3
     sudo mknod -m 666 dev/console c 5 1
 fi
 
-# TODO: Clean and build the writer utility
+# Clean and build the writer utility
 
 echo Making Writing Utility
 cd $WORKING_DIRECTORY
@@ -132,13 +134,13 @@ make CROSS_COMPILE=${CROSS_COMPILE}
 # Copy the finder related scripts and executables to the /home directory
 # on the target rootfs
 echo Copy scripts and executables to target
-cp $WORKING_DIRECTORY/writer.c ${OUTDIR}/home 
-cp $WORKING_DIRECTORY/writer ${OUTDIR}/home 
-
-# TODO: Chown the root directory
-cd "$OUTDIR"
-chown -R root ${OUTDIR}
+cp /home/vboxuser/code/assignments-3-and-later-Coreyboy1820/finder-app/finder.sh ${OUTDIR}/rootfs/home/
+cp /home/vboxuser/code/assignments-3-and-later-Coreyboy1820/finder-app/finder-test.sh ${OUTDIR}/rootfs/home/
+cp -r /home/vboxuser/code/assignments-3-and-later-Coreyboy1820/conf ${OUTDIR}/rootfs/home/
+cp /home/vboxuser/code/assignments-3-and-later-Coreyboy1820/finder-app/autorun-qemu.sh ${OUTDIR}/rootfs/home/
+cp $WORKING_DIRECTORY/writer.c ${OUTDIR}/rootfs/home 
+cp $WORKING_DIRECTORY/writer ${OUTDIR}/rootfs/home 
 
 # TODO: Create initramfs.cpio.gz
-find . | cpio -H newc -ov --owner root:root > ${OUTDIR}/initramfs.cpio
-gzip -f initramfs.cpio
+find ${OUTDIR}/rootfs | cpio -H newc -ov --owner root:root > ${OUTDIR}/initramfs.cpio
+gzip -f ${OUTDIR}/initramfs.cpio
