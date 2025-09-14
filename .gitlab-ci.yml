@@ -16,8 +16,7 @@ test:
     stage: test
     script:
         - cd ${CI_PROJECT_DIR}
-        # - ./assignment-autotest/docker/docker-run-test.sh
-        - ls /toolchains
+        - ./assignment-autotest/docker/docker-run-test.sh
 
     artifacts:
         paths:
