@@ -95,10 +95,10 @@ make ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE}
 make CONFIG_PREFIX=${OUTDIR}/rootfs ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} install
 
 echo "Copying Library dependencies"
-cp $WORKING_DIRECTORY/cc-lib/ld-linux-aarch64.so.1 ${OUTDIR}/rootfs/lib/
-cp $WORKING_DIRECTORY/cc-lib/libm.so.6 ${OUTDIR}/rootfs/lib64/
-cp $WORKING_DIRECTORY/cc-lib/libresolv.so.2 ${OUTDIR}/rootfs/lib64/
-cp $WORKING_DIRECTORY/cc-lib/libc.so.6 ${OUTDIR}/rootfs/lib64/
+cp $WORKING_DIRECTORY/../cc-lib/ld-linux-aarch64.so.1 ${OUTDIR}/rootfs/lib/
+cp $WORKING_DIRECTORY/../cc-lib/libm.so.6 ${OUTDIR}/rootfs/lib64/
+cp $WORKING_DIRECTORY/../cc-lib/libresolv.so.2 ${OUTDIR}/rootfs/lib64/
+cp $WORKING_DIRECTORY/../cc-lib/libc.so.6 ${OUTDIR}/rootfs/lib64/
 
 # Make device nodes
 cd "$OUTDIR/rootfs"
@@ -125,7 +125,6 @@ cp -r $WORKING_DIRECTORY/../conf ${OUTDIR}/rootfs/home/
 cp $WORKING_DIRECTORY/autorun-qemu.sh ${OUTDIR}/rootfs/home/
 cp $WORKING_DIRECTORY/writer.c ${OUTDIR}/rootfs/home 
 cp $WORKING_DIRECTORY/writer ${OUTDIR}/rootfs/home 
-cp $WORKING_DIRECTORY/autorun-qemu.sh ${OUTDIR}/rootfs/home
 
 # TODO: Create initramfs.cpio.gz
 cd ${OUTDIR}/rootfs
