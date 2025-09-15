@@ -95,10 +95,10 @@ make ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE}
 make CONFIG_PREFIX=${OUTDIR}/rootfs ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} install
 
 echo "Copying Library dependencies"
-cp cc-lib/ld-linux-aarch64.so.1 ${OUTDIR}/rootfs/lib/
-cp cc-lib/libm.so.6 ${OUTDIR}/rootfs/lib64/
-cp cc-lib/libresolv.so.2 ${OUTDIR}/rootfs/lib64/
-cp cc-lib/libc.so.6 ${OUTDIR}/rootfs/lib64/
+cp $WORKING_DIRECTORY/cc-lib/ld-linux-aarch64.so.1 ${OUTDIR}/rootfs/lib/
+cp $WORKING_DIRECTORY/cc-lib/libm.so.6 ${OUTDIR}/rootfs/lib64/
+cp $WORKING_DIRECTORY/cc-lib/libresolv.so.2 ${OUTDIR}/rootfs/lib64/
+cp $WORKING_DIRECTORY/cc-lib/libc.so.6 ${OUTDIR}/rootfs/lib64/
 
 # Make device nodes
 cd "$OUTDIR/rootfs"
