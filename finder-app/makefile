@@ -5,7 +5,7 @@ SRCS   := writer.c
 OBJS_AARCH64 := $(SRCS:.c=.aarch64.o)
 OBJS_X86     := $(SRCS:.c=.x86.o)
 
-CC_aarch64 := aarch64-none-linux-gnu-gcc
+# CC_aarch64 := aarch64-none-linux-gnu-gcc
 CC_x86     := gcc
 CFLAGS     := -Wall
 
@@ -25,7 +25,7 @@ x86:     $(TARGET).x86
 
 # ============== Linking Step ==============
 $(TARGET).aarch64: $(OBJS_AARCH64)
-	$(CC_aarch64) $^ -o $(TARGET)
+	$(CC) $^ -o $(TARGET)
 
 $(TARGET).x86: $(OBJS_X86)
 	$(CC_x86) $^ -o $(TARGET)
@@ -33,7 +33,7 @@ $(TARGET).x86: $(OBJS_X86)
 # ============== Compile Step ==============
 %.aarch64.o: %.c
 	@echo "CC (aarch64) $<"
-	$(CC_aarch64) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 %.x86.o: %.c
 	@echo "CC (x86) $<"
