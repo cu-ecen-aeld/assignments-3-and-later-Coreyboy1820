@@ -5,7 +5,7 @@ SRCS   := writer.c
 OBJS_AARCH64 := $(SRCS:.c=.aarch64.o)
 OBJS_X86     := $(SRCS:.c=.x86.o)
 
-# CC_aarch64 := aarch64-none-linux-gnu-gcc
+CC ?= aarch64-none-linux-gnu-gcc
 CC_x86     := gcc
 CFLAGS     := -Wall
 
