@@ -1,0 +1,16 @@
+#!/bin/bash
+
+pidFile="/tmp/aesdDaemon.pid"
+
+case $1 in
+    stop)
+        kill $(cat $pidFile)
+        rm $pidFile
+    ;;
+    start)
+        ./aesdsocket -d > $pidFile
+    ;;
+    *)
+        exit -1
+    ;;
+esac

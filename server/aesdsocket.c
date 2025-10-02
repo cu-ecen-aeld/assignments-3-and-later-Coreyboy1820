@@ -190,7 +190,6 @@ int main(int argc, char *argv[])
     // ===========================================================
     // Once binded, make the process a daemon if selected to
     // ===========================================================
-    printf("%s, %d\n", argv[1], strcmp(argv[0], "-d"));
     if(argc > 1)
     {
         if(!strcmp(argv[1], "-d"))
@@ -199,6 +198,7 @@ int main(int argc, char *argv[])
             pid_t pid = fork();
             if(pid != 0)
             {
+                printf("%d\n",pid);
                 exit(EXIT_SUCCESS);
             }
             
