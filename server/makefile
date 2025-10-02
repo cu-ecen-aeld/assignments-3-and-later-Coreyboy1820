@@ -13,11 +13,11 @@ CFLAGS     := -Wall
 
 all: build
 
-# ifeq ($(CROSS_COMPILE),aarch64-none-linux-gnu-)
+ifeq ($(CROSS_COMPILE),aarch64-none-linux-gnu-)
 build: aarch64
-# else
-# build: x86
-# endif
+else
+build: x86
+endif
 
 # Arch targets build the final executable
 aarch64: $(TARGET).aarch64
