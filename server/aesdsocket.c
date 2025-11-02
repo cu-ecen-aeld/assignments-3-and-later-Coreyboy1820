@@ -10,6 +10,8 @@
 #include <signal.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <pthread.h>
+#include "linkedlist.c"
 
 // defines
 
@@ -97,25 +99,100 @@ int WaitForAndAcceptConnection(int socketFd)
     return acceptedSocketFd;
 }
 
+typedef struct 
+{
+    int acceptedSocketFd;
+    struct addrinfo *addrInfo;
+    pthread_mutex_t *mutex;
+    bool *hasReturned;
+} threadParameters_s;
 
+void *AcceptConnectionThenOperate(void* param)
+{
+    int retVal = -1;
+    threadParameters_s *params = (threadParameters_s *)(param);
+    char *buffer = NULL;
+    FILE *fp = NULL;
+    FILE *fileSocketFdRead = NULL;
+    FILE *fileSocketFdWrite = NULL;
+    unsigned int peerNameLength = PEER_NAME_LENGTH;
+    char peerName[PEER_NAME_LENGTH] = {0};
+    size_t bufferLength = 0;
+
+
+    // ===========================================================
+    // Log who connected
+    // ===========================================================
+    retVal = getpeername(params->acceptedSocketFd, (struct sockaddr *)peerName, &peerNameLength);
+    if(retVal != 0)
+    {
+
+        MainCleanUp(buffer, params->addrInfo, fp, NULL, NULL, "10");
+        pthread_exit(&retVal);
+    }
+
+    syslog(LOG_INFO, "Accepted connection from %s\n", peerName);
+
+
+    // make a file descriptor out of the socket
+    fileSocketFdRead = fdopen(params->acceptedSocketFd, "r");
+    if (!fileSocketFdRead) {
+        MainCleanUp(buffer, params->addrInfo, fp, fileSocketFdRead, fileSocketFdWrite, "13");
+        pthread_exit(&retVal);
+    }
+
+    fileSocketFdWrite = fdopen(params->acceptedSocketFd, "w");
+    if (!fileSocketFdWrite) {
+        MainCleanUp(buffer, params->addrInfo, fp, fileSocketFdRead, fileSocketFdWrite, "13");
+        pthread_exit(&retVal);
+    }
+    
+    // open up the file to append to
+    fp = fopen("/var/tmp/aesdsocketdata", "a+");
+    if (fp == NULL) {
+        MainCleanUp(buffer, params->addrInfo, fp, fileSocketFdRead, fileSocketFdWrite, "11");
+        pthread_exit(&retVal);
+    }
+
+    while(getline(&buffer, &bufferLength, fileSocketFdRead) != -1)
+    {
+        pthread_mutex_lock(params->mutex);
+
+        // then write them to the file
+        fprintf(fp, "%s", buffer);
+        fflush(fp); 
+        
+        rewind(fp);
+        
+        pthread_mutex_unlock(params->mutex);
+
+        // iterate over built up file and send it out the socket
+        while(getline(&buffer, &bufferLength, fp) != -1)
+        {
+            // write the packet received back to the client
+            fprintf(fileSocketFdWrite, "%s", buffer);
+            fflush(fileSocketFdWrite); 
+        }
+    }
+
+    retVal = 0;
+    pthread_exit(&retVal);
+}
 
 int main(int argc, char *argv[])
 {
-    int socketFd = 0, acceptedSocketFd = 0;
+    int socketFd = 0;
     int retVal = 0;
     struct addrinfo hints;
     struct addrinfo *addrInfo = NULL;
     int yes = 1;
-    unsigned int peerNameLength = PEER_NAME_LENGTH;
-    char peerName[PEER_NAME_LENGTH] = {0};
-    FILE *fp = NULL;
     int flags = 0;
-    FILE *fileSocketFdRead = NULL;
-    FILE *fileSocketFdWrite = NULL;
+    pthread_t threadId = {0}; 
+    threadParameters_s params = {0};
+    pthread_mutex_t fileMutex;
+    int acceptedSocketFd = 0;
 
-    // this is the pointer to the malloc'd data
-    char *buffer = NULL;
-    size_t bufferLength = 0;
+    List linkedList = {0};
 
     // ===========================================================
     // install the signal handler
@@ -142,7 +219,7 @@ int main(int argc, char *argv[])
     if(retVal != 0)
     {
         fprintf(stderr, "error when getting address information errno: %s\n", gai_strerror(retVal));
-        MainCleanUp(buffer, addrInfo, fp, NULL, NULL, "4");
+        MainCleanUp(NULL, addrInfo, NULL, NULL, NULL, "4");
         return -1;
     }
 
@@ -153,7 +230,7 @@ int main(int argc, char *argv[])
     socketFd = socket(addrInfo->ai_family, addrInfo->ai_socktype, addrInfo->ai_protocol);
     if(socketFd == ERR)
     {
-        MainCleanUp(buffer, addrInfo, fp, NULL, NULL, "5");
+        MainCleanUp(NULL, addrInfo, NULL, NULL, NULL, "5");
         fprintf(stderr, "error when getting socket file descriptor\n");
         return -1;
     }
@@ -165,7 +242,7 @@ int main(int argc, char *argv[])
     retVal = setsockopt(socketFd, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(yes));
     if(retVal != 0)
     {
-        MainCleanUp(buffer, addrInfo, fp, NULL, NULL, "6");
+        MainCleanUp(NULL, addrInfo, NULL, NULL, NULL, "6");
         return -1;
     }
 
@@ -183,7 +260,7 @@ int main(int argc, char *argv[])
     retVal = bind(socketFd, addrInfo->ai_addr, addrInfo->ai_addrlen);
     if(retVal != 0)
     {
-        MainCleanUp(buffer, addrInfo, fp, NULL, NULL, "7");
+        MainCleanUp(NULL, addrInfo, NULL, NULL, NULL, "7");
         return -1;
     }
 
@@ -232,7 +309,7 @@ int main(int argc, char *argv[])
         if(retVal != 0)
         {
             fprintf(stderr, "error while listening for a connection on the socket\n");
-            MainCleanUp(buffer, addrInfo, fp, NULL, NULL, "8");
+            MainCleanUp(NULL, addrInfo, NULL, NULL, NULL, "8");
             return -1;
             // break;
         }
@@ -246,67 +323,59 @@ int main(int argc, char *argv[])
         if(acceptedSocketFd == -1)
         {
 
-            MainCleanUp(buffer, addrInfo, fp, NULL, NULL, "9");
+            MainCleanUp(NULL, addrInfo, NULL, NULL, NULL, "9");
             return -1;
         }
 
-        // ===========================================================
-        // Log who connected
-        // ===========================================================
-        retVal = getpeername(acceptedSocketFd, (struct sockaddr *)peerName, &peerNameLength);
+        retVal = pthread_mutex_init(&fileMutex, NULL);
         if(retVal != 0)
         {
-
-            MainCleanUp(buffer, addrInfo, fp, NULL, NULL, "10");
+            fprintf(stderr, "error while initing the mutex\n");
+            MainCleanUp(NULL, addrInfo, NULL, NULL, NULL, "8");
             return -1;
+            // break;
         }
 
-        syslog(LOG_INFO, "Accepted connection from %s\n", peerName);
+        // create a thread when a new connection is found
+        params.addrInfo = addrInfo;
+        params.acceptedSocketFd = acceptedSocketFd;
+        params.mutex = &fileMutex;
+        params.hasReturned = malloc(sizeof(bool));
 
-
-        // make a file descriptor out of the socket
-        fileSocketFdRead = fdopen(acceptedSocketFd, "r");
-        if (!fileSocketFdRead) {
-            MainCleanUp(buffer, addrInfo, fp, fileSocketFdRead, fileSocketFdWrite, "13");
-            return -1;
-        }
-
-        fileSocketFdWrite = fdopen(acceptedSocketFd, "w");
-        if (!fileSocketFdWrite) {
-            MainCleanUp(buffer, addrInfo, fp, fileSocketFdRead, fileSocketFdWrite, "13");
-            return -1;
-        }
-        
-        // open up the file to append to
-        fp = fopen("/var/tmp/aesdsocketdata", "a+");
-        if (fp == NULL) {
-            MainCleanUp(buffer, addrInfo, fp, fileSocketFdRead, fileSocketFdWrite, "11");
-            return -1;
-        }
-
-        while(getline(&buffer, &bufferLength, fileSocketFdRead) != -1)
+        retVal = pthread_create(&threadId, NULL, AcceptConnectionThenOperate, &params);
+        if(retVal != 0)
         {
-            // then write them to the file
-            fprintf(fp, "%s", buffer);
-            fflush(fp); 
-            
-            rewind(fp);
+            fprintf(stderr, "error while creating a new thread\n");
+            // break;
+        }
 
-            // iterate over built up file and send it out the socket
-            while(getline(&buffer, &bufferLength, fp) != -1)
+        retVal = (int)list_push(&linkedList, threadId, params.hasReturned);
+        if(!retVal) // if there is an error
+        {
+            fprintf(stderr, "error while adding to linked list\n");
+        }
+
+        for(unsigned int i = 0; i < linkedList.length; i++)
+        {
+            int value;
+            bool *hasReturned;
+            list_pop(&linkedList, &value, &hasReturned);
+            if(!(*hasReturned)) // if it has not returned, place it back on the list
             {
-                // write the packet received back to the client
-                fprintf(fileSocketFdWrite, "%s", buffer);
-                fflush(fileSocketFdWrite); 
+                list_push(&linkedList, value, hasReturned);
+            }
+            else
+            {
+                pthread_join(value, NULL);
             }
         }
-        
+
     }
 
     // only get here if the signal was thrown
     syslog(LOG_INFO, "Caught signal, exiting");
 
-    MainCleanUp(buffer, addrInfo, fp, fileSocketFdRead, fileSocketFdWrite, "12");
+    MainCleanUp(NULL, addrInfo, NULL, NULL, NULL, "12");
 
     return 0;
 }
