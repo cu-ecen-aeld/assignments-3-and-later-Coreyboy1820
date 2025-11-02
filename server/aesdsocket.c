@@ -170,7 +170,7 @@ int SetupSocket(struct addrinfo **addrInfo, int *socketFd)
     // ===========================================================
 
     flags = fcntl(*socketFd, F_GETFL, 0);
-    fcntl(*socketFd, F_SETFL, flags);
+    fcntl(*socketFd, F_SETFL, flags | O_NONBLOCK);
 
     // ===========================================================
     // Bind the socket to an address
@@ -321,7 +321,6 @@ static void* AcceptorMain(void* arg)
     FILE *fd = params->fd;
 
     for (;;) {
-        printf("running: %d\n", running);
         if (!running) break;
         
         int cfd = accept(listenfd, NULL, NULL);
@@ -383,7 +382,6 @@ void* PrintEvery10Seconds(void *params)
         strftime(buf, sizeof buf, "%a, %d %b %Y %H:%M:%S %z", &tm_local);
 
         pthread_mutex_lock(&fileMutex);
-        printf("timestamp:%s\n", buf);
         fprintf(printParams->fp, "timestamp:%s\n", buf);  // <-- newline matters for getline()
         fflush(printParams->fp);                           // ensure it hits the kernel
         pthread_mutex_unlock(&fileMutex);
@@ -518,30 +516,21 @@ int main(int argc, char *argv[])
     MainCleanUp(addrInfo, fp, "12");
 
     remove("/var/tmp/aesdsocketdata");
-    printf("testing\n");
 
     // if the list hasn't been cleared, clean up
     while(globalLinkedList.length != 0)
     {
-        printf("testing1\n");
         pthread_t value;
         bool *hasReturned = NULL;
         list_pop(&globalLinkedList, &value, &hasReturned);
-        printf("testing2\n");
         free(hasReturned);
-        printf("testing3\n");
         pthread_join(value, NULL);
-        printf("testing4\n");
     }
 
     // clean up the acceptor
-    printf("Started cleanup\n");
     close(socketFd);
-    printf("Closed socket connection\n");
     pthread_join(acceptorTid, NULL);
-    printf("Closed acceptor thread\n");
     pthread_join(timestampTid, NULL);
-    printf("Closed timestamp thread\n");
 
     return 0;
 }
