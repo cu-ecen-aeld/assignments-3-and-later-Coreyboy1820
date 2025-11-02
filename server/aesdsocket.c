@@ -180,6 +180,7 @@ int SetupSocket(struct addrinfo **addrInfo, int *socketFd)
     if(retVal != 0)
     {
         fprintf(stderr, "error when binding the socket\n");
+        PrintErrno(errno);
         return -1;
     }
 
@@ -404,25 +405,28 @@ int main(int argc, char *argv[])
     acceptorParams_s acceptorParams = {0};
     printParams_s printParams = {0};
 
-    // open up the file to append to
-    fp = fopen("/var/tmp/aesdsocketdata", "a+");
-    if (fp == NULL) {
-        MainCleanUp(addrInfo, fp, "5");
-        pthread_exit(&retVal);
-    }
-
-    // start at next 10s boundary from now
-    clock_gettime(CLOCK_MONOTONIC, &next);
-    next.tv_sec += 10 - (next.tv_sec % 10);  // align to 10s boundary
-
-    retVal = pthread_mutex_init(&listMutex, NULL);
-
     // ===========================================================
     // install the signal handler
     // ===========================================================
 
     signal(SIGINT, EndProcessSignalHandler);
     signal(SIGTERM, EndProcessSignalHandler);
+
+    MakeProcessDaemon(argc, argv);
+
+    // open up the file to append to
+    unlink("/var/tmp/aesdsocketdata");
+    fp = fopen("/var/tmp/aesdsocketdata", "a+");
+    if (fp == NULL) {
+        MainCleanUp(addrInfo, fp, "5");
+        return -1;
+    }
+
+    // start at next 10s boundary from now
+    clock_gettime(CLOCK_REALTIME, &next);
+    next.tv_sec += 10 - (next.tv_sec % 10);  // align to 10s boundary
+
+    retVal = pthread_mutex_init(&listMutex, NULL);
 
     // ===========================================================
     // Open and configure sys log
@@ -450,8 +454,6 @@ int main(int argc, char *argv[])
         return -1;
         // break;
     }
-
-    MakeProcessDaemon(argc, argv);
 
     // ===========================================================
     // When a connection has been made to the socket, accept it
@@ -513,9 +515,6 @@ int main(int argc, char *argv[])
 
     // only get here if the signal was thrown
     syslog(LOG_INFO, "Caught signal, exiting");
-    MainCleanUp(addrInfo, fp, "12");
-
-    remove("/var/tmp/aesdsocketdata");
 
     // if the list hasn't been cleared, clean up
     while(globalLinkedList.length != 0)
@@ -523,14 +522,19 @@ int main(int argc, char *argv[])
         pthread_t value;
         bool *hasReturned = NULL;
         list_pop(&globalLinkedList, &value, &hasReturned);
-        free(hasReturned);
         pthread_join(value, NULL);
+        free(hasReturned);
     }
 
-    // clean up the acceptor
     close(socketFd);
-    pthread_join(acceptorTid, NULL);
+
+    // clean up the acceptor
     pthread_join(timestampTid, NULL);
+    pthread_join(acceptorTid, NULL);
+
+    MainCleanUp(addrInfo, fp, "12");
+
+    sleep(1);
 
     return 0;
 }
