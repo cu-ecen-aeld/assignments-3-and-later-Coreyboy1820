@@ -8,7 +8,10 @@ case $1 in
         rm $pidFile
     ;;
     start)
-        aesdsocket -d > $pidFile
+        ./aesdsocket -d
+        sleep(1)
+        PID=$(pgrep aesdsocket)
+        echo $PID > $pidFile
     ;;
     *)
         exit -1

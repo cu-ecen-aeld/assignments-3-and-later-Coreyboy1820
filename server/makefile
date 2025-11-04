@@ -1,4 +1,4 @@
-TARGET := aesdsocket
+TARGET ?= aesdsocket
 SRCS   := aesdsocket.c
 
 # Object files for each arch
@@ -7,7 +7,9 @@ OBJS_X86     := $(SRCS:.c=.x86.o)
 
 CC ?= aarch64-none-linux-gnu-gcc
 CC_x86     := gcc
-CFLAGS     := -Wall
+CFLAGS     ?= -Wall
+
+LDFLAGS ?= -lpthread -lrt
 
 .PHONY: all clean build aarch64 x86
 
