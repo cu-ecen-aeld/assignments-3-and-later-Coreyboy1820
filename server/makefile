@@ -5,9 +5,9 @@ SRCS   := aesdsocket.c
 OBJS_AARCH64 := $(SRCS:.c=.aarch64.o)
 OBJS_X86     := $(SRCS:.c=.x86.o)
 
-CC ?= aarch64-none-linux-gnu-gcc
-CC_x86     := gcc
-CFLAGS     ?= -Wall
+CC      	?= $(CROSS_COMPILE)gcc
+CC_x86  	?= gcc
+CFLAGS      ?= -Wall
 
 LDFLAGS ?= -lpthread -lrt
 
@@ -15,7 +15,7 @@ LDFLAGS ?= -lpthread -lrt
 
 all: build
 
-ifeq ($(CROSS_COMPILE),aarch64-none-linux-gnu-)
+ifeq ($(findstring aarch64,$(CC)),aarch64)
 build: aarch64
 else
 build: x86
