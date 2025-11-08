@@ -16,6 +16,10 @@
 #include <stdbool.h>
 #endif
 
+
+#define success 0
+#define buffer_empty -1
+#define position_out_of_bounds -2
 #define AESDCHAR_MAX_WRITE_OPERATIONS_SUPPORTED 10
 
 struct aesd_buffer_entry
@@ -46,6 +50,10 @@ struct aesd_circular_buffer
      */
     uint8_t out_offs;
     /**
+     * Number of entries in the circular buffer
+     */
+    uint8_t length;
+    /**
      * set to true when the buffer entry structure is full
      */
     bool full;
@@ -57,6 +65,12 @@ extern struct aesd_buffer_entry *aesd_circular_buffer_find_entry_offset_for_fpos
 extern void aesd_circular_buffer_add_entry(struct aesd_circular_buffer *buffer, const struct aesd_buffer_entry *add_entry);
 
 extern void aesd_circular_buffer_init(struct aesd_circular_buffer *buffer);
+
+extern void aesd_circular_buffer_print(struct aesd_circular_buffer *buffer);
+
+extern int aesd_circular_buffer_read(struct aesd_circular_buffer *buffer, struct aesd_buffer_entry **readEntry);
+
+extern int aesd_circular_buffer_peek(struct aesd_circular_buffer *buffer, struct aesd_buffer_entry **readEntry, unsigned int position);
 
 /**
  * Create a for loop to iterate over each member of the circular buffer.

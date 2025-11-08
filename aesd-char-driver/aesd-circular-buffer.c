@@ -14,6 +14,9 @@
 #include <string.h>
 #endif
 
+#include <stdio.h>
+#include <stdlib.h>
+
 #include "aesd-circular-buffer.h"
 
 /**
@@ -29,9 +32,33 @@
 struct aesd_buffer_entry *aesd_circular_buffer_find_entry_offset_for_fpos(struct aesd_circular_buffer *buffer,
             size_t char_offset, size_t *entry_offset_byte_rtn )
 {
-    /**
-    * TODO: implement per description
-    */
+    struct aesd_buffer_entry *currentEntry = {0};
+    int retval = 0;
+    unsigned int i = 0;
+
+    while(i < buffer->length)
+    {
+        retval = aesd_circular_buffer_peek(buffer, &currentEntry, i);
+
+        if(retval != success)
+        {
+            printf("error value: %d\n", retval);
+            break;
+        }
+        
+        if(char_offset < currentEntry->size)
+        {
+            *entry_offset_byte_rtn = char_offset;
+            return currentEntry;
+        }
+        else
+        {
+            char_offset -= currentEntry->size;
+        }
+
+        i++;
+    }
+
     return NULL;
 }
 
@@ -44,9 +71,80 @@ struct aesd_buffer_entry *aesd_circular_buffer_find_entry_offset_for_fpos(struct
 */
 void aesd_circular_buffer_add_entry(struct aesd_circular_buffer *buffer, const struct aesd_buffer_entry *add_entry)
 {
-    /**
-    * TODO: implement per description
-    */
+    // normal case
+    buffer->entry[buffer->in_offs] = *add_entry;
+    buffer->in_offs++;
+
+    // handle wrap around
+    if(buffer->in_offs >= AESDCHAR_MAX_WRITE_OPERATIONS_SUPPORTED)
+    {
+        buffer->in_offs = 0;
+    }
+
+    if(buffer->full == true)
+    {
+        buffer->out_offs = buffer->in_offs;
+    }
+    else
+    {
+        buffer->length++;
+    }
+
+    // case where buffer is full set buffer full to true
+    if(buffer->in_offs == buffer->out_offs)
+    {
+        buffer->full = true;
+    }
+}
+
+extern inline int aesd_circular_buffer_read(struct aesd_circular_buffer *buffer, struct aesd_buffer_entry **readEntry)
+{
+    int bufferPeakRetVal = aesd_circular_buffer_peek(buffer, readEntry, 0);
+
+    // if the buffer is full, set it to not full
+    if(buffer->full)
+    {
+        buffer->full = false;
+    }
+
+    if(bufferPeakRetVal == success)
+    {
+        buffer->out_offs++;
+        buffer->length--;
+    }
+
+    return bufferPeakRetVal;
+}
+
+extern int aesd_circular_buffer_peek(struct aesd_circular_buffer *buffer, struct aesd_buffer_entry **readEntry, unsigned int position)
+{
+    
+    // If position indexs past the size of the buffer, set it back down to the start of the buffer
+    unsigned int currentPosition = (buffer->out_offs + position) % AESDCHAR_MAX_WRITE_OPERATIONS_SUPPORTED;
+
+    // if the buffer is not empty, read the value back
+    if(buffer->length == 0)
+    {
+        return buffer_empty;
+    }
+    else if(buffer->length < position)
+    {
+        return position_out_of_bounds;
+    }
+    else
+    {
+        *readEntry = &buffer->entry[currentPosition];
+    }
+
+    return success;
+}
+
+extern void aesd_circular_buffer_print(struct aesd_circular_buffer *buffer)
+{
+    for(unsigned int i = 0; i < AESDCHAR_MAX_WRITE_OPERATIONS_SUPPORTED; i++)
+    {
+        printf("%d: %s\n", i, buffer->entry[i].buffptr); 
+    }
 }
 
 /**

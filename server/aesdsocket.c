@@ -13,6 +13,7 @@
 #include <pthread.h>
 #include <time.h>
 #include "linkedlist.c"
+#include "aesdsocket.h"
 
 // defines
 
@@ -475,43 +476,7 @@ int main(int argc, char *argv[])
     // While this process has not been terminated
     // ===========================================================
 
-    while(running)
-    {
-        if(retVal == 0)
-        {
-
-            for(unsigned int i = globalLinkedList.length; i > 0; i--)
-            {
-                pthread_t value;
-                bool *hasReturned = NULL;
-                list_pop(&globalLinkedList, &value, &hasReturned);
-
-                if(!(*hasReturned)) // if it has not returned
-                {
-
-                    // place it back on the list
-                    list_push(&globalLinkedList, value, hasReturned);
-
-                }
-                else
-                {
-
-                    // if it has returned, join on the thread
-                    pthread_join(value, NULL);
-
-                    // then free the malloc'd bool
-                    free(hasReturned);
-                }
-            }
-        }
-        else
-        {
-            printf("Error when creating thread\n");
-        }
-
-        struct timespec ts = {0, 20*1000*1000};  // ~20 ms tick
-        nanosleep(&ts, NULL);
-    }
+    ManageThreads(retVal);
 
     // only get here if the signal was thrown
     syslog(LOG_INFO, "Caught signal, exiting");
@@ -537,4 +502,43 @@ int main(int argc, char *argv[])
     sleep(1);
 
     return 0;
+}
+void ManageThreads(int retVal)
+{
+    while (running)
+    {
+        if (retVal == 0)
+        {
+
+            for (unsigned int i = globalLinkedList.length; i > 0; i--)
+            {
+                pthread_t value;
+                bool *hasReturned = NULL;
+                list_pop(&globalLinkedList, &value, &hasReturned);
+
+                if (!(*hasReturned)) // if it has not returned
+                {
+
+                    // place it back on the list
+                    list_push(&globalLinkedList, value, hasReturned);
+                }
+                else
+                {
+
+                    // if it has returned, join on the thread
+                    pthread_join(value, NULL);
+
+                    // then free the malloc'd bool
+                    free(hasReturned);
+                }
+            }
+        }
+        else
+        {
+            printf("Error when creating thread\n");
+        }
+
+        struct timespec ts = {0, 20 * 1000 * 1000}; // ~20 ms tick
+        nanosleep(&ts, NULL);
+    }
 }
