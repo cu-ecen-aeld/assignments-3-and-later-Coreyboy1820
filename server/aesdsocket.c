@@ -254,7 +254,9 @@ void *OperateOnConnection(void* param)
 
     while(getline(&buffer, &bufferLength, fileSocketFd) != -1)
     {
-        pthread_mutex_lock(&fileMutex);
+        #ifndef USE_AESD_CHAR_DEVICE
+            pthread_mutex_lock(&fileMutex);
+        #endif
 
         // then write them to the file
         fprintf(params->fp, "%s", buffer);
@@ -269,8 +271,9 @@ void *OperateOnConnection(void* param)
             fprintf(fileSocketFd, "%s", buffer);
             fflush(fileSocketFd); 
         }
-
-        pthread_mutex_unlock(&fileMutex);
+        #ifndef USE_AESD_CHAR_DEVICE
+            pthread_mutex_unlock(&fileMutex);
+        #endif
     }
     
     *(params->hasReturned) = true;
@@ -382,7 +385,7 @@ void* PrintEvery10Seconds(void *params)
         char buf[64];
         localtime_r(&now, &tm_local);
         strftime(buf, sizeof buf, "%a, %d %b %Y %H:%M:%S %z", &tm_local);
-
+        
         pthread_mutex_lock(&fileMutex);
         fprintf(printParams->fp, "timestamp:%s\n", buf);  // <-- newline matters for getline()
         fflush(printParams->fp);                           // ensure it hits the kernel
@@ -405,7 +408,15 @@ int main(int argc, char *argv[])
     FILE *fp;
     acceptorParams_s acceptorParams = {0};
     printParams_s printParams = {0};
-
+    
+    char fileName[] = 
+    #ifndef USE_AESD_CHAR_DEVICE 
+        "/var/tmp/aesdsocketdata"
+    #else
+        "/dev/aesdchar" 
+    #endif
+    ;
+    
     // ===========================================================
     // install the signal handler
     // ===========================================================
@@ -416,8 +427,9 @@ int main(int argc, char *argv[])
     MakeProcessDaemon(argc, argv);
 
     // open up the file to append to
-    unlink("/var/tmp/aesdsocketdata");
-    fp = fopen("/var/tmp/aesdsocketdata", "a+");
+    
+    unlink(fileName);
+    fp = fopen(fileName, "a+");
     if (fp == NULL) {
         MainCleanUp(addrInfo, fp, "5");
         return -1;
@@ -467,10 +479,12 @@ int main(int argc, char *argv[])
 
     pthread_create(&acceptorTid, NULL, AcceptorMain, &acceptorParams);
 
-    printParams.fp = fp;
-    printParams.next = next;
+    #ifndef USE_AESD_CHAR_DEVICE 
+        printParams.fp = fp;
+        printParams.next = next;
 
-    pthread_create(&timestampTid, NULL, PrintEvery10Seconds, (void *)&printParams);
+        pthread_create(&timestampTid, NULL, PrintEvery10Seconds, (void *)&printParams);
+    #endif
 
     // ===========================================================
     // While this process has not been terminated
@@ -493,8 +507,11 @@ int main(int argc, char *argv[])
 
     close(socketFd);
 
+    #ifndef USE_AESD_CHAR_DEVICE 
+        pthread_join(timestampTid, NULL);
+    #endif
+
     // clean up the acceptor
-    pthread_join(timestampTid, NULL);
     pthread_join(acceptorTid, NULL);
 
     MainCleanUp(addrInfo, fp, "12");
