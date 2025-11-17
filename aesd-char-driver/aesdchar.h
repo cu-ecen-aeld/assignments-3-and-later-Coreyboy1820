@@ -29,9 +29,9 @@ struct aesd_dev
      * TODO: Add structure(s) and locks needed to complete assignment requirements
      */
 
-     struct aesd_circular_buffer circularBuffer; // the circular buffer which stores data
-     struct aesd_buffer_entry workingEntry; // the working buffer for incomplete messages
-     pthread_mutex_t mutex; // a mutex for accessing the circular buffer
+     struct aesd_circular_buffer *circularBuffer; // the circular buffer which stores data
+     struct aesd_buffer_entry *workingEntry; // the working buffer for incomplete messages
+     struct mutex lock; // a mutex for accessing the circular buffer
      struct cdev cdev;     /* Char device structure      */
 };
 

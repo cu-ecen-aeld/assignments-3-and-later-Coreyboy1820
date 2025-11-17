@@ -17,7 +17,9 @@
 #include <linux/types.h>
 #include <linux/cdev.h>
 #include <linux/fs.h> // file_operations
+#include <linux/mutex.h>
 #include "aesdchar.h"
+#include "aesd-circular-buffer.h"
 int aesd_major =   0; // use dynamic major
 int aesd_minor =   0;
 
@@ -29,30 +31,69 @@ struct aesd_dev aesd_device;
 int aesd_open(struct inode *inode, struct file *filp)
 {
     PDEBUG("open");
-    /**
-     * TODO: handle open
-     */
+    struct aesd_dev *dev;
+
+    dev = container_of(inode->i_cdev, struct aesd_dev, cdev);
+
+    filp->private_data = dev;
     return 0;
 }
 
 int aesd_release(struct inode *inode, struct file *filp)
 {
     PDEBUG("release");
-    /**
-     * TODO: handle release
-     */
+
     return 0;
 }
 
 ssize_t aesd_read(struct file *filp, char __user *buf, size_t count,
                 loff_t *f_pos)
 {
-    ssize_t retval = 0;
+    struct aesd_dev * dev;
+    struct aesd_buffer_entry *circBufEntry = NULL;
+    size_t entryOffset = 0;
+    size_t *position = (size_t *)f_pos;
+    ssize_t i = 0;
+
     PDEBUG("read %zu bytes with offset %lld",count,*f_pos);
-    /**
-     * TODO: handle read
-     */
-    return retval;
+
+    // get the private data
+    dev = (struct aesd_dev *)filp->private_data;
+    
+    // iterate over all the bytes reqeusted to return
+    for(i = 0; i < count;)
+    {
+        if (mutex_lock_interruptible(&dev->lock))
+        {
+            return -ERESTARTSYS;
+        }
+
+        // get the specified entry
+        circBufEntry = aesd_circular_buffer_find_entry_offset_for_fpos(&dev->circularBuffer, *position, &entryOffset);
+        
+        mutex_unlock(&dev->lock);
+
+        // if nothing was returned, break out
+        if(!circBufEntry)
+        {
+            break;
+        }
+
+        // calculate the number of bytes to copy to the user buffer
+        unsigned int bytesToCopy = circBufEntry->size - entryOffset;
+
+        // copy over to the user space buffer
+        if(copy_to_user(buf, &(circBufEntry->buffptr[entryOffset]), bytesToCopy))
+        {
+            return -EFAULT;  // user buffer invalid
+        }
+        
+        // increment the position which is to copy next.
+        (*position) += bytesToCopy;
+        i += bytesToCopy;
+    }
+
+    return i;
 }
 
 ssize_t aesd_write(struct file *filp, const char __user *buf, size_t count,
@@ -102,9 +143,12 @@ int aesd_init_module(void)
     }
     memset(&aesd_device,0,sizeof(struct aesd_dev));
 
-    /**
-     * TODO: initialize the AESD specific portion of the device
-     */
+    aesd_device.circularBuffer = (struct aesd_circular_buffer *)kmalloc(sizeof(struct aesd_circular_buffer), GFP_KERNEL);
+    aesd_device.workingEntry = (struct aesd_buffer_entry *)kmalloc(sizeof(struct aesd_buffer_entry), GFP_KERNEL);
+    aesd_circular_buffer_init(aesd_device.circularBuffer);
+    memset(&aesd_device.workingEntry,0,sizeof(struct aesd_buffer_entry));
+
+    mutex_init(&aesd_device.lock);
 
     result = aesd_setup_cdev(&aesd_device);
 
@@ -121,9 +165,8 @@ void aesd_cleanup_module(void)
 
     cdev_del(&aesd_device.cdev);
 
-    /**
-     * TODO: cleanup AESD specific poritions here as necessary
-     */
+    kfree(aesd_device.circularBuffer);
+    kfree(aesd_device.workingEntry);
 
     unregister_chrdev_region(devno, 1);
 }
