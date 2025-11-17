@@ -68,10 +68,12 @@ struct aesd_buffer_entry *aesd_circular_buffer_find_entry_offset_for_fpos(struct
 * new start location.
 * Any necessary locking must be handled by the caller
 * Any memory referenced in @param add_entry must be allocated by and/or must have a lifetime managed by the caller.
+* @returns a pointer which needs to be freed when the buffer is full, NULL if nothing needs to be freed
 */
-void aesd_circular_buffer_add_entry(struct aesd_circular_buffer *buffer, const struct aesd_buffer_entry *add_entry)
+const char *aesd_circular_buffer_add_entry(struct aesd_circular_buffer *buffer, const struct aesd_buffer_entry *add_entry)
 {
     // normal case
+    const char * retPtr = buffer->entry[buffer->in_offs].buffptr;
     buffer->entry[buffer->in_offs] = *add_entry;
     buffer->in_offs++;
 
@@ -88,6 +90,7 @@ void aesd_circular_buffer_add_entry(struct aesd_circular_buffer *buffer, const s
     else
     {
         buffer->length++;
+        retPtr = NULL;
     }
 
     // case where buffer is full set buffer full to true
@@ -95,6 +98,8 @@ void aesd_circular_buffer_add_entry(struct aesd_circular_buffer *buffer, const s
     {
         buffer->full = true;
     }
+
+    return retPtr;
 }
 
 extern inline int aesd_circular_buffer_read(struct aesd_circular_buffer *buffer, struct aesd_buffer_entry **readEntry)
