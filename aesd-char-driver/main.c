@@ -102,9 +102,10 @@ ssize_t aesd_write(struct file *filp, const char __user *buf, size_t count,
     ssize_t retval = -ENOMEM;
     struct aesd_dev * dev;
     struct aesd_buffer_entry add_entry = {0};
+    char *removedEntry;
 
     PDEBUG("write %zu bytes with offset %lld",count,*f_pos);
-    
+
     dev = (struct aesd_dev *)filp->private_data;
 
     add_entry.buffptr = (char *)kmalloc(count, GFP_KERNEL);
@@ -131,7 +132,12 @@ ssize_t aesd_write(struct file *filp, const char __user *buf, size_t count,
         return -ERESTARTSYS;
     }
 
-    aesd_circular_buffer_add_entry(dev->circularBuffer, &add_entry);
+    removedEntry = aesd_circular_buffer_add_entry(dev->circularBuffer, &add_entry);
+
+    if(!removedEntry)
+    {
+        kfree(removedEntry);
+    }
 
     mutex_unlock(&dev->lock);
 
