@@ -100,10 +100,41 @@ ssize_t aesd_write(struct file *filp, const char __user *buf, size_t count,
                 loff_t *f_pos)
 {
     ssize_t retval = -ENOMEM;
+    struct aesd_dev * dev;
+    struct aesd_buffer_entry add_entry = {0};
+
     PDEBUG("write %zu bytes with offset %lld",count,*f_pos);
-    /**
-     * TODO: handle write
-     */
+    
+    dev = (struct aesd_dev *)filp->private_data;
+
+    add_entry.buffptr = (char *)kmalloc(count, GFP_KERNEL);
+
+    if(!add_entry.buffptr)
+    {
+        return -ENOMEM;
+    }
+
+    add_entry.size = (size_t)count;
+
+    // if there were bytes not copied, return no bytes written
+    if(copy_from_user(add_entry.buffptr, buf, add_entry.size))
+    {
+        kfree(add_entry.buffptr);
+        return 0;
+    }
+
+    (*f_pos) += add_entry.size;
+
+    if (mutex_lock_interruptible(&dev->lock))
+    {
+        kfree(add_entry.buffptr);
+        return -ERESTARTSYS;
+    }
+
+    aesd_circular_buffer_add_entry(dev->circularBuffer, &add_entry);
+
+    mutex_unlock(&dev->lock);
+
     return retval;
 }
 struct file_operations aesd_fops = {
