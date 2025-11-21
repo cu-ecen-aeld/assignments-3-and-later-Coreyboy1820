@@ -69,7 +69,7 @@ ssize_t aesd_read(struct file *filp, char __user *buf, size_t count,
         }
 
         // get the specified entry
-        circBufEntry = aesd_circular_buffer_find_entry_offset_for_fpos(&dev->circularBuffer, *position, &entryOffset);
+        circBufEntry = aesd_circular_buffer_find_entry_offset_for_fpos(dev->circularBuffer, *position, &entryOffset);
         
         mutex_unlock(&dev->lock);
 
@@ -102,7 +102,7 @@ ssize_t aesd_write(struct file *filp, const char __user *buf, size_t count,
     ssize_t retval = -ENOMEM;
     struct aesd_dev * dev;
     struct aesd_buffer_entry add_entry = {0};
-    char *removedEntry;
+    const char *removedEntry;
 
     PDEBUG("write %zu bytes with offset %lld",count,*f_pos);
 
@@ -143,6 +143,7 @@ ssize_t aesd_write(struct file *filp, const char __user *buf, size_t count,
 
     return retval;
 }
+
 struct file_operations aesd_fops = {
     .owner =    THIS_MODULE,
     .read =     aesd_read,

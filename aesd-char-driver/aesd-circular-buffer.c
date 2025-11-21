@@ -14,9 +14,6 @@
 #include <string.h>
 #endif
 
-#include <stdio.h>
-#include <stdlib.h>
-
 #include "aesd-circular-buffer.h"
 
 /**
@@ -42,7 +39,6 @@ struct aesd_buffer_entry *aesd_circular_buffer_find_entry_offset_for_fpos(struct
 
         if(retval != success)
         {
-            printf("error value: %d\n", retval);
             break;
         }
         
@@ -144,13 +140,13 @@ extern int aesd_circular_buffer_peek(struct aesd_circular_buffer *buffer, struct
     return success;
 }
 
-extern void aesd_circular_buffer_print(struct aesd_circular_buffer *buffer)
-{
-    for(unsigned int i = 0; i < AESDCHAR_MAX_WRITE_OPERATIONS_SUPPORTED; i++)
-    {
-        printf("%d: %s\n", i, buffer->entry[i].buffptr); 
-    }
-}
+// extern void aesd_circular_buffer_print(struct aesd_circular_buffer *buffer)
+// {
+//     for(unsigned int i = 0; i < AESDCHAR_MAX_WRITE_OPERATIONS_SUPPORTED; i++)
+//     {
+//         printf("%d: %s\n", i, buffer->entry[i].buffptr); 
+//     }
+// }
 
 /**
 * Initializes the circular buffer described by @param buffer to an empty struct

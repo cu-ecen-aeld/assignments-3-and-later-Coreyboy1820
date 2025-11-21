@@ -20,7 +20,16 @@
 #define ERR -1
 #define PEER_NAME_LENGTH 50
 #define MAX_CHARS_TO_PROCESS_AT_ONCE 100
-#define USE_AESD_CHAR_DEVICE 1
+// #define USE_AESD_CHAR_DEVICE 1
+
+    
+char fileName[] = 
+#ifndef USE_AESD_CHAR_DEVICE 
+    "/var/tmp/aesdsocketdata"
+#else
+    "/dev/aesdchar" 
+#endif
+;
 
 // structs, enums
 
@@ -29,7 +38,6 @@ typedef struct
     int acceptedSocketFd;
     struct addrinfo *addrInfo;
     bool *hasReturned;
-    FILE *fp;
 } threadParameters_s;
 
 static pthread_mutex_t fileMutex = PTHREAD_MUTEX_INITIALIZER;
@@ -52,7 +60,7 @@ void PrintErrno(int err) {
     fprintf(stderr, "Error %d: %s\n", err, strerror(err));
 }
 
-void ThreadCleanUp(char *buffer, FILE *fsfdr, threadParameters_s *params, char *location)
+void ThreadCleanUp(char *buffer, FILE *fd, FILE *fsfdr, threadParameters_s *params, char *location)
 {
     if(location != NULL)
     {
@@ -69,13 +77,18 @@ void ThreadCleanUp(char *buffer, FILE *fsfdr, threadParameters_s *params, char *
         fclose(fsfdr);
     }
 
+    if(fd != NULL)
+    {
+        fclose(fd);
+    }
+
     if(params != NULL)
     {
         free(params);
     }
 }
 
-void MainCleanUp(struct addrinfo *addrInfo, FILE *fp, char *location)
+void MainCleanUp(struct addrinfo *addrInfo, char *location)
 {
     if(location != NULL)
     {
@@ -85,11 +98,6 @@ void MainCleanUp(struct addrinfo *addrInfo, FILE *fp, char *location)
     if(addrInfo != NULL)
     {
         free(addrInfo);
-    }
-
-    if(fp != NULL)
-    {
-        fclose(fp);
     }
 }
 
@@ -229,6 +237,7 @@ void *OperateOnConnection(void* param)
     char peerName[PEER_NAME_LENGTH] = {0};
     size_t bufferLength = 0;
 
+    FILE *fd = fopen(fileName, "a+");
 
     // ===========================================================
     // Log who connected
@@ -237,7 +246,7 @@ void *OperateOnConnection(void* param)
     if(retVal != 0)
     {
 
-        ThreadCleanUp(buffer, fileSocketFd, params, "1");
+        ThreadCleanUp(buffer, fd, fileSocketFd, params, "1");
         *params->hasReturned = true;
         pthread_exit(&retVal);
     }
@@ -248,7 +257,7 @@ void *OperateOnConnection(void* param)
     // make a file descriptor out of the socket
     fileSocketFd = fdopen(params->acceptedSocketFd, "r+");
     if (!fileSocketFd) {
-        ThreadCleanUp(buffer, fileSocketFd, params, "2");
+        ThreadCleanUp(buffer, fd, fileSocketFd, params, "2");
         *params->hasReturned = true;
         pthread_exit(&retVal);
     }
@@ -260,13 +269,13 @@ void *OperateOnConnection(void* param)
         #endif
 
         // then write them to the file
-        fprintf(params->fp, "%s", buffer);
-        fflush(params->fp); 
+        fprintf(fd, "%s", buffer);
+        fflush(fd); 
         
-        rewind(params->fp);
+        rewind(fd);
 
         // iterate over built up file and send it out the socket
-        while(getline(&buffer, &bufferLength, params->fp) != -1)
+        while(getline(&buffer, &bufferLength, fd) != -1)
         {
             // write the packet received back to the client
             fprintf(fileSocketFd, "%s", buffer);
@@ -278,12 +287,12 @@ void *OperateOnConnection(void* param)
     }
     
     *(params->hasReturned) = true;
-    ThreadCleanUp(buffer, fileSocketFd, params, "5");
+    ThreadCleanUp(buffer, fd, fileSocketFd, params, "5");
     retVal = 0;
     pthread_exit(&retVal);
 }
 
-int CreateThread(struct addrinfo *addrInfo, int acceptedSocketFd, List *linkedList, FILE *fd)
+int CreateThread(struct addrinfo *addrInfo, int acceptedSocketFd, List *linkedList)
 {
     int retVal = 0;
     pthread_t threadId = {0}; 
@@ -294,7 +303,6 @@ int CreateThread(struct addrinfo *addrInfo, int acceptedSocketFd, List *linkedLi
     params->acceptedSocketFd = acceptedSocketFd;
     params->hasReturned = (bool*)malloc(sizeof(bool));
     *params->hasReturned = false;
-    params->fp = fd;
 
     retVal = pthread_create(&threadId, NULL, OperateOnConnection, params);
     if(retVal != 0)
@@ -316,7 +324,6 @@ int CreateThread(struct addrinfo *addrInfo, int acceptedSocketFd, List *linkedLi
 typedef struct 
 {
     int listenfd;
-    FILE *fd;
 } acceptorParams_s;
 
 static void* AcceptorMain(void* arg)
@@ -324,7 +331,6 @@ static void* AcceptorMain(void* arg)
     int retVal = 0;
     acceptorParams_s *params = (acceptorParams_s*) arg;
     int listenfd = params->listenfd;
-    FILE *fd = params->fd;
 
     for (;;) {
         if (!running) break;
@@ -344,8 +350,9 @@ static void* AcceptorMain(void* arg)
         fcntl(cfd, F_SETFL, fl & ~O_NONBLOCK);
 
         // Spawn worker and push (CreateThread does the push under listMutex)
-        (void)CreateThread(NULL , cfd, &globalLinkedList, fd);
+        (void)CreateThread(NULL , cfd, &globalLinkedList);
     }
+
     pthread_exit(&retVal);
 }
 
@@ -368,9 +375,9 @@ void* PrintEvery10Seconds(void *params)
     printParams_s *printParams = (printParams_s*)params;
     int retVal = 0;
 
-    if (!printParams->fp) {
-        // optionally log errno somewhere visible
-        return NULL;
+    FILE *fd = fopen(fileName, "a+");
+    if (fd == NULL) {
+        running = 0;
     }
 
     while (running) {
@@ -388,13 +395,15 @@ void* PrintEvery10Seconds(void *params)
         strftime(buf, sizeof buf, "%a, %d %b %Y %H:%M:%S %z", &tm_local);
         
         pthread_mutex_lock(&fileMutex);
-        fprintf(printParams->fp, "timestamp:%s\n", buf);  // <-- newline matters for getline()
-        fflush(printParams->fp);                           // ensure it hits the kernel
+        fprintf(fd, "timestamp:%s\n", buf);  // <-- newline matters for getline()
+        fflush(fd);                           // ensure it hits the kernel
         pthread_mutex_unlock(&fileMutex);
 
         // compute the NEXT absolute boundary (re-align each loop)
         next_wall_10s(&printParams->next);
     }
+
+    fclose(fd);
 
     pthread_exit(&retVal);
 }
@@ -406,17 +415,8 @@ int main(int argc, char *argv[])
     struct timespec next;
     struct addrinfo *addrInfo = NULL;
     pthread_t acceptorTid = 0, timestampTid = 0;
-    FILE *fp;
     acceptorParams_s acceptorParams = {0};
     printParams_s printParams = {0};
-    
-    char fileName[] = 
-    #ifndef USE_AESD_CHAR_DEVICE 
-        "/var/tmp/aesdsocketdata"
-    #else
-        "/dev/aesdchar" 
-    #endif
-    ;
     
     // ===========================================================
     // install the signal handler
@@ -429,12 +429,7 @@ int main(int argc, char *argv[])
 
     // open up the file to append to
     
-    unlink(fileName);
-    fp = fopen(fileName, "a+");
-    if (fp == NULL) {
-        MainCleanUp(addrInfo, fp, "5");
-        return -1;
-    }
+    // unlink(fileName);
 
     // start at next 10s boundary from now
     clock_gettime(CLOCK_REALTIME, &next);
@@ -452,7 +447,7 @@ int main(int argc, char *argv[])
     if(retVal != 0)
     {
         fprintf(stderr, "Error while setting up socket\n");
-        MainCleanUp(addrInfo, fp, "1");
+        MainCleanUp(addrInfo, "1");
         return -1;
         // break;
     }
@@ -464,7 +459,7 @@ int main(int argc, char *argv[])
     if(retVal != 0)
     {
         fprintf(stderr, "error while listening for a connection on the socket\n");
-        MainCleanUp(addrInfo, fp, "2");
+        MainCleanUp(addrInfo, "2");
         return -1;
         // break;
     }
@@ -475,16 +470,14 @@ int main(int argc, char *argv[])
     // if signal handler was triggered
     // ===========================================================
 
-    acceptorParams.fd = fp;
     acceptorParams.listenfd = socketFd;
 
     pthread_create(&acceptorTid, NULL, AcceptorMain, &acceptorParams);
 
     #ifndef USE_AESD_CHAR_DEVICE 
-        printParams.fp = fp;
         printParams.next = next;
 
-        pthread_create(&timestampTid, NULL, PrintEvery10Seconds, (void *)&printParams);
+        // pthread_create(&timestampTid, NULL, PrintEvery10Seconds, (void *)&printParams);
     #endif
 
     // ===========================================================
@@ -515,7 +508,7 @@ int main(int argc, char *argv[])
     // clean up the acceptor
     pthread_join(acceptorTid, NULL);
 
-    MainCleanUp(addrInfo, fp, "12");
+    MainCleanUp(addrInfo, "12");
 
     sleep(1);
 
