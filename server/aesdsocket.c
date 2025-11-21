@@ -20,7 +20,7 @@
 #define ERR -1
 #define PEER_NAME_LENGTH 50
 #define MAX_CHARS_TO_PROCESS_AT_ONCE 100
-// #define USE_AESD_CHAR_DEVICE 1
+#define USE_AESD_CHAR_DEVICE 1
 
     
 char fileName[] = 

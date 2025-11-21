@@ -53,47 +53,36 @@ ssize_t aesd_read(struct file *filp, char __user *buf, size_t count,
     struct aesd_buffer_entry *circBufEntry = NULL;
     size_t entryOffset = 0;
     size_t *position = (size_t *)f_pos;
-    ssize_t i = 0;
 
-    PDEBUG("read %zX bytes with offset %lld",count,*f_pos);
+    PDEBUG("read %X bytes with offset %lld",count,*f_pos);
 
     // get the private data
     dev = (struct aesd_dev *)filp->private_data;
     
     // iterate over all the bytes reqeusted to return
-    for(i = 0; i < count;)
+    if (mutex_lock_interruptible(&dev->lock))
     {
-        if (mutex_lock_interruptible(&dev->lock))
-        {
-            return -ERESTARTSYS;
-        }
+        return -ERESTARTSYS;
+    }
 
-        // get the specified entry
-        circBufEntry = aesd_circular_buffer_find_entry_offset_for_fpos(dev->circularBuffer, *position, &entryOffset);
-        
-        mutex_unlock(&dev->lock);
+    // get the specified entry
+    circBufEntry = aesd_circular_buffer_find_entry_offset_for_fpos(dev->circularBuffer, *position, &entryOffset);
+    
+    mutex_unlock(&dev->lock);
 
-        // if nothing was returned, break out
-        if(!circBufEntry)
-        {
-            break;
-        }
-
-        // calculate the number of bytes to copy to the user buffer
-        unsigned int bytesToCopy = circBufEntry->size - entryOffset;
-
+    if(circBufEntry)
+    {
         // copy over to the user space buffer
-        if(copy_to_user(buf, &(circBufEntry->buffptr[entryOffset]), bytesToCopy))
+        if(copy_to_user(buf, circBufEntry->buffptr, circBufEntry->size))
         {
             return -EFAULT;  // user buffer invalid
         }
-        
-        // increment the position which is to copy next.
-        (*position) += bytesToCopy;
-        i += bytesToCopy;
+
+        *f_pos += circBufEntry->size;
+        return circBufEntry->size;
     }
 
-    return i;
+    return 0;
 }
 
 ssize_t aesd_write(struct file *filp, const char __user *buf, size_t count,
@@ -103,43 +92,56 @@ ssize_t aesd_write(struct file *filp, const char __user *buf, size_t count,
     struct aesd_dev * dev;
     struct aesd_buffer_entry add_entry = {0};
     const char *removedEntry;
+    char *finalBuf; 
 
     PDEBUG("write %zu bytes with offset %lld",count,*f_pos);
 
     dev = (struct aesd_dev *)filp->private_data;
 
-    add_entry.buffptr = (char *)kmalloc(count, GFP_KERNEL);
+    PDEBUG("dev ptr:%llX\n", dev);
+    PDEBUG("working ptr:%llX\n", dev->workingEntry);
 
-    if(!add_entry.buffptr)
+    finalBuf = (char *)kmalloc(dev->workingEntry->size + count, GFP_KERNEL);
+
+    if(copy_from_user(&(finalBuf[dev->workingEntry->size]), buf, count))
     {
-        return -ENOMEM;
-    }
-
-    add_entry.size = (size_t)count;
-
-    // if there were bytes not copied, return no bytes written
-    if(copy_from_user(add_entry.buffptr, buf, add_entry.size))
-    {
-        kfree(add_entry.buffptr);
+        kfree(finalBuf);
         return 0;
     }
 
-    (*f_pos) += add_entry.size;
-
-    if (mutex_lock_interruptible(&dev->lock))
+    if(dev->workingEntry->buffptr != NULL)
     {
-        kfree(add_entry.buffptr);
-        return -ERESTARTSYS;
+        memcpy(finalBuf, dev->workingEntry->buffptr, dev->workingEntry->size);
+        kfree(dev->workingEntry->buffptr);
     }
 
-    removedEntry = aesd_circular_buffer_add_entry(dev->circularBuffer, &add_entry);
+    dev->workingEntry->size += count;
+    dev->workingEntry->buffptr = finalBuf;
 
-    if(removedEntry)
+    (*f_pos) += count;
+
+    // if the last byte is a newline, add it to the circular buffer
+    if(dev->workingEntry->buffptr[dev->workingEntry->size-1] == '\n')
     {
-        kfree(removedEntry);
-    }
 
-    mutex_unlock(&dev->lock);
+        if (mutex_lock_interruptible(&dev->lock))
+        {
+            kfree(finalBuf);
+            return -ERESTARTSYS;
+        }
+
+        removedEntry = aesd_circular_buffer_add_entry(dev->circularBuffer, dev->workingEntry);
+
+        if(removedEntry)
+        {
+            kfree(removedEntry);
+        }
+
+        dev->workingEntry->size = 0;
+        dev->workingEntry->buffptr = NULL;
+
+        mutex_unlock(&dev->lock);
+    }
 
     return retval;
 }
@@ -183,8 +185,11 @@ int aesd_init_module(void)
 
     aesd_device.circularBuffer = (struct aesd_circular_buffer *)kmalloc(sizeof(struct aesd_circular_buffer), GFP_KERNEL);
     aesd_device.workingEntry = (struct aesd_buffer_entry *)kmalloc(sizeof(struct aesd_buffer_entry), GFP_KERNEL);
+
+    PDEBUG("working Ptr: %llX\n", aesd_device.workingEntry);
+
     aesd_circular_buffer_init(aesd_device.circularBuffer);
-    memset(&aesd_device.workingEntry,0,sizeof(struct aesd_buffer_entry));
+    memset(aesd_device.workingEntry,0,sizeof(struct aesd_buffer_entry));
 
     mutex_init(&aesd_device.lock);
 
