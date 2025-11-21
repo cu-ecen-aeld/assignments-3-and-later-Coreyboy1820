@@ -30,7 +30,6 @@ struct aesd_buffer_entry *aesd_circular_buffer_find_entry_offset_for_fpos(struct
             size_t char_offset, size_t *entry_offset_byte_rtn )
 {
     struct aesd_buffer_entry *currentEntry = {0};
-    int retval = 0;
     unsigned int i = 0;
 
     while(i < buffer->length)
@@ -44,7 +43,7 @@ struct aesd_buffer_entry *aesd_circular_buffer_find_entry_offset_for_fpos(struct
         
         if(char_offset < currentEntry->size)
         {
-            *entry_offset_byte_rtn = char_offset;
+            *entry_offset_byte_rtn = char_offset+1;
             return currentEntry;
         }
         else

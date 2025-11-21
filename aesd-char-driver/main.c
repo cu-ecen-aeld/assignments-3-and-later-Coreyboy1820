@@ -55,7 +55,7 @@ ssize_t aesd_read(struct file *filp, char __user *buf, size_t count,
     size_t *position = (size_t *)f_pos;
     ssize_t i = 0;
 
-    PDEBUG("read %zu bytes with offset %lld",count,*f_pos);
+    PDEBUG("read %zX bytes with offset %lld",count,*f_pos);
 
     // get the private data
     dev = (struct aesd_dev *)filp->private_data;
@@ -99,7 +99,7 @@ ssize_t aesd_read(struct file *filp, char __user *buf, size_t count,
 ssize_t aesd_write(struct file *filp, const char __user *buf, size_t count,
                 loff_t *f_pos)
 {
-    ssize_t retval = -ENOMEM;
+    ssize_t retval = count;
     struct aesd_dev * dev;
     struct aesd_buffer_entry add_entry = {0};
     const char *removedEntry;
@@ -134,7 +134,7 @@ ssize_t aesd_write(struct file *filp, const char __user *buf, size_t count,
 
     removedEntry = aesd_circular_buffer_add_entry(dev->circularBuffer, &add_entry);
 
-    if(!removedEntry)
+    if(removedEntry)
     {
         kfree(removedEntry);
     }
