@@ -10,7 +10,7 @@ case $1 in
     start)
         usr/bin/aesdsocket -d
         sleep 1
-        PID=$(pgrep aesdsocket)
+        PID=$(pidof aesdsocket)
         echo $PID > $pidFile
     ;;
     *)
