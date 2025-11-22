@@ -72,22 +72,26 @@ ssize_t aesd_read(struct file *filp, char __user *buf, size_t count,
 
     // get the specified entry
     circBufEntry = aesd_circular_buffer_find_entry_offset_for_fpos(dev->circularBuffer, *position, &entryOffset);
-    PDEBUG("pos: %d, offset: %d\n", *position, entryOffset);
+    PDEBUG("pos: %d, offset: %d, ptr %X\n", *position, entryOffset, circBufEntry);
 
     if(circBufEntry)
     {
 
-        PDEBUG("size: %d, buf: %s\n", circBufEntry->size, circBufEntry->buffptr);
+        PDEBUG("size: %d, buf: %.*s", circBufEntry->size, circBufEntry->size, circBufEntry->buffptr);
 
-        if (copy_to_user(buf, circBufEntry->buffptr, circBufEntry->size))
+        unsigned int sizeToCopy = circBufEntry->size - entryOffset;
+
+        sizeToCopy = min(sizeToCopy, count);
+
+        if (copy_to_user(buf, circBufEntry->buffptr, sizeToCopy))
         {
             mutex_unlock(&dev->lock);
             return -EFAULT;
         }
 
-        *f_pos += circBufEntry->size;
+        *f_pos += sizeToCopy;
         mutex_unlock(&dev->lock);
-        return circBufEntry->size;
+        return sizeToCopy;
     }
     
     mutex_unlock(&dev->lock);
@@ -101,7 +105,7 @@ ssize_t aesd_write(struct file *filp, const char __user *buf, size_t count,
     ssize_t retval = count;
     struct aesd_dev * dev;
     const char *removedEntry;
-    PDEBUG("WRITE\n");
+    PDEBUG("%s\n", "WRITE");
 
     dev = (struct aesd_dev *)filp->private_data;
 
@@ -128,9 +132,8 @@ ssize_t aesd_write(struct file *filp, const char __user *buf, size_t count,
     }
 
     dev->workingEntry->size = newSize;
-    (*f_pos) += count;
 
-    PDEBUG("Buf: %s, size: %d, count: %d\n", dev->workingEntry->buffptr, dev->workingEntry->size, count);
+    PDEBUG("size: %d, count: %d Buf: %.*s", dev->workingEntry->size, count, dev->workingEntry->size, dev->workingEntry->buffptr);
 
     // if the last byte is a newline, add it to the circular buffer
     if(dev->workingEntry->buffptr[dev->workingEntry->size-1] == '\n')

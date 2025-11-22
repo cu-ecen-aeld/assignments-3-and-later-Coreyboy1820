@@ -244,6 +244,7 @@ void *OperateOnConnection(void* param)
         *params->hasReturned = true;
         pthread_exit(&retVal);
     }
+    rewind(fd);
 
     // ===========================================================
     // Log who connected
@@ -274,7 +275,7 @@ void *OperateOnConnection(void* param)
         printf("\n\n\n %s\n\n\n", buffer);
         // then write them to the file
         fprintf(fd, "%s", buffer);
-        // fflush(fd);
+        fflush(fd);
 
         // iterate over built up file and send it out the socket
         while(getline(&buffer, &bufferLength, fd) != -1)
