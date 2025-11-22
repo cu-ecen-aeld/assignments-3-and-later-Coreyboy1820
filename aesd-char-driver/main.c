@@ -30,7 +30,6 @@ struct aesd_dev aesd_device;
 
 int aesd_open(struct inode *inode, struct file *filp)
 {
-    PDEBUG("open");
     struct aesd_dev *dev;
 
     dev = container_of(inode->i_cdev, struct aesd_dev, cdev);
@@ -41,7 +40,6 @@ int aesd_open(struct inode *inode, struct file *filp)
 
 int aesd_release(struct inode *inode, struct file *filp)
 {
-    PDEBUG("release");
 
     return 0;
 }
@@ -54,7 +52,6 @@ ssize_t aesd_read(struct file *filp, char __user *buf, size_t count,
     size_t entryOffset = 0;
     size_t *position = (size_t *)f_pos;
 
-    PDEBUG("read %X bytes with offset %lld",count,*f_pos);
 
     // get the private data
     dev = (struct aesd_dev *)filp->private_data;
@@ -90,16 +87,12 @@ ssize_t aesd_write(struct file *filp, const char __user *buf, size_t count,
 {
     ssize_t retval = count;
     struct aesd_dev * dev;
-    struct aesd_buffer_entry add_entry = {0};
     const char *removedEntry;
     char *finalBuf; 
 
-    PDEBUG("write %zu bytes with offset %lld",count,*f_pos);
 
     dev = (struct aesd_dev *)filp->private_data;
 
-    PDEBUG("dev ptr:%llX\n", dev);
-    PDEBUG("working ptr:%llX\n", dev->workingEntry);
 
     finalBuf = (char *)kmalloc(dev->workingEntry->size + count, GFP_KERNEL);
 
@@ -185,8 +178,6 @@ int aesd_init_module(void)
 
     aesd_device.circularBuffer = (struct aesd_circular_buffer *)kmalloc(sizeof(struct aesd_circular_buffer), GFP_KERNEL);
     aesd_device.workingEntry = (struct aesd_buffer_entry *)kmalloc(sizeof(struct aesd_buffer_entry), GFP_KERNEL);
-
-    PDEBUG("working Ptr: %llX\n", aesd_device.workingEntry);
 
     aesd_circular_buffer_init(aesd_device.circularBuffer);
     memset(aesd_device.workingEntry,0,sizeof(struct aesd_buffer_entry));
