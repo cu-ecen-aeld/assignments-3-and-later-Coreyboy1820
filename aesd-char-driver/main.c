@@ -28,6 +28,15 @@ MODULE_LICENSE("Dual BSD/GPL");
 
 struct aesd_dev aesd_device;
 
+struct file_operations aesd_fops = {
+    .owner =    THIS_MODULE,
+    .read =     aesd_read,
+    .write =    aesd_write,
+    .open =     aesd_open,
+    .release =  aesd_release,
+    .llseek = noop_llseek,
+};
+
 int aesd_open(struct inode *inode, struct file *filp)
 {
     struct aesd_dev *dev;
@@ -64,20 +73,20 @@ ssize_t aesd_read(struct file *filp, char __user *buf, size_t count,
     // get the specified entry
     circBufEntry = aesd_circular_buffer_find_entry_offset_for_fpos(dev->circularBuffer, *position, &entryOffset);
 
+    PDEBUG("pos: %d, offset: %d\n", *position, entryOffset);
+
     if(circBufEntry)
     {
-        size_t available = circBufEntry->size - entryOffset;
-        size_t to_copy = min(count, available);
 
-        if (copy_to_user(buf, circBufEntry->buffptr + entryOffset, to_copy))
+        if (copy_to_user(buf, circBufEntry->buffptr, circBufEntry->size))
         {
             mutex_unlock(&dev->lock);
             return -EFAULT;
         }
 
-        *f_pos += to_copy;
+        *f_pos += circBufEntry->size;
         mutex_unlock(&dev->lock);
-        return to_copy;
+        return circBufEntry->size;
     }
     
     mutex_unlock(&dev->lock);
@@ -91,37 +100,32 @@ ssize_t aesd_write(struct file *filp, const char __user *buf, size_t count,
     ssize_t retval = count;
     struct aesd_dev * dev;
     const char *removedEntry;
-    char *finalBuf; 
-
 
     dev = (struct aesd_dev *)filp->private_data;
 
+    unsigned int newSize = dev->workingEntry->size + count;
 
-    finalBuf = (char *)kmalloc(dev->workingEntry->size + count, GFP_KERNEL);
-    if(!finalBuf)
+    if (mutex_lock_interruptible(&dev->lock))
     {
+        return -ERESTARTSYS;
+    }
+    
+    char *newPtr = krealloc(dev->workingEntry->buffptr, newSize, GFP_KERNEL);
+    if(!newPtr)
+    {
+        mutex_unlock(&dev->lock);
         return -ENOMEM;
     }
 
-    if (mutex_lock_interruptible(&dev->lock))
-        return -ERESTARTSYS;
-    
-    if(copy_from_user(&(finalBuf[dev->workingEntry->size]), buf, count))
+    dev->workingEntry->buffptr = newPtr;
+
+    if(copy_from_user(&(dev->workingEntry->buffptr[dev->workingEntry->size]), buf, count))
     {
-        kfree(finalBuf);
         mutex_unlock(&dev->lock);
         return 0;
     }
 
-    if(dev->workingEntry->buffptr != NULL)
-    {
-        memcpy(finalBuf, dev->workingEntry->buffptr, dev->workingEntry->size);
-        kfree(dev->workingEntry->buffptr);
-    }
-
-    dev->workingEntry->size += count;
-    dev->workingEntry->buffptr = finalBuf;
-
+    dev->workingEntry->size = newSize;
     (*f_pos) += count;
 
     // if the last byte is a newline, add it to the circular buffer
@@ -145,14 +149,6 @@ ssize_t aesd_write(struct file *filp, const char __user *buf, size_t count,
     return retval;
 }
 
-struct file_operations aesd_fops = {
-    .owner =    THIS_MODULE,
-    .read =     aesd_read,
-    .write =    aesd_write,
-    .open =     aesd_open,
-    .release =  aesd_release,
-    .llseek = noop_llseek,
-};
 
 static int aesd_setup_cdev(struct aesd_dev *dev)
 {

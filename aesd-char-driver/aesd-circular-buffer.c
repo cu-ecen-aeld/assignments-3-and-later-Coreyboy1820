@@ -42,7 +42,7 @@ struct aesd_buffer_entry *aesd_circular_buffer_find_entry_offset_for_fpos(struct
             break;
         }
         
-        if(char_offset < currentEntry->size)
+        if(char_offset <= currentEntry->size)
         {
             *entry_offset_byte_rtn = char_offset;
             return currentEntry;
@@ -90,7 +90,7 @@ const char *aesd_circular_buffer_add_entry(struct aesd_circular_buffer *buffer, 
     }
 
     // case where buffer is full set buffer full to true
-    if(buffer->in_offs == buffer->out_offs)
+    if(buffer->length == AESDCHAR_MAX_WRITE_OPERATIONS_SUPPORTED)
     {
         buffer->full = true;
     }
