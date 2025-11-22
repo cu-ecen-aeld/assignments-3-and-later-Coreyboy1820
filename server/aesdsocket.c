@@ -283,10 +283,13 @@ void *OperateOnConnection(void* param)
     // ===========================================================
     for (;;)
     {
+        usleep(10000);
         // Non-blocking check if socket is closed or errored
         char peek;
         int aliveCheck = recv(params->acceptedSocketFd, &peek, 1,
                               MSG_PEEK | MSG_DONTWAIT);
+
+        // printf("aliveCheck: %d\n", aliveCheck);
 
         if (aliveCheck == 0)
         {
