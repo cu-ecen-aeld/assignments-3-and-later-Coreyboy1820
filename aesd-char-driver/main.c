@@ -40,7 +40,6 @@ int aesd_open(struct inode *inode, struct file *filp)
 
 int aesd_release(struct inode *inode, struct file *filp)
 {
-
     return 0;
 }
 
@@ -64,20 +63,24 @@ ssize_t aesd_read(struct file *filp, char __user *buf, size_t count,
 
     // get the specified entry
     circBufEntry = aesd_circular_buffer_find_entry_offset_for_fpos(dev->circularBuffer, *position, &entryOffset);
-    
-    mutex_unlock(&dev->lock);
 
     if(circBufEntry)
     {
-        // copy over to the user space buffer
-        if(copy_to_user(buf, circBufEntry->buffptr, circBufEntry->size))
+        size_t available = circBufEntry->size - entryOffset;
+        size_t to_copy = min(count, available);
+
+        if (copy_to_user(buf, circBufEntry->buffptr + entryOffset, to_copy))
         {
-            return -EFAULT;  // user buffer invalid
+            mutex_unlock(&dev->lock);
+            return -EFAULT;
         }
 
-        *f_pos += circBufEntry->size;
-        return circBufEntry->size;
+        *f_pos += to_copy;
+        mutex_unlock(&dev->lock);
+        return to_copy;
     }
+    
+    mutex_unlock(&dev->lock);
 
     return 0;
 }
@@ -95,6 +98,10 @@ ssize_t aesd_write(struct file *filp, const char __user *buf, size_t count,
 
 
     finalBuf = (char *)kmalloc(dev->workingEntry->size + count, GFP_KERNEL);
+    if(!finalBuf)
+    {
+        return -ENOMEM;
+    }
 
     if (mutex_lock_interruptible(&dev->lock))
         return -ERESTARTSYS;
@@ -102,6 +109,7 @@ ssize_t aesd_write(struct file *filp, const char __user *buf, size_t count,
     if(copy_from_user(&(finalBuf[dev->workingEntry->size]), buf, count))
     {
         kfree(finalBuf);
+        mutex_unlock(&dev->lock);
         return 0;
     }
 
@@ -114,19 +122,11 @@ ssize_t aesd_write(struct file *filp, const char __user *buf, size_t count,
     dev->workingEntry->size += count;
     dev->workingEntry->buffptr = finalBuf;
 
-    mutex_unlock(&dev->lock);
-
     (*f_pos) += count;
 
     // if the last byte is a newline, add it to the circular buffer
     if(dev->workingEntry->buffptr[dev->workingEntry->size-1] == '\n')
     {
-
-        if (mutex_lock_interruptible(&dev->lock))
-        {
-            kfree(finalBuf);
-            return -ERESTARTSYS;
-        }
 
         removedEntry = aesd_circular_buffer_add_entry(dev->circularBuffer, dev->workingEntry);
 
@@ -138,8 +138,9 @@ ssize_t aesd_write(struct file *filp, const char __user *buf, size_t count,
         dev->workingEntry->size = 0;
         dev->workingEntry->buffptr = NULL;
 
-        mutex_unlock(&dev->lock);
     }
+
+    mutex_unlock(&dev->lock);
 
     return retval;
 }
@@ -150,6 +151,7 @@ struct file_operations aesd_fops = {
     .write =    aesd_write,
     .open =     aesd_open,
     .release =  aesd_release,
+    .llseek = noop_llseek,
 };
 
 static int aesd_setup_cdev(struct aesd_dev *dev)
