@@ -233,25 +233,40 @@ void *OperateOnConnection(void* param)
     threadParameters_s *params = (threadParameters_s *)(param);
     char *buffer = NULL;
     FILE *fileSocketFd = NULL;
-    unsigned int peerNameLength = PEER_NAME_LENGTH;
-    char peerName[PEER_NAME_LENGTH] = {0};
     size_t bufferLength = 0;
 
     FILE *fd = fopen(fileName, "a+");
+    if(fd == NULL)
+    {
+        printf("%s", fileName);
+        ThreadCleanUp(buffer, fd, fileSocketFd, params, "0");
+        *params->hasReturned = true;
+        pthread_exit(&retVal);
+    }
 
     // ===========================================================
     // Log who connected
     // ===========================================================
-    retVal = getpeername(params->acceptedSocketFd, (struct sockaddr *)peerName, &peerNameLength);
-    if(retVal != 0)
-    {
+    struct sockaddr_storage peer_addr = {0};
+    socklen_t peer_addr_len = sizeof(peer_addr);
+    char host[NI_MAXHOST] = {0};
+    char serv[NI_MAXSERV] = {0};
 
+    retVal = getpeername(params->acceptedSocketFd, (struct sockaddr *)&peer_addr, &peer_addr_len);
+    if (retVal != 0) {
         ThreadCleanUp(buffer, fd, fileSocketFd, params, "1");
         *params->hasReturned = true;
         pthread_exit(&retVal);
     }
 
-    syslog(LOG_INFO, "Accepted connection from %s\n", peerName);
+    if (getnameinfo((struct sockaddr *)&peer_addr, peer_addr_len,
+                    host, sizeof(host),
+                    serv, sizeof(serv),
+                    NI_NUMERICHOST | NI_NUMERICSERV) == 0) {
+        syslog(LOG_INFO, "Accepted connection from %s:%s\n", host, serv);
+    } else {
+        syslog(LOG_INFO, "Accepted connection from unknown\n");
+    }
 
 
     // make a file descriptor out of the socket
@@ -416,7 +431,6 @@ int main(int argc, char *argv[])
     struct addrinfo *addrInfo = NULL;
     pthread_t acceptorTid = 0, timestampTid = 0;
     acceptorParams_s acceptorParams = {0};
-    printParams_s printParams = {0};
     
     // ===========================================================
     // install the signal handler
