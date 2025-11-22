@@ -72,12 +72,12 @@ ssize_t aesd_read(struct file *filp, char __user *buf, size_t count,
 
     // get the specified entry
     circBufEntry = aesd_circular_buffer_find_entry_offset_for_fpos(dev->circularBuffer, *position, &entryOffset);
-
-    PDEBUG("pos: %d, offset: %d, size: %d\n", *position, entryOffset, circBufEntry->size);
-    PDEBUG("buf: %s\n", circBufEntry->buffptr);
+    PDEBUG("pos: %d, offset: %d\n", *position, entryOffset);
 
     if(circBufEntry)
     {
+
+        PDEBUG("size: %d, buf: %s\n", circBufEntry->size, circBufEntry->buffptr);
 
         if (copy_to_user(buf, circBufEntry->buffptr, circBufEntry->size))
         {
