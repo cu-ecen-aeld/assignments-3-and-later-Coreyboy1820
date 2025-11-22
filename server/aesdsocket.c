@@ -237,7 +237,7 @@ void *OperateOnConnection(void* param)
     char peerName[PEER_NAME_LENGTH] = {0};
     size_t bufferLength = 0;
 
-    FILE *fd = fopen(fileName, "a+");
+    FILE *fd = fopen(fileName, "r+");
     if(!fd)
     {
         ThreadCleanUp(buffer, fd, fileSocketFd, params, "0");
@@ -258,35 +258,35 @@ void *OperateOnConnection(void* param)
     }
 
     syslog(LOG_INFO, "Accepted connection from %s\n", peerName);
-
+    pthread_mutex_lock(&fileMutex);
 
     // make a file descriptor out of the socket
     fileSocketFd = fdopen(params->acceptedSocketFd, "r+");
     if (!fileSocketFd) {
         ThreadCleanUp(buffer, fd, fileSocketFd, params, "2");
         *params->hasReturned = true;
+        pthread_mutex_unlock(&fileMutex);
         pthread_exit(&retVal);
     }
 
     while(getline(&buffer, &bufferLength, fileSocketFd) != -1)
     {
-        pthread_mutex_lock(&fileMutex);
-
+        printf("\n\n\n %s\n\n\n", buffer);
         // then write them to the file
         fprintf(fd, "%s", buffer);
-        fflush(fd); 
-        
-        rewind(fd);
+        // fflush(fd);
 
         // iterate over built up file and send it out the socket
         while(getline(&buffer, &bufferLength, fd) != -1)
         {
+            printf("buf: %s", buffer);
             // write the packet received back to the client
             fprintf(fileSocketFd, "%s", buffer);
             fflush(fileSocketFd); 
         }
-        pthread_mutex_unlock(&fileMutex);
     }
+
+    pthread_mutex_unlock(&fileMutex);
     
     *(params->hasReturned) = true;
     ThreadCleanUp(buffer, fd, fileSocketFd, params, "5");
