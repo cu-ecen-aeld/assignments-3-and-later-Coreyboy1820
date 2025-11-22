@@ -96,6 +96,9 @@ ssize_t aesd_write(struct file *filp, const char __user *buf, size_t count,
 
     finalBuf = (char *)kmalloc(dev->workingEntry->size + count, GFP_KERNEL);
 
+    if (mutex_lock_interruptible(&dev->lock))
+        return -ERESTARTSYS;
+    
     if(copy_from_user(&(finalBuf[dev->workingEntry->size]), buf, count))
     {
         kfree(finalBuf);
@@ -110,6 +113,8 @@ ssize_t aesd_write(struct file *filp, const char __user *buf, size_t count,
 
     dev->workingEntry->size += count;
     dev->workingEntry->buffptr = finalBuf;
+
+    mutex_unlock(&dev->lock);
 
     (*f_pos) += count;
 
