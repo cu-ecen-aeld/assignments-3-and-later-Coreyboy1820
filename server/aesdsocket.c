@@ -235,74 +235,107 @@ void *OperateOnConnection(void* param)
     FILE *fileSocketFd = NULL;
     size_t bufferLength = 0;
 
-    FILE *fd = fopen(fileName, "a+");
-    if(fd == NULL)
+    // Open the backing file (or character device)
+    FILE *fd = fopen(fileName, "r+");
+    if (!fd)
     {
-        printf("%s", fileName);
-        ThreadCleanUp(buffer, fd, fileSocketFd, params, "0");
+        printf("fopen failed: errno=%d (%s)\n", errno, strerror(errno));
+        ThreadCleanUp(buffer, fd, fileSocketFd, params, "fopen");
         *params->hasReturned = true;
         pthread_exit(&retVal);
     }
 
     // ===========================================================
-    // Log who connected
+    // Log connection
     // ===========================================================
     struct sockaddr_storage peer_addr = {0};
     socklen_t peer_addr_len = sizeof(peer_addr);
     char host[NI_MAXHOST] = {0};
     char serv[NI_MAXSERV] = {0};
 
-    retVal = getpeername(params->acceptedSocketFd, (struct sockaddr *)&peer_addr, &peer_addr_len);
-    if (retVal != 0) {
-        ThreadCleanUp(buffer, fd, fileSocketFd, params, "1");
-        *params->hasReturned = true;
-        pthread_exit(&retVal);
-    }
-
-    if (getnameinfo((struct sockaddr *)&peer_addr, peer_addr_len,
-                    host, sizeof(host),
-                    serv, sizeof(serv),
-                    NI_NUMERICHOST | NI_NUMERICSERV) == 0) {
-        syslog(LOG_INFO, "Accepted connection from %s:%s\n", host, serv);
-    } else {
-        syslog(LOG_INFO, "Accepted connection from unknown\n");
-    }
-
-
-    // make a file descriptor out of the socket
-    fileSocketFd = fdopen(params->acceptedSocketFd, "r+");
-    if (!fileSocketFd) {
-        ThreadCleanUp(buffer, fd, fileSocketFd, params, "2");
-        *params->hasReturned = true;
-        pthread_exit(&retVal);
-    }
-
-    while(getline(&buffer, &bufferLength, fileSocketFd) != -1)
+    if (getpeername(params->acceptedSocketFd, 
+                    (struct sockaddr *)&peer_addr, &peer_addr_len) == 0)
     {
-        #ifndef USE_AESD_CHAR_DEVICE
-            pthread_mutex_lock(&fileMutex);
-        #endif
+        if (getnameinfo((struct sockaddr *)&peer_addr, peer_addr_len,
+                        host, sizeof(host),
+                        serv, sizeof(serv),
+                        NI_NUMERICHOST | NI_NUMERICSERV) == 0)
+        {
+            syslog(LOG_INFO, "Accepted connection from %s:%s", host, serv);
+        }
+        else
+        {
+            syslog(LOG_INFO, "Accepted connection from unknown");
+        }
+    }
 
-        // then write them to the file
+    // Wrap the socket FD into a FILE* so getline() can work
+    fileSocketFd = fdopen(params->acceptedSocketFd, "r+");
+    if (!fileSocketFd)
+    {
+        ThreadCleanUp(buffer, fd, fileSocketFd, params, "fdopen");
+        *params->hasReturned = true;
+        pthread_exit(&retVal);
+    }
+
+    // ===========================================================
+    // Main loop: read lines until socket closes
+    // ===========================================================
+    for (;;)
+    {
+        // Non-blocking check if socket is closed or errored
+        char peek;
+        int aliveCheck = recv(params->acceptedSocketFd, &peek, 1,
+                              MSG_PEEK | MSG_DONTWAIT);
+
+        if (aliveCheck == 0)
+        {
+            // Remote closed cleanly
+            break;
+        }
+        if (aliveCheck < 0 && errno != EAGAIN && errno != EWOULDBLOCK)
+        {
+            // Hard error -> socket is dead
+            break;
+        }
+
+        // Try to read a full line from the socket
+        if (getline(&buffer, &bufferLength, fileSocketFd) == -1)
+        {
+            // No complete line yet — continue the loop
+            clearerr(fileSocketFd); // important: remove EOF condition
+            continue;
+        }
+
+#ifndef USE_AESD_CHAR_DEVICE
+        pthread_mutex_lock(&fileMutex);
+#endif
+
+        // Write received line into the file/device
         fprintf(fd, "%s", buffer);
-        fflush(fd); 
-        
+        fflush(fd);
+
         rewind(fd);
 
-        // iterate over built up file and send it out the socket
-        while(getline(&buffer, &bufferLength, fd) != -1)
+        // Send back entire file/device contents
+        while (getline(&buffer, &bufferLength, fd) != -1)
         {
-            // write the packet received back to the client
             fprintf(fileSocketFd, "%s", buffer);
-            fflush(fileSocketFd); 
+            fflush(fileSocketFd);
         }
-        #ifndef USE_AESD_CHAR_DEVICE
-            pthread_mutex_unlock(&fileMutex);
-        #endif
+
+        // Reset file position for next iteration
+        rewind(fd);
+
+#ifndef USE_AESD_CHAR_DEVICE
+        pthread_mutex_unlock(&fileMutex);
+#endif
     }
-    
+
+    // Cleanup
     *(params->hasReturned) = true;
-    ThreadCleanUp(buffer, fd, fileSocketFd, params, "5");
+    ThreadCleanUp(buffer, fd, fileSocketFd, params, "end");
+
     retVal = 0;
     pthread_exit(&retVal);
 }
@@ -429,6 +462,7 @@ int main(int argc, char *argv[])
     int retVal = 0;
     struct timespec next;
     struct addrinfo *addrInfo = NULL;
+    printParams_s printParams = {0};
     pthread_t acceptorTid = 0, timestampTid = 0;
     acceptorParams_s acceptorParams = {0};
     
