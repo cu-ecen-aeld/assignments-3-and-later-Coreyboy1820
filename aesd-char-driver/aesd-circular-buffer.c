@@ -86,6 +86,7 @@ const char *aesd_circular_buffer_add_entry(struct aesd_circular_buffer *buffer, 
     else
     {
         buffer->length++;
+        buffer->totalNumBytes += add_entry->size;
         retPtr = NULL;
     }
 
@@ -112,6 +113,7 @@ extern inline int aesd_circular_buffer_read(struct aesd_circular_buffer *buffer,
     {
         buffer->out_offs++;
         buffer->length--;
+        buffer->totalNumBytes -= (*readEntry)->size;
     }
 
     return bufferPeakRetVal;

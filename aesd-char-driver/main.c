@@ -19,6 +19,7 @@
 #include <linux/fs.h> // file_operations
 #include <linux/mutex.h>
 #include "aesdchar.h"
+#include "aesd_ioctl.h"
 #include "aesd-circular-buffer.h"
 int aesd_major =   0; // use dynamic major
 int aesd_minor =   0;
@@ -34,7 +35,8 @@ struct file_operations aesd_fops = {
     .write =    aesd_write,
     .open =     aesd_open,
     .release =  aesd_release,
-    .llseek = noop_llseek,
+    .llseek = aesd_llseek,
+    .unlocked_ioctl = aesd_unlocked_ioctl,
 };
 
 int aesd_open(struct inode *inode, struct file *filp)
@@ -156,6 +158,84 @@ ssize_t aesd_write(struct file *filp, const char __user *buf, size_t count,
     return retval;
 }
 
+off_t aesd_llseek(struct file *filp, loff_t off, int whence)
+{
+    struct aesd_dev * dev;
+    dev = (struct aesd_dev *)filp->private_data;
+    
+    if (mutex_lock_interruptible(&dev->lock))
+    {
+        return -ERESTARTSYS;
+    }
+
+    loff_t size = dev->circularBuffer->totalNumBytes;
+
+
+    off_t offset = fixed_size_llseek(filp, off, whence, size);
+
+    mutex_unlock(&dev->lock);
+
+    return offset;
+}
+
+long aesd_unlocked_ioctl(struct file *filp, unsigned int cmd, unsigned long __user arg)
+{
+    struct aesd_seekto *seekToStruct;
+
+    PDEBUG("ioctl\n");
+
+    switch(cmd)
+    {
+        case AESDCHAR_IOCSEEKTO:
+            if (copy_from_user(seekToStruct, (void __user *)arg, sizeof(struct aesd_seekto)))
+            {
+                return -EFAULT;
+            }
+
+            return aesd_adjust_file_offset(filp, seekToStruct->write_cmd, seekToStruct->write_cmd_offset);
+        break;
+    }
+}
+
+long aesd_adjust_file_offset(struct file * filp, unsigned int write_cmd, unsigned int write_cmd_offset)
+{
+    struct aesd_dev * dev;
+    struct aesd_buffer_entry readEntry = {0};
+    struct aesd_buffer_entry *pReadEntry = &readEntry;
+    unsigned int totalLength = 0;
+
+    dev = (struct aesd_dev *)filp->private_data;
+
+    // iterate over all the bytes requested to return
+    if (mutex_lock_interruptible(&dev->lock))
+    {
+        return -ERESTARTSYS;
+    }
+
+    for(unsigned int i = 0; i < dev->circularBuffer->length; i++)
+    {
+        aesd_circular_buffer_peek(dev->circularBuffer, &pReadEntry, i);
+
+        if( (*((unsigned int*)pReadEntry->buffPtr)) == write_cmd )
+        {
+            
+            if(write_cmd_offset < pReadEntry->size)
+            {
+                totalLength += write_cmd_offset;
+                filp->f_pos = totalLength;
+                mutex_unlock(&dev->lock);
+                return 0;
+            }
+        }
+
+        totalLength += pReadEntry->size;
+    }
+
+    mutex_unlock(&dev->lock);
+
+    // if this is reached, the input was invalid
+    return -EINVAL;
+}
 
 static int aesd_setup_cdev(struct aesd_dev *dev)
 {

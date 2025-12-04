@@ -53,6 +53,11 @@ struct aesd_circular_buffer
      * Number of entries in the circular buffer
      */
     uint8_t length;
+
+    /** 
+     * Total number of bytes in circular buffer
+     */
+    uint32_t totalNumBytes;
     /**
      * set to true when the buffer entry structure is full
      */
@@ -71,6 +76,7 @@ extern void aesd_circular_buffer_print(struct aesd_circular_buffer *buffer);
 extern int aesd_circular_buffer_read(struct aesd_circular_buffer *buffer, struct aesd_buffer_entry **readEntry);
 
 extern int aesd_circular_buffer_peek(struct aesd_circular_buffer *buffer, struct aesd_buffer_entry **readEntry, unsigned int position);
+
 
 /**
  * Create a for loop to iterate over each member of the circular buffer.
