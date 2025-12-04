@@ -281,10 +281,12 @@ void *OperateOnConnection(void* param)
 
         if(sscanf(buffer, "AESDCHAR_IOCSEEKTO:%d,%d", &(seekToStruct.write_cmd), &(seekToStruct.write_cmd_offset)) == 2)
         {
+            printf("recv known packet\n");
             ioctl(fileNum, AESDCHAR_IOCSEEKTO, &seekToStruct);
         }
         else
         {
+            printf("else\n");
             fprintf(fd, "%s", buffer);
             fflush(fd);
         }

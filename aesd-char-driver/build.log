@@ -1,0 +1,188 @@
+warning: the compiler differs from the one used to build the kernel
+  The kernel was built by: x86_64-linux-gnu-gcc-13 (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0
+  You are using:           gcc-13 (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0
+In file included from /usr/src/linux-headers-6.14.0-36-generic/include/asm-generic/bug.h:22,
+                 from /usr/src/linux-headers-6.14.0-36-generic/arch/x86/include/asm/bug.h:100,
+                 from /usr/src/linux-headers-6.14.0-36-generic/arch/x86/include/asm/alternative.h:9,
+                 from /usr/src/linux-headers-6.14.0-36-generic/arch/x86/include/asm/barrier.h:5,
+                 from /usr/src/linux-headers-6.14.0-36-generic/include/linux/list.h:11,
+                 from /usr/src/linux-headers-6.14.0-36-generic/include/linux/module.h:12,
+                 from main.c:14:
+main.c: In function ‘aesd_read’:
+/usr/src/linux-headers-6.14.0-36-generic/include/linux/kern_levels.h:5:25: warning: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+    5 | #define KERN_SOH        "\001"          /* ASCII Start Of Header */
+      |                         ^~~~~~
+/usr/src/linux-headers-6.14.0-36-generic/include/linux/printk.h:479:25: note: in definition of macro ‘printk_index_wrap’
+  479 |                 _p_func(_fmt, ##__VA_ARGS__);                           \
+      |                         ^~~~
+aesdchar.h:17:34: note: in expansion of macro ‘printk’
+   17 | #    define PDEBUG(fmt, args...) printk( KERN_DEBUG "aesdchar: " fmt, ## args)
+      |                                  ^~~~~~
+/usr/src/linux-headers-6.14.0-36-generic/include/linux/kern_levels.h:15:25: note: in expansion of macro ‘KERN_SOH’
+   15 | #define KERN_DEBUG      KERN_SOH "7"    /* debug-level messages */
+      |                         ^~~~~~~~
+aesdchar.h:17:42: note: in expansion of macro ‘KERN_DEBUG’
+   17 | #    define PDEBUG(fmt, args...) printk( KERN_DEBUG "aesdchar: " fmt, ## args)
+      |                                          ^~~~~~~~~~
+main.c:77:5: note: in expansion of macro ‘PDEBUG’
+   77 |     PDEBUG("pos: %d, offset: %d, ptr %X\n", *position, entryOffset, circBufEntry);
+      |     ^~~~~~
+/usr/src/linux-headers-6.14.0-36-generic/include/linux/kern_levels.h:5:25: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+    5 | #define KERN_SOH        "\001"          /* ASCII Start Of Header */
+      |                         ^~~~~~
+/usr/src/linux-headers-6.14.0-36-generic/include/linux/printk.h:479:25: note: in definition of macro ‘printk_index_wrap’
+  479 |                 _p_func(_fmt, ##__VA_ARGS__);                           \
+      |                         ^~~~
+aesdchar.h:17:34: note: in expansion of macro ‘printk’
+   17 | #    define PDEBUG(fmt, args...) printk( KERN_DEBUG "aesdchar: " fmt, ## args)
+      |                                  ^~~~~~
+/usr/src/linux-headers-6.14.0-36-generic/include/linux/kern_levels.h:15:25: note: in expansion of macro ‘KERN_SOH’
+   15 | #define KERN_DEBUG      KERN_SOH "7"    /* debug-level messages */
+      |                         ^~~~~~~~
+aesdchar.h:17:42: note: in expansion of macro ‘KERN_DEBUG’
+   17 | #    define PDEBUG(fmt, args...) printk( KERN_DEBUG "aesdchar: " fmt, ## args)
+      |                                          ^~~~~~~~~~
+main.c:77:5: note: in expansion of macro ‘PDEBUG’
+   77 |     PDEBUG("pos: %d, offset: %d, ptr %X\n", *position, entryOffset, circBufEntry);
+      |     ^~~~~~
+/usr/src/linux-headers-6.14.0-36-generic/include/linux/kern_levels.h:5:25: warning: format ‘%X’ expects argument of type ‘unsigned int’, but argument 4 has type ‘struct aesd_buffer_entry *’ [-Wformat=]
+    5 | #define KERN_SOH        "\001"          /* ASCII Start Of Header */
+      |                         ^~~~~~
+/usr/src/linux-headers-6.14.0-36-generic/include/linux/printk.h:479:25: note: in definition of macro ‘printk_index_wrap’
+  479 |                 _p_func(_fmt, ##__VA_ARGS__);                           \
+      |                         ^~~~
+aesdchar.h:17:34: note: in expansion of macro ‘printk’
+   17 | #    define PDEBUG(fmt, args...) printk( KERN_DEBUG "aesdchar: " fmt, ## args)
+      |                                  ^~~~~~
+/usr/src/linux-headers-6.14.0-36-generic/include/linux/kern_levels.h:15:25: note: in expansion of macro ‘KERN_SOH’
+   15 | #define KERN_DEBUG      KERN_SOH "7"    /* debug-level messages */
+      |                         ^~~~~~~~
+aesdchar.h:17:42: note: in expansion of macro ‘KERN_DEBUG’
+   17 | #    define PDEBUG(fmt, args...) printk( KERN_DEBUG "aesdchar: " fmt, ## args)
+      |                                          ^~~~~~~~~~
+main.c:77:5: note: in expansion of macro ‘PDEBUG’
+   77 |     PDEBUG("pos: %d, offset: %d, ptr %X\n", *position, entryOffset, circBufEntry);
+      |     ^~~~~~
+/usr/src/linux-headers-6.14.0-36-generic/include/linux/kern_levels.h:5:25: warning: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+    5 | #define KERN_SOH        "\001"          /* ASCII Start Of Header */
+      |                         ^~~~~~
+/usr/src/linux-headers-6.14.0-36-generic/include/linux/printk.h:479:25: note: in definition of macro ‘printk_index_wrap’
+  479 |                 _p_func(_fmt, ##__VA_ARGS__);                           \
+      |                         ^~~~
+aesdchar.h:17:34: note: in expansion of macro ‘printk’
+   17 | #    define PDEBUG(fmt, args...) printk( KERN_DEBUG "aesdchar: " fmt, ## args)
+      |                                  ^~~~~~
+/usr/src/linux-headers-6.14.0-36-generic/include/linux/kern_levels.h:15:25: note: in expansion of macro ‘KERN_SOH’
+   15 | #define KERN_DEBUG      KERN_SOH "7"    /* debug-level messages */
+      |                         ^~~~~~~~
+aesdchar.h:17:42: note: in expansion of macro ‘KERN_DEBUG’
+   17 | #    define PDEBUG(fmt, args...) printk( KERN_DEBUG "aesdchar: " fmt, ## args)
+      |                                          ^~~~~~~~~~
+main.c:82:9: note: in expansion of macro ‘PDEBUG’
+   82 |         PDEBUG("size: %d, buf: %.*s", circBufEntry->size, circBufEntry->size, circBufEntry->buffptr);
+      |         ^~~~~~
+/usr/src/linux-headers-6.14.0-36-generic/include/linux/kern_levels.h:5:25: warning: field precision specifier ‘.*’ expects argument of type ‘int’, but argument 3 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+    5 | #define KERN_SOH        "\001"          /* ASCII Start Of Header */
+      |                         ^~~~~~
+/usr/src/linux-headers-6.14.0-36-generic/include/linux/printk.h:479:25: note: in definition of macro ‘printk_index_wrap’
+  479 |                 _p_func(_fmt, ##__VA_ARGS__);                           \
+      |                         ^~~~
+aesdchar.h:17:34: note: in expansion of macro ‘printk’
+   17 | #    define PDEBUG(fmt, args...) printk( KERN_DEBUG "aesdchar: " fmt, ## args)
+      |                                  ^~~~~~
+/usr/src/linux-headers-6.14.0-36-generic/include/linux/kern_levels.h:15:25: note: in expansion of macro ‘KERN_SOH’
+   15 | #define KERN_DEBUG      KERN_SOH "7"    /* debug-level messages */
+      |                         ^~~~~~~~
+aesdchar.h:17:42: note: in expansion of macro ‘KERN_DEBUG’
+   17 | #    define PDEBUG(fmt, args...) printk( KERN_DEBUG "aesdchar: " fmt, ## args)
+      |                                          ^~~~~~~~~~
+main.c:82:9: note: in expansion of macro ‘PDEBUG’
+   82 |         PDEBUG("size: %d, buf: %.*s", circBufEntry->size, circBufEntry->size, circBufEntry->buffptr);
+      |         ^~~~~~
+main.c: In function ‘aesd_write’:
+/usr/src/linux-headers-6.14.0-36-generic/include/linux/kern_levels.h:5:25: warning: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+    5 | #define KERN_SOH        "\001"          /* ASCII Start Of Header */
+      |                         ^~~~~~
+/usr/src/linux-headers-6.14.0-36-generic/include/linux/printk.h:479:25: note: in definition of macro ‘printk_index_wrap’
+  479 |                 _p_func(_fmt, ##__VA_ARGS__);                           \
+      |                         ^~~~
+aesdchar.h:17:34: note: in expansion of macro ‘printk’
+   17 | #    define PDEBUG(fmt, args...) printk( KERN_DEBUG "aesdchar: " fmt, ## args)
+      |                                  ^~~~~~
+/usr/src/linux-headers-6.14.0-36-generic/include/linux/kern_levels.h:15:25: note: in expansion of macro ‘KERN_SOH’
+   15 | #define KERN_DEBUG      KERN_SOH "7"    /* debug-level messages */
+      |                         ^~~~~~~~
+aesdchar.h:17:42: note: in expansion of macro ‘KERN_DEBUG’
+   17 | #    define PDEBUG(fmt, args...) printk( KERN_DEBUG "aesdchar: " fmt, ## args)
+      |                                          ^~~~~~~~~~
+main.c:138:5: note: in expansion of macro ‘PDEBUG’
+  138 |     PDEBUG("size: %d, count: %d Buf: %.*s", dev->workingEntry->size, count, dev->workingEntry->size, dev->workingEntry->buffptr);
+      |     ^~~~~~
+/usr/src/linux-headers-6.14.0-36-generic/include/linux/kern_levels.h:5:25: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+    5 | #define KERN_SOH        "\001"          /* ASCII Start Of Header */
+      |                         ^~~~~~
+/usr/src/linux-headers-6.14.0-36-generic/include/linux/printk.h:479:25: note: in definition of macro ‘printk_index_wrap’
+  479 |                 _p_func(_fmt, ##__VA_ARGS__);                           \
+      |                         ^~~~
+aesdchar.h:17:34: note: in expansion of macro ‘printk’
+   17 | #    define PDEBUG(fmt, args...) printk( KERN_DEBUG "aesdchar: " fmt, ## args)
+      |                                  ^~~~~~
+/usr/src/linux-headers-6.14.0-36-generic/include/linux/kern_levels.h:15:25: note: in expansion of macro ‘KERN_SOH’
+   15 | #define KERN_DEBUG      KERN_SOH "7"    /* debug-level messages */
+      |                         ^~~~~~~~
+aesdchar.h:17:42: note: in expansion of macro ‘KERN_DEBUG’
+   17 | #    define PDEBUG(fmt, args...) printk( KERN_DEBUG "aesdchar: " fmt, ## args)
+      |                                          ^~~~~~~~~~
+main.c:138:5: note: in expansion of macro ‘PDEBUG’
+  138 |     PDEBUG("size: %d, count: %d Buf: %.*s", dev->workingEntry->size, count, dev->workingEntry->size, dev->workingEntry->buffptr);
+      |     ^~~~~~
+/usr/src/linux-headers-6.14.0-36-generic/include/linux/kern_levels.h:5:25: warning: field precision specifier ‘.*’ expects argument of type ‘int’, but argument 4 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+    5 | #define KERN_SOH        "\001"          /* ASCII Start Of Header */
+      |                         ^~~~~~
+/usr/src/linux-headers-6.14.0-36-generic/include/linux/printk.h:479:25: note: in definition of macro ‘printk_index_wrap’
+  479 |                 _p_func(_fmt, ##__VA_ARGS__);                           \
+      |                         ^~~~
+aesdchar.h:17:34: note: in expansion of macro ‘printk’
+   17 | #    define PDEBUG(fmt, args...) printk( KERN_DEBUG "aesdchar: " fmt, ## args)
+      |                                  ^~~~~~
+/usr/src/linux-headers-6.14.0-36-generic/include/linux/kern_levels.h:15:25: note: in expansion of macro ‘KERN_SOH’
+   15 | #define KERN_DEBUG      KERN_SOH "7"    /* debug-level messages */
+      |                         ^~~~~~~~
+aesdchar.h:17:42: note: in expansion of macro ‘KERN_DEBUG’
+   17 | #    define PDEBUG(fmt, args...) printk( KERN_DEBUG "aesdchar: " fmt, ## args)
+      |                                          ^~~~~~~~~~
+main.c:138:5: note: in expansion of macro ‘PDEBUG’
+  138 |     PDEBUG("size: %d, count: %d Buf: %.*s", dev->workingEntry->size, count, dev->workingEntry->size, dev->workingEntry->buffptr);
+      |     ^~~~~~
+main.c: In function ‘aesd_unlocked_ioctl’:
+main.c:195:20: error: implicit declaration of function ‘aesd_adjust_file_offset’ [-Werror=implicit-function-declaration]
+  195 |             return aesd_adjust_file_offset(filp, seekToStruct.write_cmd, seekToStructwrite_cmd_offset);
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~
+main.c:195:74: error: ‘seekToStructwrite_cmd_offset’ undeclared (first use in this function)
+  195 |             return aesd_adjust_file_offset(filp, seekToStruct.write_cmd, seekToStructwrite_cmd_offset);
+      |                                                                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main.c:195:74: note: each undeclared identifier is reported only once for each function it appears in
+main.c: At top level:
+main.c:200:6: warning: no previous prototype for ‘aesd_adjust_file_offset’ [-Wmissing-prototypes]
+  200 | long aesd_adjust_file_offset(struct file * filp, unsigned int write_cmd, unsigned int write_cmd_offset)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~
+main.c:200:6: error: conflicting types for ‘aesd_adjust_file_offset’; have ‘long int(struct file *, unsigned int,  unsigned int)’
+main.c:195:20: note: previous implicit declaration of ‘aesd_adjust_file_offset’ with type ‘int()’
+  195 |             return aesd_adjust_file_offset(filp, seekToStruct.write_cmd, seekToStructwrite_cmd_offset);
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~
+main.c:255:5: warning: no previous prototype for ‘aesd_init_module’ [-Wmissing-prototypes]
+  255 | int aesd_init_module(void)
+      |     ^~~~~~~~~~~~~~~~
+main.c:285:6: warning: no previous prototype for ‘aesd_cleanup_module’ [-Wmissing-prototypes]
+  285 | void aesd_cleanup_module(void)
+      |      ^~~~~~~~~~~~~~~~~~~
+main.c: In function ‘aesd_unlocked_ioctl’:
+main.c:198:1: error: control reaches end of non-void function [-Werror=return-type]
+  198 | }
+      | ^
+cc1: some warnings being treated as errors
+make[4]: *** [/usr/src/linux-headers-6.14.0-36-generic/scripts/Makefile.build:207: main.o] Error 1
+make[3]: *** [/usr/src/linux-headers-6.14.0-36-generic/Makefile:1997: .] Error 2
+make[2]: *** [/usr/src/linux-headers-6.14.0-36-generic/Makefile:251: __sub-make] Error 2
+make[1]: *** [Makefile:251: __sub-make] Error 2
+make: *** [Makefile:24: modules] Error 2

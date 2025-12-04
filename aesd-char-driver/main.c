@@ -107,7 +107,7 @@ ssize_t aesd_write(struct file *filp, const char __user *buf, size_t count,
     ssize_t retval = count;
     struct aesd_dev * dev;
     const char *removedEntry;
-    PDEBUG("%s\n", "WRITE");
+    PDEBUG("WRITE\n");
 
     dev = (struct aesd_dev *)filp->private_data;
 
@@ -158,11 +158,12 @@ ssize_t aesd_write(struct file *filp, const char __user *buf, size_t count,
     return retval;
 }
 
-off_t aesd_llseek(struct file *filp, loff_t off, int whence)
+loff_t aesd_llseek(struct file *filp, loff_t off, int whence)
 {
     struct aesd_dev * dev;
     dev = (struct aesd_dev *)filp->private_data;
-    
+ 
+    PDEBUG("llseek\n");
     if (mutex_lock_interruptible(&dev->lock))
     {
         return -ERESTARTSYS;
@@ -195,6 +196,7 @@ long aesd_unlocked_ioctl(struct file *filp, unsigned int cmd, unsigned long __us
             return aesd_adjust_file_offset(filp, seekToStruct.write_cmd, seekToStruct.write_cmd_offset);
         break;
     }
+    return -EINVAL;
 }
 
 long aesd_adjust_file_offset(struct file * filp, unsigned int write_cmd, unsigned int write_cmd_offset)
@@ -278,6 +280,9 @@ int aesd_init_module(void)
     if( result ) {
         unregister_chrdev_region(dev, 1);
     }
+
+    PDEBUG("init\n");
+
     return result;
 
 }

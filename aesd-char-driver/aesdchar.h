@@ -9,6 +9,7 @@
 #define AESD_CHAR_DRIVER_AESDCHAR_H_
 
 #define AESD_DEBUG 1  //Remove comment on this line to enable debug
+#define __KERNEL__
 
 #undef PDEBUG             /* undef it, just in case */
 #ifdef AESD_DEBUG
@@ -41,6 +42,9 @@ ssize_t aesd_read(struct file *filp, char __user *buf, size_t count,
                 loff_t *f_pos);
 ssize_t aesd_write(struct file *filp, const char __user *buf, size_t count,
                 loff_t *f_pos);
-off_t aesd_llseek(struct file *filp, loff_t off, int whence);
-long aesd_unlocked_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
+loff_t aesd_llseek(struct file *filp, loff_t off, int whence);
+long aesd_unlocked_ioctl(struct file *filp, unsigned int cmd, unsigned long arg);
+long aesd_adjust_file_offset(struct file * filp, unsigned int write_cmd, unsigned int write_cmd_offset);
+int aesd_init_module(void);
+void aesd_cleanup_module(void);
 #endif /* AESD_CHAR_DRIVER_AESDCHAR_H_ */
