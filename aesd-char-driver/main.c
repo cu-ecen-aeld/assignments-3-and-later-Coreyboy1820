@@ -212,27 +212,26 @@ long aesd_adjust_file_offset(struct file * filp, unsigned int write_cmd, unsigne
         return -ERESTARTSYS;
     }
 
-    for(unsigned int i = 0; i < dev->circularBuffer->length; i++)
+    if(write_cmd < dev->circularBuffer->length)
     {
-        aesd_circular_buffer_peek(dev->circularBuffer, &pReadEntry, i);
-
-        if( (*((unsigned int*)pReadEntry->buffPtr)) == write_cmd )
+        for(unsigned int i = 0; i < write_cmd; i++)
         {
-            
-            if(write_cmd_offset < pReadEntry->size)
-            {
-                totalLength += write_cmd_offset;
-                filp->f_pos = totalLength;
-                mutex_unlock(&dev->lock);
-                return 0;
-            }
-        }
+            aesd_circular_buffer_peek(dev->circularBuffer, &pReadEntry, i);
 
-        totalLength += pReadEntry->size;
+            totalLength += pReadEntry->size;
+        }
+        
+        if(write_cmd_offset < pReadEntry->size)
+        {
+            totalLength += write_cmd_offset;
+            filp->f_pos = totalLength;
+            mutex_unlock(&dev->lock);
+            return 0;
+        }
     }
 
     mutex_unlock(&dev->lock);
-
+    
     // if this is reached, the input was invalid
     return -EINVAL;
 }
