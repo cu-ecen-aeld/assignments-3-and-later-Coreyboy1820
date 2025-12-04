@@ -180,19 +180,19 @@ off_t aesd_llseek(struct file *filp, loff_t off, int whence)
 
 long aesd_unlocked_ioctl(struct file *filp, unsigned int cmd, unsigned long __user arg)
 {
-    struct aesd_seekto *seekToStruct;
+    struct aesd_seekto seekToStruct;
 
     PDEBUG("ioctl\n");
 
     switch(cmd)
     {
         case AESDCHAR_IOCSEEKTO:
-            if (copy_from_user(seekToStruct, (void __user *)arg, sizeof(struct aesd_seekto)))
+            if (copy_from_user(&seekToStruct, (const void __user *)arg, sizeof(struct aesd_seekto)))
             {
                 return -EFAULT;
             }
 
-            return aesd_adjust_file_offset(filp, seekToStruct->write_cmd, seekToStruct->write_cmd_offset);
+            return aesd_adjust_file_offset(filp, seekToStruct.write_cmd, seekToStruct.write_cmd_offset);
         break;
     }
 }
@@ -231,7 +231,7 @@ long aesd_adjust_file_offset(struct file * filp, unsigned int write_cmd, unsigne
     }
 
     mutex_unlock(&dev->lock);
-    
+
     // if this is reached, the input was invalid
     return -EINVAL;
 }

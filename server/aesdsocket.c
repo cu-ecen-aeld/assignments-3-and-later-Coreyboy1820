@@ -14,6 +14,7 @@
 #include <time.h>
 #include "linkedlist.c"
 #include "aesdsocket.h"
+#include "../aesd-char-driver/aesd_ioctl.h"
 
 // defines
 
@@ -236,6 +237,8 @@ void *OperateOnConnection(void* param)
     unsigned int peerNameLength = PEER_NAME_LENGTH;
     char peerName[PEER_NAME_LENGTH] = {0};
     size_t bufferLength = 0;
+    struct aesd_seekto seekToStruct = {0};
+    unsigned int fileNum = 0;
 
     FILE *fd = fopen(fileName, "r+");
     if(!fd)
@@ -246,13 +249,14 @@ void *OperateOnConnection(void* param)
     }
     rewind(fd);
 
+    fileNum = fileno(fd);  
+
     // ===========================================================
     // Log who connected
     // ===========================================================
     retVal = getpeername(params->acceptedSocketFd, (struct sockaddr *)peerName, &peerNameLength);
     if(retVal != 0)
     {
-
         ThreadCleanUp(buffer, fd, fileSocketFd, params, "1");
         *params->hasReturned = true;
         pthread_exit(&retVal);
@@ -274,8 +278,16 @@ void *OperateOnConnection(void* param)
     {
         printf("\n\n\n %s\n\n\n", buffer);
         // then write them to the file
-        fprintf(fd, "%s", buffer);
-        fflush(fd);
+
+        if(sscanf(buffer, "AESDCHAR_IOCSEEKTO:%d,%d", &(seekToStruct.write_cmd), &(seekToStruct.write_cmd_offset)) == 2)
+        {
+            ioctl(fileNum, AESDCHAR_IOCSEEKTO, &seekToStruct);
+        }
+        else
+        {
+            fprintf(fd, "%s", buffer);
+            fflush(fd);
+        }
 
         // iterate over built up file and send it out the socket
         while(getline(&buffer, &bufferLength, fd) != -1)
