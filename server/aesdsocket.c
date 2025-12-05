@@ -63,6 +63,10 @@ void PrintErrno(int err) {
 
 void ThreadCleanUp(char *buffer, FILE *fd, FILE *fsfdr, threadParameters_s *params, char *location)
 {
+    if(errno)
+    {
+        PrintErrno(errno);
+    }
     if(location != NULL)
     {
         printf("Thread Cleanup Location: %s\n", location);
@@ -240,7 +244,7 @@ void *OperateOnConnection(void* param)
     struct aesd_seekto seekToStruct = {0};
     unsigned int fileNum = 0;
 
-    FILE *fd = fopen(fileName, "r+");
+    FILE *fd = fopen(fileName, "a+");
     if(!fd)
     {
         ThreadCleanUp(buffer, fd, fileSocketFd, params, "0");

@@ -60,7 +60,7 @@ ssize_t aesd_read(struct file *filp, char __user *buf, size_t count,
     struct aesd_dev * dev;
     struct aesd_buffer_entry *circBufEntry = NULL;
     size_t entryOffset = 0;
-    size_t *position = (size_t *)f_pos;
+    size_t position = *f_pos;
 
     PDEBUG("READ\n");
     // get the private data
@@ -73,8 +73,8 @@ ssize_t aesd_read(struct file *filp, char __user *buf, size_t count,
     }
 
     // get the specified entry
-    circBufEntry = aesd_circular_buffer_find_entry_offset_for_fpos(dev->circularBuffer, *position, &entryOffset);
-    PDEBUG("pos: %d, offset: %d, ptr %X\n", *position, entryOffset, circBufEntry);
+    circBufEntry = aesd_circular_buffer_find_entry_offset_for_fpos(dev->circularBuffer, position, &entryOffset);
+    PDEBUG("pos: %d, offset: %d, ptr %X\n", position, entryOffset, circBufEntry);
 
     if(circBufEntry)
     {
@@ -85,7 +85,7 @@ ssize_t aesd_read(struct file *filp, char __user *buf, size_t count,
 
         sizeToCopy = min(sizeToCopy, count);
 
-        if (copy_to_user(buf, circBufEntry->buffptr, sizeToCopy))
+        if (copy_to_user(buf, &(circBufEntry->buffptr[entryOffset]), sizeToCopy))
         {
             mutex_unlock(&dev->lock);
             return -EFAULT;
@@ -163,16 +163,21 @@ loff_t aesd_llseek(struct file *filp, loff_t off, int whence)
     struct aesd_dev * dev;
     dev = (struct aesd_dev *)filp->private_data;
  
-    PDEBUG("llseek\n");
+    PDEBUG("LLSEEK\n");
     if (mutex_lock_interruptible(&dev->lock))
     {
         return -ERESTARTSYS;
     }
 
     loff_t size = dev->circularBuffer->totalNumBytes;
+    unsigned int length = dev->circularBuffer->length;
+
+    PDEBUG("before size:%lld, off %lld f_pos: %lld\n", size, off, filp->f_pos);
 
 
-    off_t offset = fixed_size_llseek(filp, off, whence, size);
+    loff_t offset = fixed_size_llseek(filp, off, whence, size);
+
+    PDEBUG("after f_pos: %lld, offset: %lld\n", filp->f_pos, offset);
 
     mutex_unlock(&dev->lock);
 
@@ -204,6 +209,7 @@ long aesd_adjust_file_offset(struct file * filp, unsigned int write_cmd, unsigne
     struct aesd_dev * dev;
     struct aesd_buffer_entry readEntry = {0};
     struct aesd_buffer_entry *pReadEntry = &readEntry;
+    struct aesd_buffer_entry *pLastEntry;
     unsigned int totalLength = 0;
 
     dev = (struct aesd_dev *)filp->private_data;
@@ -216,17 +222,21 @@ long aesd_adjust_file_offset(struct file * filp, unsigned int write_cmd, unsigne
 
     if(write_cmd < dev->circularBuffer->length)
     {
-        for(unsigned int i = 0; i < write_cmd; i++)
+        aesd_circular_buffer_peek(dev->circularBuffer, &pReadEntry, 0);
+        PDEBUG("wrcmd: %d offset: %d\n", write_cmd, write_cmd_offset);
+        for(unsigned int i = 1; i <= write_cmd; i++)
         {
+            pLastEntry = pReadEntry;
             aesd_circular_buffer_peek(dev->circularBuffer, &pReadEntry, i);
-
-            totalLength += pReadEntry->size;
+            totalLength += pLastEntry->size;
         }
         
+        PDEBUG("pReadEntry->size: %d totalLength: %d\n", pReadEntry->size, totalLength);
         if(write_cmd_offset < pReadEntry->size)
         {
             totalLength += write_cmd_offset;
             filp->f_pos = totalLength;
+            PDEBUG("fpos: %d\n", filp->f_pos);
             mutex_unlock(&dev->lock);
             return 0;
         }
